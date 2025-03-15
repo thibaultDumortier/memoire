@@ -1,0 +1,53 @@
+\documentclass[a4paper, 11pt]{tdl_memoir}
+
+%%%%%%%%%%%%%%%%%%%
+%%% Information %%%
+%%%%%%%%%%%%%%%%%%%
+
+\title{
+    Identification de fragments parallèles dans des corpus 
+    comparables pour les langues régionales de France
+}
+\author{DUMORTIER Thibault}
+
+%title and author insertion
+\makeatletter
+\let\inserttitle\@title
+\let\insertauthor\@author
+\makeatother
+
+% PDF info set up
+\hypersetup{
+    pdfauthor = { \insertauthor },
+    pdftitle = { \inserttitle },
+    pdfsubject = { Mémoire de recherche },
+    pdfkeywords = { tags },
+    pdfstartview = { FitH }
+}
+
+% ======= Document start =======
+
+\begin{document}
+
+\input{pages/firstpages.tex}
+
+% Introduction
+\input{pages/introduction.tex}
+\newpage
+
+% Chapters
+\input{pages/chapters/chapter1.tex}
+\newpage
+\input{pages/chapters/chapter2.tex}
+\newpage
+\input{pages/chapters/langues_peu_dotees.tex}
+\newpage
+\input{pages/chapters/corpus_comp.tex}
+\newpage
+\input{pages/chapters/alignement.tex}
+\newpage
+
+% Conclusion
+\input{pages/conclusion.tex}
+
+\end{document}

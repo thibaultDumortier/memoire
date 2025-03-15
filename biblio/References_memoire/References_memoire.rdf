@@ -1,0 +1,1101 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:link="http://purl.org/rss/1.0/modules/link/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/"
+ xmlns:vcard="http://nwalsh.com/rdf/vCard#">
+    <bib:Article rdf:about="https://www.cambridge.org/core/journals/natural-language-engineering/article/recent-advances-in-machine-translation-using-comparable-corpora/AD075A1D621AC2B687C822FEB642561A">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1351-3249,%201469-8110"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rapp</foaf:surname>
+                        <foaf:givenName>Reinhard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sharoff</foaf:surname>
+                        <foaf:givenName>Serge</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zweigenbaum</foaf:surname>
+                        <foaf:givenName>Pierre</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_67"/>
+        <link:link rdf:resource="#item_13"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>machine-translation</dc:subject>
+        <dc:subject>natural-language-processing</dc:subject>
+        <dc:subject>Corpus</dc:subject>
+        <dc:title>Recent advances in machine translation using comparable corpora</dc:title>
+        <dcterms:abstract>This paper highlights some of the recent developments in the field of machine translation using comparable corpora. We start by updating previous definitions of comparable corpora and then look at bilingual versions of continuous vector space models. Recently, neural networks have been used to obtain latent context representations with only few dimensions which are often called word embeddings. These promising new techniques cannot only be applied to parallel but also to comparable corpora. Subsequent sections of the paper discuss work specifically targeting at machine translation using comparable corpora, as well as work dealing with the extraction of parallel segments from comparable corpora. Finally, we give an overview on the design and the results of a recent shared task on measuring document comparability across languages.</dcterms:abstract>
+        <dc:date>2016/07</dc:date>
+        <z:language>en</z:language>
+        <z:libraryCatalog>Cambridge University Press</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.cambridge.org/core/journals/natural-language-engineering/article/recent-advances-in-machine-translation-using-comparable-corpora/AD075A1D621AC2B687C822FEB642561A</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:14:43</dcterms:dateSubmitted>
+        <bib:pages>501-516</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1351-3249,%201469-8110">
+        <prism:volume>22</prism:volume>
+        <dc:title>Natural Language Engineering</dc:title>
+        <dc:identifier>DOI 10.1017/S1351324916000115</dc:identifier>
+        <prism:number>4</prism:number>
+        <dc:identifier>ISSN 1351-3249, 1469-8110</dc:identifier>
+    </bib:Journal>
+    <bib:Memo rdf:about="#item_67">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Une publication expliquant l’intérêt de l’utilisation de corpus comparable dans la traduction automatique. Celle-ci permet de comprendre l’intérêt de la réalisation d’un corpus parallèles de textes comparables. Elle parle principalement de corpus bilingues.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_13">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/13/Rapp et al. - 2016 - Recent advances in machine translation using comparable corpora.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://www.cambridge.org/core/services/aop-cambridge-core/content/view/AD075A1D621AC2B687C822FEB642561A/S1351324916000115a.pdf/div-class-title-recent-advances-in-machine-translation-using-comparable-corpora-div.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:14:43</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://aclanthology.org/2024.lrec-main.1392">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Torino, Italia</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>ELRA and ICCL</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Stosic</foaf:surname>
+                        <foaf:givenName>Dejan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Marjanović</foaf:surname>
+                        <foaf:givenName>Saša</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bernhard</foaf:surname>
+                        <foaf:givenName>Delphine</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bach</foaf:surname>
+                        <foaf:givenName>Xavier</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bras</foaf:surname>
+                        <foaf:givenName>Myriam</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kevers</foaf:surname>
+                        <foaf:givenName>Laurent</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Retali-Medori</foaf:surname>
+                        <foaf:givenName>Stella</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vergez-Couret</foaf:surname>
+                        <foaf:givenName>Marianne</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Werner</foaf:surname>
+                        <foaf:givenName>Carole</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Calzolari</foaf:surname>
+                        <foaf:givenName>Nicoletta</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Kan</foaf:surname>
+                        <foaf:givenName>Min-Yen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hoste</foaf:surname>
+                        <foaf:givenName>Veronique</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lenci</foaf:surname>
+                        <foaf:givenName>Alessandro</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sakti</foaf:surname>
+                        <foaf:givenName>Sakriani</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Xue</foaf:surname>
+                        <foaf:givenName>Nianwen</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <dcterms:isReferencedBy rdf:resource="#item_51"/>
+        <link:link rdf:resource="#item_15"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>Corpus</dc:subject>
+        <dc:title>The ParCoLab Parallel Corpus and Its Extension to Four Regional Languages of France</dc:title>
+        <dcterms:abstract>Parallel corpora are still scarce for most of the world's language pairs. The situation is by no means different for regional languages of France. In addition, adequate web interfaces facilitate and encourage the use of parallel corpora by target users, such as language learners and teachers, as well as linguists. In this paper, we describe ParCoLab, a parallel corpus and a web platform for querying the corpus. From its onset, ParCoLab has been geared towards lower-resource languages, with an initial corpus in Serbian, along with French and English (later Spanish). We focus here on the extension of ParCoLab with a parallel corpus for four regional languages of France: Alsatian, Corsican, Occitan and Poitevin-Saintongeais. In particular, we detail criteria for choosing texts and issues related to their collection. The new parallel corpus contains more than 20k tokens per regional language.</dcterms:abstract>
+        <dc:date>2024-05</dc:date>
+        <z:libraryCatalog>ACLWeb</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://aclanthology.org/2024.lrec-main.1392</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:15:13</dcterms:dateSubmitted>
+        <bib:pages>16014–16023</bib:pages>
+        <bib:presentedAt>
+           <bib:Conference><dc:title>LREC-COLING 2024</dc:title></bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_51">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Ce document explique le principe, l’histoire et les méthodes d’interrogation du corpus ParCoLab contenant des corpus parallèles en français, alsacien, corse et occitan. Cette ressource va nous permettre d’exploiter ces corpus de manière à augmenter la taille d’un corpus d’entraînement pour entraîner des classifieurs.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_15">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/15/Stosic et al. - 2024 - The ParCoLab Parallel Corpus and Its Extension to Four Regional Languages of France.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://aclanthology.org/2024.lrec-main.1392.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:15:14</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="https://rm.coe.int/min-lang-2022-4-ai-and-ecrml-en/1680a657c5">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dcterms:isPartOf>
+                   <bib:Series><dc:title>MIN- LANG(2022)4</dc:title></bib:Series>
+                </dcterms:isPartOf>
+                <dc:title>Council of Europe</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gerken</foaf:surname>
+                        <foaf:givenName>Miriam</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_69"/>
+        <link:link rdf:resource="#item_16"/>
+        <link:link rdf:resource="#item_20"/>
+        <dc:subject>FR</dc:subject>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>machine-translation</dc:subject>
+        <dc:subject>natural-language-processing</dc:subject>
+        <dc:subject>IA/GML</dc:subject>
+        <dc:title>Facilitating the implementation of the European Charter for Regional or Minority Languages through artificial intelligence</dc:title>
+        <dc:date>2022/02</dc:date>
+        <z:language>en</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://rm.coe.int/min-lang-2022-4-ai-and-ecrml-en/1680a657c5</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:24:00</dcterms:dateSubmitted>
+    </bib:Article>
+    <bib:Memo rdf:about="#item_69">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Cette publication parle de l’implémentation de la charte européenne pour les langues régionales ou peu dotées par l’utilisation de l’intelligence artificielle. Cette publication explique en détail l’intérêt d’utiliser des outils basé sur l’intelligence artificielle de manière à rendre des langues régionales ou peu dotées plus accessible via les nouvelles technologies de manière à faire en sorte que celle-ci ne disparaissent pas. De plus, ces outils permettraient d’appliquer la “charte européenne pour les langues régionales ou minoritaires”, nous explique la publication. Celle-ci nous donne ensuite, à travers ces chapitres, différentes applications de ces outils à travers des exemples concrets. C’est intéressant de s’intéresser à ce texte pour comprendre l’intérêt du projet.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_16">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/16/Gerken - 2022 - en.pdf"/>
+        <dc:title>Gerken - 2022 - en.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://rm.coe.int/min-lang-2022-4-ai-and-ecrml-en/1680a657c5</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:15:27</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_20">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/20/Gerken - 2022 - fr.pdf"/>
+        <dc:title>Gerken - 2022 - fr.pdf</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://rm.coe.int/min-lang-2022-4-ai-and-ecrml-fr/1680a657fd</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:20:57</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://aclanthology.org/2023.mtsummit-coco4mt.1">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>Proceedings of the Second Workshop on Corpus Generation and Corpus Augmentation for Machine Translation</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Macau SAR, China</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>Asia-Pacific Association for Machine Translation</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Steingrímsson</foaf:surname>
+                        <foaf:givenName>Steinþór</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lohar</foaf:surname>
+                        <foaf:givenName>Pintu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Loftsson</foaf:surname>
+                        <foaf:givenName>Hrafn</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Way</foaf:surname>
+                        <foaf:givenName>Andy</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_65"/>
+        <link:link rdf:resource="#item_30"/>
+        <dc:relation rdf:resource="https://aclanthology.org/2021.bucc-1.3"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>Fragments</dc:subject>
+        <dc:title>Do Not Discard – Extracting Useful Fragments from Low-Quality Parallel Data to Improve Machine Translation</dc:title>
+        <dcterms:abstract>When parallel corpora are preprocessed for machine translation (MT) training, a part of the parallel data is commonly discarded and deemed non-parallel due to odd-length ratio, overlapping text in source and target sentences or failing some other form of a semantic equivalency test. For language pairs with limited parallel resources, this can be costly as in such cases modest amounts of acceptable data may be useful to help build MT systems that generate higher quality translations. In this paper, we refine parallel corpora for two language pairs, English–Bengali and English–Icelandic, by extracting sub-sentence fragments from sentence pairs that would otherwise have been discarded, in order to increase recall when compiling training data. We find that by including the fragments, translation quality of NMT systems trained on the data improves significantly when translating from English to Bengali and from English to Icelandic.</dcterms:abstract>
+        <dc:date>2023-09</dc:date>
+        <z:libraryCatalog>ACLWeb</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://aclanthology.org/2023.mtsummit-coco4mt.1</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:32:33</dcterms:dateSubmitted>
+        <bib:pages>1–13</bib:pages>
+        <bib:presentedAt>
+           <bib:Conference><dc:title>MTSummit 2023</dc:title></bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_65">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Les langues étudiées sont peu dotés. Il est donc complexe de créer un corpus parallèles de bonne qualité. Cette publication explique comment nous pourrions extraire des fragments utiles d’un corpus de ce genre. La publication explore les corpus parallèles Anglo-islandais. Extraire des fragments de phrases permet d’améliorer le corpus parallèles. En effet, cela permet de ne pas jeter des phrases entières estimées inutiles, car celle-ci peuvent contenir des fragments comparables intéressant dans la formation du corpus.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_30">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/30/Steingrímsson et al. - 2023 - Do Not Discard – Extracting Useful Fragments from Low-Quality Parallel Data to Improve Machine Trans.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://aclanthology.org/2023.mtsummit-coco4mt.1.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:32:34</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://aclanthology.org/2021.bucc-1.3">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>Proceedings of the 14th Workshop on Building and Using Comparable Corpora (BUCC 2021)</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Online (Virtual Mode)</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>INCOMA Ltd.</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Steingrímsson</foaf:surname>
+                        <foaf:givenName>Steinþór</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lohar</foaf:surname>
+                        <foaf:givenName>Pintu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Loftsson</foaf:surname>
+                        <foaf:givenName>Hrafn</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Way</foaf:surname>
+                        <foaf:givenName>Andy</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Rapp</foaf:surname>
+                        <foaf:givenName>Reinhard</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sharoff</foaf:surname>
+                        <foaf:givenName>Serge</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zweigenbaum</foaf:surname>
+                        <foaf:givenName>Pierre</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <dcterms:isReferencedBy rdf:resource="#item_66"/>
+        <link:link rdf:resource="#item_32"/>
+        <dc:relation rdf:resource="https://aclanthology.org/2023.mtsummit-coco4mt.1"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>data-mining</dc:subject>
+        <dc:subject>machine-translation</dc:subject>
+        <dc:subject>natural-language-processing</dc:subject>
+        <dc:subject>Bitext</dc:subject>
+        <dc:title>Effective Bitext Extraction From Comparable Corpora Using a Combination of Three Different Approaches</dc:title>
+        <dcterms:abstract>Parallel sentences extracted from comparable corpora can be useful to supplement parallel corpora when training machine translation (MT) systems. This is even more prominent in low-resource scenarios, where parallel corpora are scarce. In this paper, we present a system which uses three very different measures to identify and score parallel sentences from comparable corpora. We measure the accuracy of our methods in low-resource settings by comparing the results against manually curated test data for English–Icelandic, and by evaluating an MT system trained on the concatenation of the parallel data extracted by our approach and an existing data set. We show that the system is capable of extracting useful parallel sentences with high accuracy, and that the extracted pairs substantially increase translation quality of an MT system trained on the data, as measured by automatic evaluation metrics.</dcterms:abstract>
+        <dc:date>2021-09</dc:date>
+        <z:libraryCatalog>ACLWeb</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://aclanthology.org/2021.bucc-1.3</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:33:00</dcterms:dateSubmitted>
+        <bib:pages>8–17</bib:pages>
+        <bib:presentedAt>
+           <bib:Conference><dc:title>BUCC 2021</dc:title></bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_66">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Cette publication discute de 3 approches pour l’extraction de bitexte et des résultats apporté par l’utilisation de ces approches. La publication présente aussi les avantages en performance amené par l’utilisation des approches. Cette publication est liée à la publication “Do Not Discard - Extracting Useful Fragments from Low-Quality Parallel Data to Improve Machine Translation” réalisée par Steingrímsson. Les deux se basant sur un corpus Anglo-islandais.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_32">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/32/Steingrímsson et al. - 2021 - Effective Bitext Extraction From Comparable Corpora Using a Combination of Three Different Approache.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://aclanthology.org/2021.bucc-1.3.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:33:01</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="http://arxiv.org/abs/2208.11194">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tan</foaf:surname>
+                        <foaf:givenName>Weiting</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Koehn</foaf:surname>
+                        <foaf:givenName>Philipp</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_64"/>
+        <link:link rdf:resource="#item_36"/>
+        <dc:relation rdf:resource="https://github.com/steventan0110/align-filter"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Computation and Language</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>data-mining</dc:subject>
+        <dc:subject>Bitext</dc:subject>
+        <dc:title>Bitext Mining for Low-Resource Languages via Contrastive Learning</dc:title>
+        <dcterms:abstract>Mining high-quality bitexts for low-resource languages is challenging. This paper shows that sentence representation of language models fine-tuned with multiple negatives ranking loss, a contrastive objective, helps retrieve clean bitexts. Experiments show that parallel data mined from our approach substantially outperform the previous state-of-the-art method on low resource languages Khmer and Pashto.</dcterms:abstract>
+        <dc:date>2022-08-23</dc:date>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/2208.11194</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:39:42</dcterms:dateSubmitted>
+        <dc:description>arXiv:2208.11194 [cs]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.2208.11194</dc:identifier>
+        <prism:number>arXiv:2208.11194</prism:number>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_64">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Les langues manipulées étant des langues peu dotées, ce papier est intéressant. En effet, il parle de l’utilisation de phrase de type sentence transformers dans la détection de phrases proches. Ce qui permettrait à un programme de faire du minage de bitext efficace pour des langues peu dotées.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_36">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/36/Tan et Koehn - 2022 - Bitext Mining for Low-Resource Languages via Contrastive Learning.pdf"/>
+        <dc:title>Preprint PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/pdf/2208.11194v1</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:39:43</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://aclanthology.org/2023.nodalida-1.39">
+        <z:itemType>conferencePaper</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <dc:title>Proceedings of the 24th Nordic Conference on Computational Linguistics (NoDaLiDa)</dc:title>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <dc:publisher>
+            <foaf:Organization>
+                <vcard:adr>
+                    <vcard:Address>
+                       <vcard:locality>Tórshavn, Faroe Islands</vcard:locality>
+                    </vcard:Address>
+                </vcard:adr>
+                <foaf:name>University of Tartu Library</foaf:name>
+            </foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Artemova</foaf:surname>
+                        <foaf:givenName>Ekaterina</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Plank</foaf:surname>
+                        <foaf:givenName>Barbara</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <bib:editors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Alumäe</foaf:surname>
+                        <foaf:givenName>Tanel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Fishel</foaf:surname>
+                        <foaf:givenName>Mark</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:editors>
+        <dcterms:isReferencedBy rdf:resource="#item_70"/>
+        <link:link rdf:resource="#item_39"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>machine-translation</dc:subject>
+        <dc:subject>natural-language-processing</dc:subject>
+        <dc:subject>IA/GML</dc:subject>
+        <dc:title>Low-resource Bilingual Dialect Lexicon Induction with Large Language Models</dc:title>
+        <dcterms:abstract>Bilingual word lexicons map words in one language to their synonyms in another language. Numerous papers have explored bilingual lexicon induction (BLI) in high-resource scenarios, framing a typical pipeline that consists of two steps: (i) unsupervised bitext mining and (ii) unsupervised word alignment. At the core of those steps are pre-trained large language models (LLMs).In this paper we present the analysis of the BLI pipeline for German and two of its dialects, Bavarian and Alemannic. This setup poses a number of unique challenges, attributed to the scarceness of resources, relatedness of the languages and lack of standardization in the orthography of dialects. We analyze the BLI outputs with respect to word frequency and the pairwise edit distance. Finally, we release an evaluation dataset consisting of manual annotations for 1K bilingual word pairs labeled according to their semantic similarity.</dcterms:abstract>
+        <dc:date>2023-05</dc:date>
+        <z:libraryCatalog>ACLWeb</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://aclanthology.org/2023.nodalida-1.39</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:41:27</dcterms:dateSubmitted>
+        <bib:pages>371–385</bib:pages>
+        <bib:presentedAt>
+           <bib:Conference><dc:title>NoDaLiDa 2023</dc:title></bib:Conference>
+        </bib:presentedAt>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_70">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Cette publication nous explique une méthode d’apprentissage pour GLM pour des langues ou dialectes peu dotés, pour lesquels le nombre de texte digitalisé ou existant en général est bas. Faire cela est intéressant car la plupart des outils de traitement automatique des langues se base sur de larges bases de textes, labellisés et bien dotés. Cela pose problème car les outils en question ont donc énormément de mal dans le cas où il n’y aurait pas assez de données, ou que celle-ci serait trop rare. Le texte explique donc qu’il faut augmenter la recherche dans l'apprentissage par transfert et les techniques interlinguistiques. Le texte explique les différentes méthodes d’apprentissage pour GLM vu plus en détails dans d’autres documents de la bibliographie mais s’intéresse à peu près à toute, expliquant leur fonctionnement et leur intérêt.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_39">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/39/Artemova et Plank - 2023 - Low-resource Bilingual Dialect Lexicon Induction with Large Language Models.pdf"/>
+        <dc:title>Full Text PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://aclanthology.org/2023.nodalida-1.39.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:41:27</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Article rdf:about="http://archive.sciendo.com/PRALIN/pralin.2016.106.issue-1/pralin-2016-0016/pralin-2016-0016.pdf">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:1804-0462"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lohar</foaf:surname>
+                        <foaf:givenName>Pintu</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ganguly</foaf:surname>
+                        <foaf:givenName>Debasis</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Afli</foaf:surname>
+                        <foaf:givenName>Haithem</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Way</foaf:surname>
+                        <foaf:givenName>Andy</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jones</foaf:surname>
+                        <foaf:givenName>Gareth J.F.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_68"/>
+        <link:link rdf:resource="#item_40"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>IA/GML</dc:subject>
+        <dc:subject>Embedding</dc:subject>
+        <dc:subject>Corpus</dc:subject>
+        <dc:title>FaDA: Fast Document Aligner using Word Embedding</dc:title>
+        <dcterms:abstract>FaDA1 is a free/open-source tool for aligning multilingual documents. It employs a novel crosslingual information retrieval (CLIR)-based document-alignment algorithm involving the distances between embedded word vectors in combination with the word overlap between the source-language and the target-language documents. In this approach, we initially construct a pseudo-query from a source-language document. We then represent the target-language documents and the pseudo-query as word vectors to find the average similarity measure between them. This word vector-based similarity measure is then combined with the term overlap-based similarity. Our initial experiments show that s standard Statistical Machine Translation (SMT)based approach is outperformed by our CLIR-based approach in finding the correct alignment pairs. In addition to this, subsequent experiments with the word vector-based method show further improvements in the performance of the system.</dcterms:abstract>
+        <dc:date>2016-10-1</dc:date>
+        <z:language>en</z:language>
+        <z:shortTitle>FaDA</z:shortTitle>
+        <z:libraryCatalog>DOI.org (Crossref)</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://archive.sciendo.com/PRALIN/pralin.2016.106.issue-1/pralin-2016-0016/pralin-2016-0016.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:42:03</dcterms:dateSubmitted>
+        <dc:rights>http://creativecommons.org/licenses/by-nc-nd/4.0</dc:rights>
+        <bib:pages>169-179</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:1804-0462">
+        <prism:volume>106</prism:volume>
+        <dc:title>The Prague Bulletin of Mathematical Linguistics</dc:title>
+        <dc:identifier>DOI 10.1515/pralin-2016-0016</dc:identifier>
+        <prism:number>1</prism:number>
+        <dc:identifier>ISSN 1804-0462</dc:identifier>
+    </bib:Journal>
+    <bib:Memo rdf:about="#item_68">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Ce document parle de la création du système FaDA (Fast Document Aligner). Ce système d’alignement rapide de document vérifie dans un corpus bilingue via une recherche d’informations inter-langues par index inversé quel document d’une langue cible correspond le plus à celui d’une langue source. Une fois ce document trouvé, le système utilise un système de neurone récurrent de manière à réalisé un alignement par mot-vecteur. Cette méthode est utilisé de nos jours dans certains GML (grands modèles de langage) pour sa vitesse et son efficacité. Les mot-vecteur permettent de faire correspondre sémantiquement des termes de deux langues distinctes sans forcément avoir à les traduire ce qui permet de drastiquement accéléré le traitement de ce genre de texte pour des recherches spécifiques. &lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_40">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/40/Lohar et al. - 2016 - FaDA Fast Document Aligner using Word Embedding.pdf"/>
+        <dc:title>PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>http://archive.sciendo.com/PRALIN/pralin.2016.106.issue-1/pralin-2016-0016/pralin-2016-0016.pdf</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:42:02</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://gitlab.com/memoire5005040/fragments_paralleles">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website><dc:title>GitLab</dc:title></z:Website>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tsolakis</foaf:surname>
+                        <foaf:givenName>Panagiotis</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_52"/>
+        <link:link rdf:resource="#item_43"/>
+        <dc:subject>FR</dc:subject>
+        <dc:subject>programme</dc:subject>
+        <dc:subject>Fragments</dc:subject>
+        <dc:title>m2-technologies-des-langues / fragments_paralleles · GitLab</dc:title>
+        <dcterms:abstract>GitLab.com</dcterms:abstract>
+        <dc:date>2024-08-11</dc:date>
+        <z:language>fr</z:language>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://gitlab.com/memoire5005040/fragments_paralleles</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:57:06</dcterms:dateSubmitted>
+    </bib:Document>
+    <bib:Memo rdf:about="#item_52">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Le projet “fragments_paralleles” réalisé par P. TSOLAKIS, ancien étudiant en master TdL. Ce projet porte “sur l'identification automatique de fragments de textes parallèles dans des corpus comparables pour les langues régionales de France.” (d’après le README présent sur le gitlab). Ce projet a déjà réalisé un premier corpus et entraîner des classificateurs pour la détection de phrases parallèles. Le but va-t-être d’améliorer ce projet. Il est donc très important en tant que référence.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_43">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/43/fragments_paralleles.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://gitlab.com/memoire5005040/fragments_paralleles</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-27 10:57:08</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://als.wikipedia.org/w/index.php?title=Wikipedia:Houptsyte_(Elsassisch)&amp;oldid=1048041">
+        <z:itemType>encyclopediaArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Book>
+               <dc:title>Wikipedia, the free encyclopedia</dc:title>
+            </bib:Book>
+        </dcterms:isPartOf>
+        <dcterms:isReferencedBy rdf:resource="#item_59"/>
+        <link:link rdf:resource="#item_46"/>
+        <dc:relation rdf:resource="https://oc.wikipedia.org/w/index.php?title=Acu%C3%A8lh&amp;oldid=2452310"/>
+        <dc:relation rdf:resource="https://co.wikipedia.org/w/index.php?title=Pagina_maestra&amp;oldid=151611"/>
+        <dc:subject>alsacien</dc:subject>
+        <dc:subject>wikipédia</dc:subject>
+        <dc:title>Wikipedia:Houptsyte (Elsassisch)</dc:title>
+        <dc:date>2024-02-08T10:28:26Z</dc:date>
+        <z:language>gsw</z:language>
+        <z:shortTitle>Wikipedia</z:shortTitle>
+        <z:libraryCatalog>Wikipedia</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://als.wikipedia.org/w/index.php?title=Wikipedia:Houptsyte_(Elsassisch)&amp;oldid=1048041</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 09:44:30</dcterms:dateSubmitted>
+        <dc:rights>Creative Commons Attribution-ShareAlike License</dc:rights>
+        <dc:description>Page Version ID: 1048041</dc:description>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_59">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;La page d’accueil du portail Wikipédia en alsacien. Ce portail nous permettra de faire des recherches sur des articles existant aussi en occitan, français et en corse afin d’étendre le corpus parallèles du projet.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_46">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/46/WikipediaHouptsyte_(Elsassisch).html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://als.wikipedia.org/wiki/Wikipedia:Houptsyte_(Elsassisch)</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 09:44:35</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://co.wikipedia.org/w/index.php?title=Pagina_maestra&amp;oldid=151611">
+        <z:itemType>encyclopediaArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Book>
+               <dc:title>Wikipedia, the free encyclopedia</dc:title>
+            </bib:Book>
+        </dcterms:isPartOf>
+        <dcterms:isReferencedBy rdf:resource="#item_58"/>
+        <link:link rdf:resource="#item_49"/>
+        <dc:relation rdf:resource="https://oc.wikipedia.org/w/index.php?title=Acu%C3%A8lh&amp;oldid=2452310"/>
+        <dc:relation rdf:resource="https://als.wikipedia.org/w/index.php?title=Wikipedia:Houptsyte_(Elsassisch)&amp;oldid=1048041"/>
+        <dc:subject>wikipédia</dc:subject>
+        <dc:subject>corse</dc:subject>
+        <dc:title>Pagina maestra</dc:title>
+        <dc:date>2008-12-23T12:01:14Z</dc:date>
+        <z:language>co</z:language>
+        <z:libraryCatalog>Wikipedia</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://co.wikipedia.org/w/index.php?title=Pagina_maestra&amp;oldid=151611</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 09:44:44</dcterms:dateSubmitted>
+        <dc:rights>Creative Commons Attribution-ShareAlike License</dc:rights>
+        <dc:description>Page Version ID: 151611</dc:description>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_58">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;La page d’accueil du portail Wikipédia en corse. Ce portail nous permettra de faire des recherches sur des articles existant aussi en alsacien, français et en occitan afin d’étendre le corpus parallèles du projet.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_49">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/49/Pagina_maestra.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://co.wikipedia.org/wiki/Pagina_maestra</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 09:44:50</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <rdf:Description rdf:about="https://oc.wikipedia.org/w/index.php?title=Acu%C3%A8lh&amp;oldid=2452310">
+        <z:itemType>encyclopediaArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Book>
+               <dc:title>Wikipedia, the free encyclopedia</dc:title>
+            </bib:Book>
+        </dcterms:isPartOf>
+        <dcterms:isReferencedBy rdf:resource="#item_57"/>
+        <link:link rdf:resource="#item_50"/>
+        <dc:relation rdf:resource="https://als.wikipedia.org/w/index.php?title=Wikipedia:Houptsyte_(Elsassisch)&amp;oldid=1048041"/>
+        <dc:relation rdf:resource="https://co.wikipedia.org/w/index.php?title=Pagina_maestra&amp;oldid=151611"/>
+        <dc:subject>wikipédia</dc:subject>
+        <dc:subject>occitan</dc:subject>
+        <dc:title>Acuèlh</dc:title>
+        <dc:date>2024-10-24T14:28:01Z</dc:date>
+        <z:language>oc</z:language>
+        <z:libraryCatalog>Wikipedia</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://oc.wikipedia.org/w/index.php?title=Acu%C3%A8lh&amp;oldid=2452310</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 09:44:46</dcterms:dateSubmitted>
+        <dc:rights>Creative Commons Attribution-ShareAlike License</dc:rights>
+        <dc:description>Page Version ID: 2452310</dc:description>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_57">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;La page d’accueil du portail Wikipédia en occitan. Ce portail nous permettra de faire des recherches sur des articles existant aussi en alsacien, français et en corse afin d’étendre le corpus parallèles du projet.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_50">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/50/Acuèlh.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://oc.wikipedia.org/wiki/Acu%C3%A8lh</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 09:44:52</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Document rdf:about="https://sbert.net/">
+        <z:itemType>webpage</z:itemType>
+        <dcterms:isPartOf>
+           <z:Website></z:Website>
+        </dcterms:isPartOf>
+        <dcterms:isReferencedBy rdf:resource="#item_55"/>
+        <link:link rdf:resource="#item_54"/>
+        <dc:relation rdf:resource="http://arxiv.org/abs/1908.10084"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>Embedding</dc:subject>
+        <dc:title>SentenceTransformers Documentation — Sentence Transformers documentation</dc:title>
+        <dc:date>2024</dc:date>
+        <dc:identifier>
+           <dcterms:URI><rdf:value>https://sbert.net/</rdf:value></dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 10:06:27</dcterms:dateSubmitted>
+    </bib:Document>
+    <bib:Memo rdf:about="#item_55">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Cette documentation permet de mieux comprendre le principe derrière les sentence transformers. Cette librairie python sera très utile dans la compréhension du programme “fragments_paralleles”. De plus, une connaissance de la documentation permettra d’améliorer le projet “fragments_paralleles” si nécessaire.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_54">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/54/sbert.net.html"/>
+        <dc:title>SentenceTransformers Documentation — Sentence Transformers documentation</dc:title>
+        <dc:identifier>
+           <dcterms:URI><rdf:value>https://sbert.net/</rdf:value></dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 10:06:33</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <bib:Data rdf:about="https://github.com/steventan0110/align-filter">
+        <z:itemType>computerProgram</z:itemType>
+        <z:programmers>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Tan</foaf:surname>
+                        <foaf:givenName>Steven</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </z:programmers>
+        <dcterms:isReferencedBy rdf:resource="#item_71"/>
+        <dc:relation rdf:resource="http://arxiv.org/abs/2208.11194"/>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>programme</dc:subject>
+        <dc:subject>
+           <z:AutomaticTag><rdf:value>data-mining</rdf:value></z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>machine-translation</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>natural-language-processing</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>Bitext</dc:subject>
+        <dc:title>steventan0110/align-filter</dc:title>
+        <dcterms:abstract>Repository for &quot;Bitext Mining for Low-Resource Languages via Contrastive Learning&quot;</dcterms:abstract>
+        <dc:date>2024-09-22T02:28:51Z</dc:date>
+        <z:libraryCatalog>GitHub</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+                <rdf:value>https://github.com/steventan0110/align-filter</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 10:09:45</dcterms:dateSubmitted>
+        <dc:rights>MIT</dc:rights>
+        <dc:description>original-date: 2022-03-15T16:51:41Z</dc:description>
+        <z:programmingLanguage>Python</z:programmingLanguage>
+    </bib:Data>
+    <bib:Memo rdf:about="#item_71">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;La page GIT du mineur de Bitexte réaliser par Tan et Koehn.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <rdf:Description rdf:about="http://arxiv.org/abs/1908.10084">
+        <z:itemType>preprint</z:itemType>
+        <dc:publisher>
+           <foaf:Organization><foaf:name>arXiv</foaf:name></foaf:Organization>
+        </dc:publisher>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Reimers</foaf:surname>
+                        <foaf:givenName>Nils</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Gurevych</foaf:surname>
+                        <foaf:givenName>Iryna</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dcterms:isReferencedBy rdf:resource="#item_61"/>
+        <link:link rdf:resource="#item_62"/>
+        <link:link rdf:resource="#item_63"/>
+        <dc:relation rdf:resource="https://sbert.net/"/>
+        <dc:subject>
+            <z:AutomaticTag>
+               <rdf:value>Computer Science - Computation and Language</rdf:value>
+            </z:AutomaticTag>
+        </dc:subject>
+        <dc:subject>EN</dc:subject>
+        <dc:subject>Embedding</dc:subject>
+        <dc:title>Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks</dc:title>
+        <dcterms:abstract>BERT (Devlin et al., 2018) and RoBERTa (Liu et al., 2019) has set a new state-of-the-art performance on sentence-pair regression tasks like semantic textual similarity (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations (~65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering. In this publication, we present Sentence-BERT (SBERT), a modification of the pretrained BERT network that use siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. We evaluate SBERT and SRoBERTa on common STS tasks and transfer learning tasks, where it outperforms other state-of-the-art sentence embeddings methods.</dcterms:abstract>
+        <dc:date>2019-08-27</dc:date>
+        <z:shortTitle>Sentence-BERT</z:shortTitle>
+        <z:libraryCatalog>arXiv.org</z:libraryCatalog>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/abs/1908.10084</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 10:19:17</dcterms:dateSubmitted>
+        <dc:description>arXiv:1908.10084 [cs]</dc:description>
+        <dc:identifier>DOI 10.48550/arXiv.1908.10084</dc:identifier>
+        <prism:number>arXiv:1908.10084</prism:number>
+    </rdf:Description>
+    <bib:Memo rdf:about="#item_61">
+        <rdf:value>&lt;div data-schema-version=&quot;9&quot;&gt;&lt;p&gt;Cette publication explique le principe derrière le programme SBERT et le fonctionnement de celui-ci, ainsi que l’idée, sur papier. Elle est pratique de manière à mieux comprendre le programme de sentence transformers de façon fondamental.&lt;/p&gt;
+&lt;/div&gt;</rdf:value>
+    </bib:Memo>
+    <z:Attachment rdf:about="#item_62">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/62/Reimers et Gurevych - 2019 - Sentence-BERT Sentence Embeddings using Siamese BERT-Networks.pdf"/>
+        <dc:title>Preprint PDF</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://arxiv.org/pdf/1908.10084v1</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 10:19:17</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>application/pdf</link:type>
+    </z:Attachment>
+    <z:Attachment rdf:about="#item_63">
+        <z:itemType>attachment</z:itemType>
+        <rdf:resource rdf:resource="files/63/1908.html"/>
+        <dc:title>Snapshot</dc:title>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>https://arxiv.org/abs/1908.10084</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dcterms:dateSubmitted>2024-12-29 10:19:22</dcterms:dateSubmitted>
+        <z:linkMode>1</z:linkMode>
+        <link:type>text/html</link:type>
+    </z:Attachment>
+    <z:Collection rdf:about="#collection_3">
+        <dc:title>Bitexte</dc:title>
+        <dcterms:hasPart rdf:resource="https://aclanthology.org/2021.bucc-1.3"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/2208.11194"/>
+        <dcterms:hasPart rdf:resource="https://github.com/steventan0110/align-filter"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_7">
+        <dc:title>Corpus comparable et parallèles</dc:title>
+        <dcterms:hasPart rdf:resource="https://www.cambridge.org/core/journals/natural-language-engineering/article/recent-advances-in-machine-translation-using-comparable-corpora/AD075A1D621AC2B687C822FEB642561A"/>
+        <dcterms:hasPart rdf:resource="https://aclanthology.org/2024.lrec-main.1392"/>
+        <dcterms:hasPart rdf:resource="http://archive.sciendo.com/PRALIN/pralin.2016.106.issue-1/pralin-2016-0016/pralin-2016-0016.pdf"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_8">
+        <dc:title>Embedding</dc:title>
+        <dcterms:hasPart rdf:resource="http://archive.sciendo.com/PRALIN/pralin.2016.106.issue-1/pralin-2016-0016/pralin-2016-0016.pdf"/>
+        <dcterms:hasPart rdf:resource="http://arxiv.org/abs/1908.10084"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_4">
+        <dc:title>Fragments</dc:title>
+        <dcterms:hasPart rdf:resource="https://aclanthology.org/2023.mtsummit-coco4mt.1"/>
+        <dcterms:hasPart rdf:resource="https://gitlab.com/memoire5005040/fragments_paralleles"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_2">
+        <dc:title>IA/GLM</dc:title>
+        <dcterms:hasPart rdf:resource="https://rm.coe.int/min-lang-2022-4-ai-and-ecrml-en/1680a657c5"/>
+        <dcterms:hasPart rdf:resource="https://aclanthology.org/2023.nodalida-1.39"/>
+        <dcterms:hasPart rdf:resource="http://archive.sciendo.com/PRALIN/pralin.2016.106.issue-1/pralin-2016-0016/pralin-2016-0016.pdf"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_6">
+        <dc:title>Sites</dc:title>
+        <dcterms:hasPart rdf:resource="https://gitlab.com/memoire5005040/fragments_paralleles"/>
+        <dcterms:hasPart rdf:resource="https://als.wikipedia.org/w/index.php?title=Wikipedia:Houptsyte_(Elsassisch)&amp;oldid=1048041"/>
+        <dcterms:hasPart rdf:resource="https://co.wikipedia.org/w/index.php?title=Pagina_maestra&amp;oldid=151611"/>
+        <dcterms:hasPart rdf:resource="https://oc.wikipedia.org/w/index.php?title=Acu%C3%A8lh&amp;oldid=2452310"/>
+        <dcterms:hasPart rdf:resource="https://sbert.net/"/>
+        <dcterms:hasPart rdf:resource="https://github.com/steventan0110/align-filter"/>
+    </z:Collection>
+    <z:Collection rdf:about="#collection_5">
+        <dc:title>TAL</dc:title>
+        <dcterms:hasPart rdf:resource="https://www.cambridge.org/core/journals/natural-language-engineering/article/recent-advances-in-machine-translation-using-comparable-corpora/AD075A1D621AC2B687C822FEB642561A"/>
+        <dcterms:hasPart rdf:resource="https://rm.coe.int/min-lang-2022-4-ai-and-ecrml-en/1680a657c5"/>
+        <dcterms:hasPart rdf:resource="https://aclanthology.org/2021.bucc-1.3"/>
+        <dcterms:hasPart rdf:resource="https://aclanthology.org/2023.nodalida-1.39"/>
+        <dcterms:hasPart rdf:resource="https://github.com/steventan0110/align-filter"/>
+    </z:Collection>
+</rdf:RDF>
