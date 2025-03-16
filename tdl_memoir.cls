@@ -58,11 +58,12 @@
 \usepackage{csquotes} % Typographical rules for bib
 \usepackage{notoccite} % Bib formatting
 \usepackage[
+    backend=biber,
     style=apa,
     uniquelist=false, % https://tex.stackexchange.com/questions/637149/incorrect-biblatex-apa-7-citation-when-having-multiple-same-author-year-entries
     doi=false,
     isbn=false,
-    url=false,
+    url=true,
     defernumbers,
     date=year,
     labeldate=year
@@ -70,6 +71,7 @@
 \DefineBibliographyStrings{french}{
   retrieved = {Récupéré le}
 }
+\addbibresource{pages/bibliography/refs.bib}
 
 %%%%%%% TABLES %%%%%%%
 \usepackage{hhline} % Better lines in tables
@@ -85,9 +87,6 @@
 
 % Directory where images can be found
 \graphicspath{{figures/}}
-% Space between text and before text
-\setlength{\parskip}{0pt plus 1pt}
-\setlength{\parindent}{15pt}
 \SetSinglespace{1}
 % Line spacing 
 \newlength{\singlebaselineskip} % Captions
@@ -96,7 +95,7 @@
 \setlength{\textbaselineskip}{1.15\baselineskip plus2pt}
 % Block title style for chapters
 \titleformat{\chapter}[block]
-    {\fontfamily{qcs}\bfseries}{\filright\LARGE\thechapter.}{1ex}{\LARGE\filright #1 \thispagestyle{fancy} \markboth{#1}{}}
+    {\fontfamily{qcs}\bfseries}{\filright\LARGE\thechapter.}{1ex}{\LARGE\filright #1 \pagestyle{fancyplain} \markboth{#1}{}}
 \titlespacing{\chapter}{0px}{0px}{1px}
 
 %%%%%%%%%%%%%%%%
@@ -107,7 +106,7 @@
 \newcommand\unnumberedchap[1]{
   \chapter*{#1}
   \addcontentsline{toc}{chapter}{#1}
-  \thispagestyle{fancy}
+  \pagestyle{fancyplain}
   \markboth{#1}{}
 }
 
@@ -125,13 +124,17 @@
 %%%%%%%%%%%%%%%%%%%
 
 % Turn on the style
-\pagestyle{fancy}
+\pagestyle{fancyplain}
 % Clear the header and footer
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
 % Set the right side of the footer to be the page number
-\fancypagestyle{fancy}{
+\fancypagestyle{fancyplain}{
+    % Space between text and before text
+    \setlength{\parskip}{0pt plus 1pt}
+    \setlength{\parindent}{15pt}
+
     \fancyhf{}
     \fancyfoot[L]{
         \small \insertauthor~\textbar~Mémoire~\textbar~Université de Strasbourg
@@ -148,3 +151,6 @@
 
 % Flexible space after figure
 \setlength{\textfloatsep}{20pt plus15pt minus4pt}
+
+% Bibliography
+\nocite{*}
