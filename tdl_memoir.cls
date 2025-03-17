@@ -154,3 +154,9 @@
 
 % Bibliography
 \nocite{*}
+
+% Remove fancy style, leaving only the bibliography look
+\renewcommand{\bibsetup}{\thispagestyle{empty}\pagestyle{empty}}
+\makeatletter
+\patchcmd{\blx@endenv@bibliography}{\endlist}{\endlist\clearpage}{}{}
+\makeatother
