@@ -5,7 +5,7 @@
 \NeedsTeXFormat{LaTeX2e}
 
 % We base ourselves on the preexisting "report" class
-\LoadClass[a4paper,11pt]{report}
+\LoadClass[a4paper,12pt]{report}
 
 %%%%%%%%%%%%%%%%
 %%% PACKAGES %%%
@@ -55,18 +55,20 @@
 
 %%%%%%% BIBLIOGRAPHY %%%%%%%
 \usepackage[nonumberlist]{glossaries} % Glossary making
-\usepackage{csquotes} % Typographical rules for bib
+\usepackage[french=guillemets]{csquotes} % Typographical rules for bib
 \usepackage{notoccite} % Bib formatting
 \usepackage[
     backend=biber,
     style=apa,
+    sorting=ynt,
     uniquelist=false, % https://tex.stackexchange.com/questions/637149/incorrect-biblatex-apa-7-citation-when-having-multiple-same-author-year-entries
     doi=false,
     isbn=false,
     url=true,
     defernumbers,
     date=year,
-    labeldate=year
+    labeldate=year,
+    natbib
 ]{biblatex}
 \DefineBibliographyStrings{french}{
   retrieved = {Récupéré le}
