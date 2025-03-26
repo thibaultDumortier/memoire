@@ -112,6 +112,13 @@
   \markboth{#1}{}
 }
 
+% For unnumbered chapters that should show up in toc
+\newcommand\unnumberedchapnoToc[1]{
+  \chapter*{#1}
+  \pagestyle{fancyplain}
+  \markboth{#1}{}
+}
+
 % Citations :
 \AtBeginEnvironment{quote}{\small{\vspace{1.3\baselineskip}}}% Stuff before {quote}
 \AtEndEnvironment{quote}{\vspace{1.3\baselineskip}}% Stuff after {quote}
