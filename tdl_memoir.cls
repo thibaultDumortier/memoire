@@ -52,6 +52,7 @@
 \usepackage{enumitem} % List customisation
 \usepackage{calc} % Natural syntax
 \usepackage{nicefrac} % Better fractions in text
+\usepackage{xurl} % Breaks up long urls
 
 %%%%%%% BIBLIOGRAPHY %%%%%%%
 \usepackage[nonumberlist]{glossaries} % Glossary making
@@ -169,3 +170,4 @@
 \makeatletter
 \patchcmd{\blx@endenv@bibliography}{\endlist}{\endlist\clearpage}{}{}
 \makeatother
+\hyphenation{Fill-ing-ham}

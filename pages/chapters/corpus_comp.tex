@@ -14,13 +14,9 @@ sont principalement liés à des documents législatifs ou institutionel. Ce gen
 pour la recheche dans la traduction car utilisant parfois un vocabulaire très précis et spécifique à leur 
 domaine. « Cependant les domaines et genres de ces textes institutionels ne correspondent pas toujours bien
 aux cibles des applications TAL. La précision des traductions machine statistique dépende principalement
-d'une bonne correspondance entre le corpus d'entrainement et les textes à traduire [5,22]» %![5,22]
-\citep{sharoff_2013a}. Pour mieux comprendre le principe des corpus comparable comparés aux corpus parallèles
-il nous faut d'abord définir ces termes.
-
-%TODO add to bib :
-%!5. Babych, B., Hartley, A., Sharoff, S., Mudraya, O.: Assisting translators in indirect lexical transfer. In: Proceedings of 45th ACL, pp. 739–746. Prague (2007), http://corpus.leeds.ac.uk/ serge/publications/2007-ACL.pdf
-%!22. Eisele, A., Federmann, C., Saint-Amand, H., Jellinghaus, M., Herrmann, T., Chen, Y.: Using moses to integrate multiple rule-based machine translation engines into a hybrid system. In: Proceedings of the Third Workshop on Statistical Machine Translation at ACL2008, pp. 179–182 (2008)
+d'une bonne correspondance entre le corpus d'entrainement et les textes à traduire 
+\citep{babych_2007, eisele_2008}» \citep{sharoff_2013a}. Pour mieux comprendre le principe des corpus 
+comparable comparés aux corpus parallèles il nous faut d'abord définir ces termes.
 
 \section{Définition}
 
@@ -30,7 +26,7 @@ plusieurs types de corpus parallèles et non-parallèles, mais aussi des ensembl
 utilisés à but comparatif.»
 
 Il est aussi important de définir qu'il existe aussi différents degrés de comparabilité des corpus.
-\citet{sharoff_2016} présente 2 tableaux réalisées par \citet{sharoff_2013a} et [WUD and FUNG] que l'on %! WUD
+\citet{sharoff_2016} présente 2 tableaux réalisées par \citet{sharoff_2013a} et \citet{wu_2005} que l'on
 peux fusionner afin de donner un tableau de définitions ressemblant à cela :
 \begin{enumerate}
   \item Corpus parallèles: composé de textes parallèles aligné par leur phrases qui sont une
@@ -43,9 +39,6 @@ peux fusionner afin de donner un tableau de définitions ressemblant à cela :
   \item  Des textes sans liens : morceaux aléatoires provenant du web qui peuv\-ent tout de même être utilisé
   pour de la comparaison linguistique.
 \end{enumerate}
-
-%TODO add to bib :
-%! Wu, D., and Fung, P. 2005. Inversion transduction grammar constraints for mining parallel sentences from quasi-comparable corpora. In Natural Language Processing–IJCNLP 2005, Springer, pp. 257–268.
 
 \section{Corpus web et Wikipedia}
 
@@ -64,17 +57,12 @@ référence pour son évaluation qui peut être définis de différente manière
   avec des informations sur leur catégories wiki et liens iwiki entre les langues;
   \item En collectant des ressources comparables, en utilisant des mots-clés bien aligné envoyé à un moteur
   de recherche, e.g., autosave, configuring, debugger, user-friendly en Anglais contre autoguardar, 
-  configurar, depurador, amigable en Espagnol [7].
+  configurar, depurador, amigable en Espagnol \citep{baroni_2004}.
 \end{itemize}» \citep{sharoff_2013a}
 Chacune de ces approches a ses avantages et désavantages. Ce qui rend le choix complexe. Un moyen de régler
 le problème et d'utiliser une évaluation intrinsèque. «En jugant le degré d'adéquation d'un corpus comparable
-pour une tâche multilingue donnée, comme l'extraction de termes ou phrases parallèles[8] ou, mieux, une tâche 
-plus finale comme retrouver des informations interlangues [53].» \citep{sharoff_2013a}
-
-%TODO add to bib :
-%! 7. Baroni, M., Bernardini, S.: Bootcat: Bootstrapping corpora and terms from the Web. In: Proceedings of LREC2004. Lisbon (2004), http://sslmit.unibo.it/baroni/publications/lrec2004/ bootcat_lrec_2004.pdf
-%! 8. Bel, N., Papavasiliou, V., Prokopidis, P., Toral, A., Arranz, V.: Mining and exploiting domainspecific corpora in the PANACEA platform. In: The 5th Workshop on Building and Using Comparable Corpora (2012)
-%! 53. Li, B.: Measuring and improving comparable corpus quality. Ph.D. thesis, Universit de Grenoble, Grenoble (June 2012)
+pour une tâche multilingue donnée, comme l'extraction de termes ou phrases parallèles \citep{bel_2013} ou, mieux, une tâche 
+plus finale comme retrouver des informations interlangues \citep{li_2012}.» \citep{sharoff_2013a}
 
 Une méthode connu pour la composition de corpus comparable grâce au web est la formation de corpus par 
 exploration du web automatisée. Cette stratégie utilise un robot afin d'indexer des documents trouvable 
@@ -100,21 +88,16 @@ Il nous faut atteindre ce standard afin d'avoir un corpus comparable propre.
 
 «La traduction automatique basé sur des corpus parallèle à était très réussie» \citep{sharoff_2016}.
 «Pourtant, les corpus parallèles sont rare pour la plupart des paires de langues dans le monde 
-(Haddow et al., 2022). La situation n'est en rien différente pour les langues régionales de France
+\citep{haddow_2022}. La situation n'est en rien différente pour les langues régionales de France
 » \citep{stosic_2024}. Ces 2 citations, mises en parallèles, nous montre le problème principale avec
 les corpus parallèles dans le cas de notre projet. Ce dernier se basant sur des langues peu dotées
 il est important de noter qu'il est complexe de trouver des corpus parallèles les impliquant. Nous parlerons
 plus en détail de ce problème dans la partie sur les langues peu dotées.
 On peux remarquer que d'après la taxonomie à 6 niveaux établie par 
-Joshi et al. (2020) les langues régionales étudiés dans notre cas ont peu voir pas de ressources avec des 
+\citep{joshi_2020} les langues régionales étudiés dans notre cas ont peu voir pas de ressources avec des 
 niveaux entre 0 et 1 là où le Français est de niveau 5, atteignant le niveau maximale. \citep{stosic_2024} 
 Cette taxonomie se basant sur le nombre de ressources langagières existantes on peut déterminer qu'il est 
 bien plus dur de trouver des ressources correctes permettant d'élaborer un corpus parallèles.
-
-%TODO add to bib :
-%! Pratik Joshi, Sebastin Santy, Amar Budhiraja, Kalika Bali, and Monojit Choudhury. 2020. The State and Fate of Linguistic Diversity and Inclusion in the NLP World. In Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, pages 6282–6293, Online. Association for Computational Linguistics.
-%TODO add to bib :
-%! Barry Haddow, Rachel Bawden, Antonio Valerio Miceli Barone, Jindřich Helcl, and Alexandra Birch. 2022. Survey of Low-Resource Machine Translation. Computational Linguistics, 48(3):673–732.
 
 \citet{sharoff_2016} donne plusieurs raisons pour lesquelles la rareté de corpus parallèles est un problème
 important :
@@ -137,10 +120,11 @@ Les corpus comparable ont plusieurs avantages comparés aux corpus parallèles :
   \item Facilité d'acquisition (comme précisé précédemment dans \ref{désavantage})
   \item Moins de corpus nécessaires. E.g. dans le cas d'extraction de dictionnaires couvrant toutes paires
   possibles dans 10 langues soit 45 paires langagières (les corpus parallèles et comparable étant 
-  bidirectionnels).Pour s'occuper des 45 paires on aurais besoin de 10 corpus dans le cas d'un corpus 
+  bidirectionnels). Pour s'occuper des 45 paires on aurais besoin de 10 corpus dans le cas d'un corpus 
   comparable contre 45 corpus potentiel dans le cas des corpus parallèles. Bien que le nombre de corpus 
   parallèles puissent être réduit dépendant des traductions présentes entre les documents.
 \end{itemize}
+
 \citep{sharoff_2013a}
 
 Il est intéressant de remarquer une augmentation dans le nombre de projets sur les corpus comparable qui
@@ -149,10 +133,6 @@ https://www.ttc-project.eu/concept-and-objectives/}). Ces projets s'intéresse �
 la traduction automatique \citep{sharoff_2016}. 
 
 Il est important de noter qu'une des méthodes de co-occrurence dictant que l'apparence de certains mot 
-sémantiquement proche se fait peu importe la langue (e.g école et professeur apparaissant ensemble, Rapp [64]). 
+sémantiquement proche se fait peu importe la langue (e.g école et professeur apparaissant ensemble, \citep{rapp_1995}). 
 Peut être observer comme marchant le mieux avec des corpus parallèles et comme 2ème meilleur pour des corpus
 comparable.\citep{sharoff_2013a}
-
-%TODO add to bib :
-%! 64. Rapp, R.: Identifying word translations in non-parallel texts. In: Proceedings of the 33rd ACL, pp. 320–322. Cambridge (1995)
-

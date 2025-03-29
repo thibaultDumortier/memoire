@@ -1,2 +1,100 @@
 \chapter{Méthodes d’alignement}
-% réalisées par le passé
+
+« Apprendre dans un environement peu doté et l'une des directions clés de la recherche pour le TAL moderne. 
+\citep{hedderich_2021}. » \citep{artemova_2023} Cette affirmation, présenté par \citet{artemova_2023} comme une
+reformulation des travaux de \citet{hedderich_2021} viens confirmer ce que nous avons présenté auparavant dans les
+chapitres de l'état de l'art. Maintenant la question n'est plus d'expliquer les problématiques et définitions
+de notre environement mais plutôt les solutions élaborées par le passé. Ces méthodes d'alignement sont très 
+pratiques et il se faut que nous les présentions par projet.
+
+\section{Paracrawl et bitext}
+
+ParaCrawl\footnote{https://paracrawl.eu/} \citep{banon_2020} est un robot d'exploration du web 
+(et outil open-source) permettant le développement de larges corpus parallèles de textes traduit pour les 
+langues officiels de l'Union Européenne. Des outils tel que Hunalign \citep{varga_2007} sont encore 
+utilisés pour l'alignement de phrases pour des paires de document dans le projet ParaCrawl \citep{tan_2022}. 
+Hunalign est un projet qui utilise des « heuristiques tels que la longueur des phrases 
+ou la fréquence des mots pour trouver des paires de phrases dans deux documents. » \citep{tan_2022}
+
+ParaCrawl mines des bitext\footnote{bitext} en passant par 4 étapes majeures : «
+\begin{enumerate}
+    \item Exploration de sites web : pour collecter du contenu provenant de pages web.
+    \item Alignement documentaire : avec les pages collectées, trouvé le contenu qui s'aligne 
+    dans différentes langues. Cette étape aligne le contenu au niveau documentaire.
+    \item Alignement des phrases : avec les documents alignés, trouver des pair\-es de phrases correspondantes
+    alignées.
+    \item Filtrage des phrases : avec les phrases alignées, filtrer les paires de phrases de mauvaise qualité
+    et utiliser le reste comme des données parallèles propre pour des taches en aval.
+\end{enumerate} »
+\citep{tan_2022}
+
+Le projet de \citet{tan_2022} s'intéressent tout particuliérement aux étapes 3 et 4 et vise à les améliorer
+par l'utilisation de meilleure fonction de notation. Ils essayent principalement de réaliser cette amélioration
+pour une paire de langues peu dotées (ici Pashto et Khmer). Ainsi \citet{tan_2022} décident 
+d'affiner le fonctionnement d'un modèles de transformateur de phrases afin d'aligner et de filtrer des phrases
+pour les langues peu dotées recherchées. Pour ce faire ils utilisent un système d'apprentissage 
+auto-supervisées \citep{chen_2020, henderson_2017} afin d'affiner le fonctionnement des modèles 
+BERT \citep{devlin_2019} et \allowbreak SBERT \citep{reimers_2019}. Les résultats de leurs recherches montrent une
+meilleures production de données d'entraînement (ici des bitextes) pour la traduction par réseau neuronal
+qui aura lieu en aval de la récupération des données d'entraînement. Ces données ayant était récupérer
+grâce au modèle SBERT \citep{reimers_2019} affiner avec Vecalign pour l'aligneur de phrases et un score basé 
+sur la marge pour le filtrage des phrases alignées.
+
+\section{BERT et SBERT}
+
+BERT \citep{devlin_2019} (Bidirectional Encoder Representations from Transformers) et RoBERTa 
+\citep{liu_2019} sont des modèles d'alignements de phrases préentrainé qui, à l'époque de leur créations, 
+était très performant pour les tâches de régression de paires de phrases tel que la similarité 
+sémantique\footnote{Similarité sémantique}. En France deux modèles se bases sur BERT : CamemBERT
+\citep{martin_2020} et FlauBERT \citep{le_2020}. Ces deux modèles sont entrainé sur des données d'un 
+corpus Français hétérogène, BERT ne se basant uniquement que sur des données d'entraînement en anglais.
+
+Plus tard en 2019 \citet{reimers_2019} présente SBERT ou sentence-BERT qui se base sur le modèle préentrainé
+BERT mais qui utilise des structures de réseau siamois et triplets\footnote{Réseau siamois}. Cette amélioration
+réduit le temps pour trouver les paires de phrases les plus similaire à 5 secondes au lieu de 65 heures tout
+en gardant la précision de BERT. Après évaluation SBERT surpasse les autres méthodes de plongement de phrases
+\footnote{plongement de phrases (sentence embedding)} pour des tâches de similarité sémantique communes.
+\citep{reimers_2019}
+
+\section{CLIR et plongement lexical}
+
+FaDA (fast document aligner - aligneur de document rapide) \citep{lohar_2016} est un outil d'alignement de 
+documents multilingues se basant sur un alogrithme d'alignement documentaire CLIR\footnote{CLIR} 
+(crosslingual information retrieval - récupération d'information interlangue). « Un système d'aligneur de 
+document interlangue vise à extraire efficacement des candidats probables de documents alignés venant d'un
+corpus comparable dans deux ou plus langues. » \citep{lohar_2016} D'autres travaux existent dans l'état
+de l'art tel que le projet \citet{zhao_2002} permettant le minage de phrases parallèles de corpus 
+comparables bilingues. Ou le projet STRAND par \citet{resnik_2003} présentant un système basé sur du
+minage sur des sites web. D'autres projets présentes des méthodes se basant sur différents niveaux comme
+les travaux de \citet{yang_2003} ou encore le système de requète sur bases de données pour des lexiques
+bilingues présenté par \citet{munteanu_2005}.
+
+\citet{lohar_2016} propose une méthode de plongement lexical\footnote{plongement lexical} vectoriel 
+incorporant une approche basé sur la CLIR pout estimer la similarité sémantique entre deux documents de
+langue source et langue cible. Leur système commence par indexer les documents de langue source et langue
+cible. Les documents sources sont utilisé pour faire une pseudo-requête composé d'une fraction des termes
+constituant les documents dans la langue source. Les termes choisis sont trouvé en se basant sur un score
+se basant sur une équation utilisant la fréquence des termes, le nombre total de documents et le nombre
+de documents dans lesquels le terme apparaît. Les termes en langue source sont ensuite traduit via un 
+dictionnaire vers la langue cible indexé avant d'être utiliser pour réaliser une comparaison entre la liste
+de terme et les documents dans la langue cible. Cette méthode de comparaison permet d'extraire les meilleures
+documents avec de sélectionner celui avec le meilleur score pour avoir le meilleur candidat pour l'alignement.
+
+\citet{steingrimsson_2021} utilise FaDA ainsi qu'une méthode de notation de phrases candidates basé sur
+le plongement contextualisé et d'autre alignement par mot de haute précision. Enfin un classificateur 
+sélectionne des paires de phrases en se basant sur ces scores.
+
+Il est intéressant de noter que le papier de \citet{steingrimsson_2021} se base sur des données venant d'ensemble
+de tests compilés ressemblant à ceux réaliser pendant l'atelier BUCC 2017 \citep{zweigenbaum_2016} et sur
+des un test basé sur des articles wikipedia, dans deux langues étudiés puis décomposés en phrases, et les 
+outils CLIR utilisés pour obtenir les traductions candidates.
+
+\section{Réutilisation de segment parallèles}
+
+\citet{steingrimsson_2023} ont réalisé des travaux de recherches sur la réexamination de données d'entraînement
+parallèles rejetés en les segmentant avant d'extraire sementiquement d'autres segments bilingues equivalents.
+Ces segments sont gadés si ceux-ci sont reconnu comme utile pour l'entraînement de traducteur automatique selon
+la méthode présentés dans leurs travaux. La qualité de la sortie est comparé à celle d'un modèle référentiel.
+En utilisant cette technique le temps d'entraînement est réduit de 65\% tout en augmentant le score BLEU de
+1,6. Ce système, entrainé sur moins de données montre de meilleures résultat que le référentiel selon des
+tests fait avec MultEval \citep{clark_2011}.

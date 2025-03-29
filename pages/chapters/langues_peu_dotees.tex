@@ -5,14 +5,11 @@ Les langues peu dotées, sont au centre de la recherche mené dans ce mémoire. 
 problématiques qui, si résolue, permettrait de faire avancer la recherche sur le TAL. 
 
 Hélas, il est important de noté que «la plupart des travaux de recherche en TAL se sont concentrés sur quelques 
-langues bien décrites et ayant de nombreux locuteurs (Del Gratta et al., 2014).
+langues bien décrites et ayant de nombreux locuteurs » \citep{delgratta_2014}.
 
 Plus important encore, le fait que des travaux de recherche universitaire de grande qualité soient menés pour 
 les langues peu dotées pourrait être lié à une prise de conscience partagée et de plus en plus répandue de 
 l’importance de la représentation numérique pour toutes les langues» \citep{bernhard_2018}.
-
-%TODO add to bib :
-%!Del Gratta R., Frontini F., Khan A. F., Mariani J., Soria C., « The LREMap for Under-Resourced Languages », Proceedings of CCURL 2014 : Collaboration and Computing for UnderResourced Languages in the Linked Open Data Era, p. 78-83, 2014.
 
 \section{Définition}
 
@@ -36,7 +33,7 @@ problèmes important qui, une fois résolu, permettront un meilleur traitement d
 Mais aussi un meilleur traitement des langues plus communes de par les recherches menées sur des langues 
 possédant moins de données informatisées.
 
-\section{Problèmes}
+\section{Problèmes} \label{problemes_peudot}
 
 Les langues peu dotées posent les problèmes suivant :
 \begin{enumerate}
@@ -45,10 +42,9 @@ Les langues peu dotées posent les problèmes suivant :
     \item Recherche dans les langues sous-dotées réalisées par des groupes isolés ou dispersés 
     \citep{bernhard_2018}. Ces recherches non centralisées complexifie la recherche dans le domaine.
     \item «Variations dans la graphie, dues soit à une évolution des normes orthographiques dans le temps, 
-    soit à l’absence de normes 
-    orthographiques pour les langues ou les variétés linguistiques qui sont essentiellement orales 
-    et rarement écrites (Kurimo et al., 2017)» \citep{bernhard_2018}
-    \item Une bonne performance compliquée à atteindre sur des systèmes de traduction par réseau neuronal 
+    soit à l’absence de normes orthographiques pour les langues ou les variétés linguistiques qui sont 
+    essentiellement orales et rarement écrites \citep{kurimo_2017}» \citep{bernhard_2018}
+    \item Une bonne performance est compliquée à atteindre sur des systèmes de traduction par réseau neuronal 
     pour des langues peu dotées dû à leur nature et l'absence de paires de phrases bilingues de bonne qualité
     en grande quantité. \citep{steingrimsson_2023}
     \item Manque d'intérêt de la part de la communauté scientifique pour différente raisons : «manque de 
@@ -56,12 +52,11 @@ Les langues peu dotées posent les problèmes suivant :
     et précises, de reconnaissance académique» \citep{bernhard_2018}
     \item Large manque de données pour certaine langues dotées particuliérement dans les cas de composition
     de corpus parallèles (comme précisé dans \ref{désavantage})
+    \item Un manque de ressources parallèles doublés d'un pourcentage important de phrase anormales dans ces
+    derniers pourrait affecter la performance de logiciels d'alignement. \citep{steingrimsson_2023}
 \end{enumerate}
 
 \newpage
-
-%TODO add to bib
-%! Kurimo M., Enarvi S., Tilk O., Varjokallio M., Mansikkaniemi A., Alumaë T., « Modeling under-resourced languages for speech recognition », Language Resources and Evaluation, vol. 51, no 4, p. 961-987, 2017.
 
 Ces problèmes sont particulier étant données que d'après \citet{sharoff_2016} : «Parmis les environs 7000 
 langues existantes dans le monde, des quelles 600 ont une forme écrite, la vaste majorité sont "peu dotées".» 
@@ -78,7 +73,7 @@ elle permet d'observer plusieurs nouvelles solutions explorées par différents 
 \subsubsection{Élaboration d'un corpus parallèle}
 
 Pour commencer on peux citer le travail sur l'élaboration d'un corpus parallèle pour les langues régionales de 
-France avec le corpus parallèle ParCoLab\footnote{\citet{stosic_2024}}. Ce projet vise à créer un corpus
+France avec le corpus parallèle ParCoLab \citet{stosic_2024}. Ce projet vise à créer un corpus
 parallèle pour des langues peu dotées comme certaines langues régionales de France (Occitan, Corse, Alsacien ou
 Poitevin Saintongeais).
 
@@ -94,16 +89,27 @@ Les chercheurs ont mis en places 2 plateformes permettant le crowdsourcing. L'un
 présentés aux participants avant d'entraîner des étiqueteurs et l'autre permettant une collecte de corpus 
 bruts \citep{bernhard_2018}.
 
-\subsubsection{IA}
+\subsubsection{Entraînement d'IA}
 
 Le comité \textit{ad hoc} «a constaté que l'IA peut aider les locuteurs de langues minoritaires à participer 
 plus activement à la vie publique, aux débats, aux délibérations ou aux décisions, mais aussi mieux faire 
 connaître ces langue.» \citep{gerken_2022}
-L'IA étant en plein essor il est intéressant de considérer cette possibilités dans le cas de la création de
+L'IA et les réseau neuronaux étant en plein essor il est intéressant de considérer cette possibilités dans le cas de la création de
 ressources pour des langues peu dotées. De plus d'après \citet{gerken_2022} le comité \textit{ad hoc} aurait
 remarquer que cela permet de faire mieux connaître ces langues ammenant, plus tard, à une meilleure 
 représentation de ces langues en ligne.
 
+Cependant \citet{steingrimsson_2023} nous dis que beaucoup de phra\-ses atypiques se retrouvant
+dans les données parallèles pour les langues peu dotées. Cela nous pose un problème dans le contexte de la
+traduction automatique par réseau neuronal moderne qui dépend énormément de la bonne qualité des ressources
+d'entraînement. \citep{tan_2022} Dans ce cas d'autres méthodes non-supervisées ont était proposé comme 
+l'entraînement sur des corpus monolingues seuls \citep{artetxe_2018, lample_2018}. Cependant
+\citet{steingrimsson_2021} nous explique que d'autres travaux par \citet{kim_2020} montre que des travaux
+supervisés et semi-supervisés avec de petit corpus parallèles seront toujours meilleurs que des méthodes 
+non-supervisées pour beaucoup de langues. Cependant peu de ressources parallèles existantes implique qu'il 
+faudrait plutôt utiliser des corpus comparable en supplément de corpus parallèles pour les langues peu dotées.
+Ces données permettrait l'entraînement de réseau neuronaux moderne (IA) afin d'atteindre une meilleure qualité
+sur des modèles plus récents.
 
 \section{Bonnes nouvelles}
 
