@@ -25,6 +25,8 @@
     pdfstartview = { FitH }
 }
 
+\input{pages/glossary.tex}
+
 % ======= Document start =======
 
 \begin{document}
@@ -47,7 +49,9 @@
 \input{pages/conclusion.tex}
 \newpage
 
-\input{pages/glossary.tex}
+\setcounter{page}{0}
+\printnoidxglossaries
+
 \newpage
 
 \setcounter{page}{0}

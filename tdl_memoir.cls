@@ -171,3 +171,6 @@
 \patchcmd{\blx@endenv@bibliography}{\endlist}{\endlist\clearpage}{}{}
 \makeatother
 \hyphenation{Fill-ing-ham}
+
+% Glossary
+\renewcommand{\glossarymark}[1]{\thispagestyle{empty}}

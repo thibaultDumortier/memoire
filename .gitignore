@@ -12,3 +12,6 @@
 *.xml
 *.gz
 *.toc
+*.glsdefs
+*.glo
+*.ist

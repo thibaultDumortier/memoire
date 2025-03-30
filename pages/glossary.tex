@@ -1,5 +1,90 @@
-\thispagestyle{empty}
-\setcounter{page}{0}
-\unnumberedchapnoToc{Glossaire}
-\noindent\rule{\textwidth}{0.4pt}
+\newglossaryentry{Bitext}{
+    name=Bitext,
+    description={
+        L'alignement de mot bitext ou simplement l'alignement de mot est la tâche, en traitement automatique
+        des langues, d'identification des relations de traductions parmis les mots (ou, plus rarement des unités
+        à plusieurs mots) dans un bitext, résultant en un graphique bipartite entre les deux côtés du bitext,
+        avec un arc entre les deux mots si et seulement si ils sont traduction l'un de l'autre. L'alignement de mot
+        est typiquement réaliser après qu'un alignement de phrase ai identifié des paires de phrases qui sont des
+        traductions l'une de l'autre.
+        \hyperlink{https://en.wikipedia.org/wiki/Bitext_word_alignment}{Wikipedia/Bitext\_word\_alignment}
+    }    
+}
 
+\newglossaryentry{Similarité sémantique}{
+    name=Similarité sémantique,
+    description={
+        La similarité sémantique est une notion définie entre deux concepts, soit au sein d'une 
+        même hiérarchie conceptuelle, soit - dans le cas d'alignement d'ontologies - entre deux concepts 
+        appartenant respectivement à deux hiérarchies conceptuelles distinctes. La similarité sémantique 
+        indique que ces deux concepts possèdent un grand nombre d'éléments en commun (propriétés, termes, 
+        instances).
+        \hyperlink{https://fr.wikipedia.org/wiki/Similarité_sémantique}{Wikipedia/Similarité\_sémantique}
+    }    
+}
+
+\newglossaryentry{Réseau siamois}{
+    name=Réseau siamois,
+    description={
+        Le réseau siamois se compose de deux \gls{CNN} et utilise \allowbreak une perte contrastive. 
+        Le réseau Triplet se compose de trois CNN et utilise une perte triplet.
+        \hyperlink{https://www.researchgate.net/publication/320241762_Tracking_Persons-of-Interest_via_Unsupervised_Representation_Adaptation}{(Zhang S. et al., 2020)}
+    }    
+}
+
+\newglossaryentry{CNN}{
+    name=CNN,
+    description={
+        En apprentissage automatique, un réseau de neurones convolutifs ou réseau de neurones 
+        à convolution (en anglais CNN ou ConvNet pour convolutional neural network) est un type de réseau 
+        de neurones artificiels acycliques (feed-forward) inventé en 1980 par Kunihiko Fukushima (en), 
+        dans lequel le motif de connexion entre les neurones est inspiré par le cortex visuel des animaux.
+        \hyperlink{https://fr.wikipedia.org/wiki/Réseau_neuronal_convolutif}{Wikipedia/Réseau\_neuronal\_convolutif}
+    }
+}
+
+\newglossaryentry{Plongement de phrases}{
+    name=Plongement de phrases,
+    description={
+        En traitement automatique des langues, le plongement lexical est une représentation
+        d'une phrase sous forme de vecteurs de nombres qui code des informations sémantiques significative
+        \hyperlink{https://en.wikipedia.org/wiki/Sentence_embedding}{Wikipedia/Sentence\_embedding}
+    }    
+}
+
+\newglossaryentry{CLIR}{
+    name=CLIR,
+    description={
+        La recherche d'informations interlangue ou Cross-language information retrieval (CLIR) est une tâche 
+        de recherche dans laquelle les requêtes de recherche et les documents candidats sont rédigés dans des 
+        langues différentes. La CLIR peut être très utile dans certains scénarios. Par exemple, 
+        un journaliste peut vouloir rechercher des informations en langue étrangère pour obtenir différentes 
+        perspectives pour son article ; un inventeur peut explorer les brevets d'un autre pays pour comprendre 
+        l'état de l'art.
+        \hyperlink{https://en.wikipedia.org/wiki/Cross-language_information_retrieval}{Wikipedia/Cross-language\_information\_retrieval}
+    }    
+}
+
+\newglossaryentry{Plongement lexical}{
+    name=Plongement lexical,
+    description={
+        Le plongement lexical ou plongement sémantique (« word embedding » en anglais) est une 
+        méthode d'apprentissage d'une représentation de mots sous forme de vecteurs, utilisée notamment en 
+        traitement automatique des langues.
+        \hyperlink{https://fr.wikipedia.org/wiki/Plongement_lexical}{Wikipedia/Plongement\_lexical}
+    }    
+}
+
+\newglossaryentry{BLEU}{
+    name=BLEU,
+    description={
+        BLEU (bilingual evaluation understudy) est un algorithme d’évaluation de la qualité du 
+        texte qui a été traduit mécaniquement d’une langue naturelle à une autre. La qualité est considérée 
+        comme la correspondance entre la production d’une machine et celle d’un humain : « plus une traduction 
+        automatique est proche d’une traduction humaine professionnelle, mieux c’est » 
+        \hyperlink{https://fr.wikipedia.org/wiki/BLEU_(algorithme)}{Wikipedia/BLEU\_(algorithme)}
+    }    
+}
+
+
+\makenoidxglossaries
