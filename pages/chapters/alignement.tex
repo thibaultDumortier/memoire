@@ -11,7 +11,7 @@ Ces méthodes d'alignement sont très pratiques et il est préférable que nous 
 
 \section{Paracrawl et bitextes}
 
-ParaCrawl\footnote{https://paracrawl.eu/} \citep{banon_2020} est un robot d'exploration du web 
+ParaCrawl\footnote{\hyperlink{https://paracrawl.eu/}{ParaCrawl}} \citep{banon_2020} est un robot d'exploration du web 
 (et outil open-source) permettant le développement de larges corpus parallèles de textes traduient 
 pour les langues officielles de l'Union européenne. Des outils tels que Hunalign \citep{varga_2007} sont 
 utilisés pour l'alignement de phrases pour des paires de documents dans le projet ParaCrawl 
@@ -21,18 +21,16 @@ ou la fréquence des mots pour trouver des paires de phrases dans deux documents
 two documents.{ »} \citep{tan_2022} traduit par Thibault DUMORTIER}
 \citep{tan_2022}
 
-ParaCrawl mine des bitextes\footnote{\gls{Bitexte}} en passant par 4 étapes majeures{ :} {« }
+ParaCrawl mine des bitextes\footnote{\gls{Bitexte}} en passant par 4 étapes majeures{ :}
 \begin{enumerate}
-\item Exploration de sites web : pour collecter du contenu provenant de pages web.
-\item Alignement documentaire : avec les pages collectées, trouvé le cont\-enu qui s'aligne dans 
-différentes langues. Cette étape aligne le contenu au niveau documentaire.
-\item Alignement des phrases : avec les documents alignés, trouver des pair\-es de phrases correspondantes 
-alignées.
-\item Filtrage des phrases : avec les phrases alignées, filtrer les paires de phrases de mauvaise qualité et 
-utiliser le reste comme des données parallèles propres pour des tâches en aval.
-\end{enumerate}{ »}
-\citep{tan_2022}
-%! REFORMULER
+\item Exploration de sites web : pour collecter du contenu provenant du web.
+\item Alignement documentaire : trouve le cont\-enu qui s'aligne dans 
+différentes langues. Alignement au niveau documentaire.
+\item Alignement des phrases : trouver des pair\-es de phrases correspondantes 
+alignées dans les document alignés précédemment. Alignement au niveau du contenu.
+\item Filtrage des phrases : filtrer les paires de phrases de mauvaise qualité et 
+utiliser le reste comme des données parallèles propres.
+\end{enumerate} \citep{tan_2022}
 
 Le projet de \citet{tan_2022} s'intéresse tout particulièrement aux étapes 3 et 4 et vise à les 
 améliorer par l'utilisation de meilleures fonctions de notations. Ils essayent principalement de réaliser 
@@ -40,14 +38,18 @@ cette amélioration pour une paire de langues peu dotées (ici Pachto et Khmer).
 décident d'affiner le fonctionnement d'un modèle de transformer\footnote{\gls{Transformer}} de phrases afin d'aligner et de filtrer 
 des phrases pour les langues peu dotées recherchées. Pour ce faire, ils utilisent un système d'apprentissage 
 auto-supervisé \citep{chen_2020, henderson_2017} afin d'affiner le fonctionnement des modèles BERT 
-\citep{devlin_2019} et \allowbreak SBERT \citep{reimers_2019}. Les résultats de leurs recherches montrent 
-une meilleure production de données d'entraînement (ici des bitextes) pour la traduction par réseau neuronal 
-qui aura lieu en aval de la récupération des données d'entraînement. Ces données ayant été récupérées grâce 
-au modèle SBERT \citep{reimers_2019}
-%! DETAILLER "POUR CE FAIRE A REIMERS"
-affinées avec Vecalign pour l'aligneur de phrases et un score basé sur la marge pour le filtrage des phrases 
-alignées.
-%! EXPLIQUER LE SCORE BASE SUR LA MARGE
+\citep{devlin_2019} et \allowbreak SBERT \citep{reimers_2019}. Pour affiner le fonctionement de ces transformers
+\citet{tan_2022} décident de construire des paires positives et négative pour entraîner les modèles par
+MNR (\textit{Multiple Negative Ranking Loss}\footnote{\gls{MNR}})
+Le but est de faire en sorte que le modèle maximise la différence entre ces paires positives et négatives afin
+de facilité sa reconnaissance de phrases similaires tout en écartant les phrases inutilisables.
+Les résultats de leurs recherches montrent une meilleure production de données d'entraînement (ici des bitextes) 
+pour la traduction par réseau neuronal qui aura lieu en aval de la récupération des données d'entraînement. 
+Ces données ayant été récupérées grâce au modèle SBERT \citep{reimers_2019}
+affiné avec Vecalign pour l'aligneur de phrases et un score basé sur la marge pour le filtrage des phrases 
+alignées. Ce score se base sur la marge entre une paire de phrases donnée et son candidat le plus proch. Cela
+qui permet de palier aux problèmes d'inconsistences d'échelles donnant un résultat plus juste que d'autres 
+méthodes.
 
 \section{BERT et SBERT}
 
@@ -59,12 +61,17 @@ sémantique\footnote{\gls{Similarité sémantique}}. En france, deux modèles se
 français hétérogène, BERT ne se basant uniquement que sur des données d'entraînement en anglais.
 
 Plus tard en 2019 \citet{reimers_2019} présentent SBERT ou sentence-BERT qui se base sur le modèle pré entraîné 
-BERT, mais qui utilise des structures de réseau siamois et triplets\footnote{\gls{Réseau siamois}}. 
-%! EXPLIQUER MIEUX L'UTILISATION DE RESEAUX SIAMOIS ET TRIPLETS
+BERT. SBERT va d'abord prendre le résultat de sortie de BERT afin d'en dériver un plongement lexical de taille
+fixe. On fait ensuite la médiane des vecteurs de sorties des 2 phrases, établis en utilisant la méthode de calcul
+CLS-Token de BERT. On utilise ensuite des structures de réseau siamois et triplets\footnote{\gls{Réseau siamois}} 
+permettant la comparaison par similarité de cosinus\footnote{\gls{Similarité cosinus}}.
+Les résultats sortant sont concaténés et classifier selon la fonction \textit{softmax}.
 Cette amélioration réduit le temps pour trouver les paires de phrases les plus similaires à 5 secondes au lieu 
 de 65 heures tout en gardant la précision de BERT. Après évaluation SBERT, surpasse les autres méthodes de 
 plongement de phrases \footnote{\gls{Plongement de phrases} (sentence embedding)} pour des tâches de 
 similarité sémantique communes. \citep{reimers_2019}
+
+%! softmax footnote => gls
 
 \section{CLIR et plongement lexical}
 

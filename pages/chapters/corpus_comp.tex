@@ -56,18 +56,15 @@ l'utilisation que nous allons en faire dans ce mémoire, il est intéressant de 
 corpus provenant du web. Plus précisément du cas de Wikipédia.
 
 Le web nous permet de trouver plusieurs textes permettant de créer un corpus. 
-% TODO RESUMER
-« Cette méthode demande une référence pour son évaluation qui peut être définie de différentes manières{ :}
+On peux définir un tel corpus de différentes manières{ :}
 \begin{itemize}
-\item En utilisant des ressources parallèles alignés par document, comme Europarl ou en minant de nouvelles 
-collections de textes parallèles ;
+\item En utilisant des ressources parallèles alignés par document;
 \item En utilisant des corpus comparables alignés par document, comme les extractions d'articles Wikipédia 
-avec des informations sur leurs catégories wiki et liens iwiki entre les langues ;
+avec des informations sur leurs catégories et liens inter-langues;
 \item En collectant des ressources comparables, en utilisant des mots-clés bien aligné envoyé à un moteur de 
-recherche, e.g., autosave, configuring, debugger, user-friendly en anglais contre autoguardar, configurar, 
-depurador, amigable en espagnol \citep{baroni_2004}.
-\end{itemize}» \citep{sharoff_2013a}
-% TODO RESUMER
+recherche, e.g., autosave en anglais aligné à autoguardar en espagnol \citep{baroni_2004}.
+\end{itemize} \citep{sharoff_2013a}
+
 Chacune de ces approches a ses avantages et désavantages. Ce qui rend le choix complexe. 
 Un moyen de régler le problème est d'utiliser une évaluation extrinsèque. 
 {« }En jugeant le degré d'adéquation d'un corpus comparable pour une tâche multilingue donnée, 
@@ -151,11 +148,15 @@ parallèles puissent être réduit dépendant des traductions présentes entre l
 \citep{sharoff_2013a}
 
 Il est intéressant de remarquer une augmentation dans le nombre de projets sur les corpus 
-comparable qui ont vu le jour (E.g., ACCURAT\footnote{http://www.accurat-project.eu/} ou 
-TTC\footnote{https://www.ttc-project.eu/concept-and-objectives/}). Ces projets s'intéressent à 
+comparable qui ont vu le jour (E.g., ACCURAT\footnote{\hyperlink{http://www.accurat-project.eu/}{ACCURAT}} ou 
+TTC\footnote{\hyperlink{https://www.ttc-project.eu/concept-and-objectives/}{TTC}}). Ces projets s'intéressent à 
 l'utilisation de corpus pour la traduction automatique \citep{sharoff_2016}. 
 
 Il est aussi important de noter qu'une des méthodes de co-occurrence dictant que l'apparence de certains 
 mots sémantiquement proche se fait peu importe la langue (E.g. école et professeur apparaissant ensemble, 
 \citep{rapp_1995}). Cette méthode peut-être observer comme marchant le mieux avec des corpus parallèles 
-et comme 2e meilleure pour des corpus comparable.\citep{sharoff_2013a}
+et comme 2e meilleure pour des corpus comparable.\citep{sharoff_2013a} Malgré que cette méthode
+marche principalement avec les corpus parallèles. Elle permettrait, dans le cas des corpus comparable, 
+de vérifier la présence de fragment parallèles par la présence de co-occurrence de mots sémantiquement proches. 
+Cela pourrait être intéressant dans le cas des langues peu dotées et permettrait de trouver des fragment 
+entre une langue source dotée et une langue cible peu dotée relativement simplement.
