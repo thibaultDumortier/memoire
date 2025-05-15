@@ -165,12 +165,12 @@
 % Bibliography
 \nocite{*}
 
-% Remove fancy style, leaving only the bibliography look
+% Remove fancy style, leaving only the bibliography without header or footer
 \renewcommand{\bibsetup}{\thispagestyle{empty}\pagestyle{empty}}
 \makeatletter
 \patchcmd{\blx@endenv@bibliography}{\endlist}{\endlist\clearpage}{}{}
 \makeatother
 \hyphenation{Fill-ing-ham}
 
-% Glossary
-\renewcommand{\glossarymark}[1]{\thispagestyle{empty}}
+% Remove fancy style, leaving only the glossary without header or footer
+\renewcommand{\glsnamefont}[1]{\textbf{\textup{#1}}\thispagestyle{empty}}
