@@ -1,7 +1,9 @@
 \chapter{Méthodes d’alignement}
 
-« Apprendre dans un environnement peu doté et l'une des directions clé de la recherche pour le TAL moderne. 
-\citep{hedderich_2021}. » \citep{artemova_2023} Cette affirmation, présentée par \citet{artemova_2023} 
+{« }Apprendre dans un environnement peu doté et l'une des directions clé de la recherche pour le TAL moderne. 
+\citep{hedderich_2021}.{ »}\footnote{{« }Learning in low-resource settings is one of the key research 
+directions for modern natural language processing \citep{hedderich_2021}.{ »} \citep{artemova_2023}
+traduit par Thibault DUMORTIER} \citep{artemova_2023} Cette affirmation, présentée par \citet{artemova_2023} 
 comme une reformulation des travaux de \citet{hedderich_2021} vient confirmer ce que nous avons présenté 
 auparavant dans les chapitres de l'état de l'art. Maintenant la question n'est plus d'expliquer les 
 problématiques et définitions de notre environnement, mais plutôt les solutions élaborées par le passé. 
@@ -13,10 +15,13 @@ ParaCrawl\footnote{https://paracrawl.eu/} \citep{banon_2020} est un robot d'expl
 (et outil open-source) permettant le développement de larges corpus parallèles de textes traduient 
 pour les langues officielles de l'Union européenne. Des outils tels que Hunalign \citep{varga_2007} sont 
 utilisés pour l'alignement de phrases pour des paires de documents dans le projet ParaCrawl 
-\citep{tan_2022}. Hunalign est un projet qui utilise des « heuristiques telles que la longueur des phrases 
-ou la fréquence des mots pour trouver des paires de phrases dans deux documents. » \citep{tan_2022}
+\citep{tan_2022}. Hunalign est un projet qui utilise des {« }heuristiques telles que la longueur des phrases 
+ou la fréquence des mots pour trouver des paires de phrases dans deux documents.{ »}
+\footnote{{« }[...] heuristics such as sentence length and word frequency to find matching sentence pairs in 
+two documents.{ »} \citep{tan_2022} traduit par Thibault DUMORTIER}
+\citep{tan_2022}
 
-ParaCrawl mine des bitextes\footnote{\gls{Bitexte}} en passant par 4 étapes majeures : «
+ParaCrawl mine des bitextes\footnote{\gls{Bitexte}} en passant par 4 étapes majeures{ :} {« }
 \begin{enumerate}
 \item Exploration de sites web : pour collecter du contenu provenant de pages web.
 \item Alignement documentaire : avec les pages collectées, trouvé le cont\-enu qui s'aligne dans 
@@ -25,16 +30,14 @@ différentes langues. Cette étape aligne le contenu au niveau documentaire.
 alignées.
 \item Filtrage des phrases : avec les phrases alignées, filtrer les paires de phrases de mauvaise qualité et 
 utiliser le reste comme des données parallèles propres pour des tâches en aval.
-\end{enumerate} »
+\end{enumerate}{ »}
 \citep{tan_2022}
 %! REFORMULER
 
 Le projet de \citet{tan_2022} s'intéresse tout particulièrement aux étapes 3 et 4 et vise à les 
 améliorer par l'utilisation de meilleures fonctions de notations. Ils essayent principalement de réaliser 
 cette amélioration pour une paire de langues peu dotées (ici Pachto et Khmer). Ainsi \citet{tan_2022} 
-décident d'affiner le fonctionnement d'un modèle de transformer\footnote{On parle aussi de transformer en 
-français, cf. Yvon, F. (2022). Transformer : des réseaux de neurones pour le traitement automatique des 
-langues. Innovations technologiques.} de phrases afin d'aligner et de filtrer 
+décident d'affiner le fonctionnement d'un modèle de transformer\footnote{\gls{Transformer}} de phrases afin d'aligner et de filtrer 
 des phrases pour les langues peu dotées recherchées. Pour ce faire, ils utilisent un système d'apprentissage 
 auto-supervisé \citep{chen_2020, henderson_2017} afin d'affiner le fonctionnement des modèles BERT 
 \citep{devlin_2019} et \allowbreak SBERT \citep{reimers_2019}. Les résultats de leurs recherches montrent 
@@ -67,9 +70,12 @@ similarité sémantique communes. \citep{reimers_2019}
 
 FaDA (fast document aligner - aligneur de document rapide) \citep{lohar_2016} est un outil d'alignement 
 de documents multilingues se basant sur un algorithme d'alignement documentaire CLIR\footnote{\gls{CLIR}} 
-(\textit{crosslingual information retrieval} - récupération d'information inter-langue). « Un système d'aligneur de 
-document inter-langue vise à extraire efficacement des candidats probables de documents alignés venant d'un 
-corpus comparable dans deux ou plus langues. » \citep{lohar_2016} D'autres travaux existent dans l'état de 
+(\textit{crosslingual information retrieval} - récupération d'information inter-langue). {« }Un système 
+d'aligneur de document inter-langue vise à extraire efficacement des candidats probables de documents 
+alignés venant d'un corpus comparable dans deux ou plus langues.{ »}\footnote{{« }A crosslingual document 
+alignment system aims at efficiently extracting likely candidates of aligned documents from a comparable 
+corpus in two or more different languages.{ »} \citep{lohar_2016} traduit par Thibault DUMORTIER}
+\citep{lohar_2016} D'autres travaux existent dans l'état de 
 l'art tel que le projet \citet{zhao_2002} permettant le minage de phrases parallèles de corpus comparables 
 bilingues. Ou le projet STRAND par \citet{resnik_2003} présentant un système basé sur du minage sur des sites 
 web. D'autres projets présentes des méthodes se basant sur différents niveaux comme les travaux de 

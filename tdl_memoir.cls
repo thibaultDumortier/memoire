@@ -61,7 +61,7 @@
 \usepackage[
     backend=biber,
     style=apa,
-    sorting=ynt,
+    sorting=nyt,
     uniquelist=false, % https://tex.stackexchange.com/questions/637149/incorrect-biblatex-apa-7-citation-when-having-multiple-same-author-year-entries
     doi=false,
     isbn=false,
@@ -174,3 +174,7 @@
 
 % Remove fancy style, leaving only the glossary without header or footer
 \renewcommand{\glsnamefont}[1]{\textbf{\textup{#1}}\thispagestyle{empty}}
+
+% Footnote
+\interfootnotelinepenalty=10000
+\raggedbottom
