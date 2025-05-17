@@ -65,13 +65,11 @@ BERT. SBERT va d'abord prendre le résultat de sortie de BERT afin d'en dériver
 fixe. On fait ensuite la médiane des vecteurs de sorties des 2 phrases, établis en utilisant la méthode de calcul
 CLS-Token de BERT. On utilise ensuite des structures de réseau siamois et triplets\footnote{\gls{Réseau siamois}} 
 permettant la comparaison par similarité de cosinus\footnote{\gls{Similarité cosinus}}.
-Les résultats sortant sont concaténés et classifier selon la fonction \textit{softmax}.
+Les résultats sortant sont concaténés et classifier selon la fonction \textit{softmax}\footnote{\gls{Fonction softmax}}.
 Cette amélioration réduit le temps pour trouver les paires de phrases les plus similaires à 5 secondes au lieu 
 de 65 heures tout en gardant la précision de BERT. Après évaluation SBERT, surpasse les autres méthodes de 
 plongement de phrases \footnote{\gls{Plongement de phrases} (sentence embedding)} pour des tâches de 
 similarité sémantique communes. \citep{reimers_2019}
-
-%! softmax footnote => gls
 
 \section{CLIR et plongement lexical}
 
@@ -89,19 +87,27 @@ web. D'autres projets présentes des méthodes se basant sur différents niveaux
 \citet{yang_2003} ou encore le système de requête sur bases de données pour des lexiques bilingues présentés 
 par \citet{munteanu_2005}.
 
-\citet{lohar_2016} proposent une méthode de plongement lexical\footnote{\gls{Plongement lexical}} vectoriel
-%! expliquer "plongement lexical"
-incorporant une approche basée sur la CLIR pour estimer la similarité sémantique entre deux documents de 
-langue source et langue cible. Leur système commence par indexer les documents de langue source et langue 
-cible. Les documents sources sont utilisé pour faire une pseudo-requête composée d'une fraction des termes 
-constituant les documents dans la langue source. Les termes choisis sont trouvés en se basant sur un score 
-se basant sur une équation utilisant la fréquence des termes, le nombre total de documents et le nombre de 
-documents dans lesquels le terme apparaît. 
-%! DONNER ET EXPLIQUER LA FORMULE
-Les termes en langue source sont ensuite traduient via un 
-dictionnaire vers la langue cible indexée avant d'être utilisés pour réaliser une comparaison entre la liste 
-de termes et les documents dans la langue cible. Cette méthode de comparaison permet d'extraire les meilleurs 
-documents avec de sélectionner celui avec le meilleur score pour avoir le meilleur candidat pour l'alignement.
+\citet{lohar_2016} proposent une méthode de plongement lexical\footnote{\gls{Plongement lexical}} vectoriel.
+Une méthode d'apprentissage représentant un mot sous forme de vecteurs. Cette technique représente un mot
+par une liste de nombres qui encode les mots par similarité d'utilisation. Plus des mot sont utilisables
+dans le même contexte plus leurs vecteurs sont proches. Cette stratégie permet de vérifier la similarité
+des mots d'une manière optimisée. A cette méthode \citet{lohar_2016} incorporent une approche basée sur la 
+CLIR pour estimer la similarité sémantique entre deux documents de langue source et langue cible. Leur système 
+commence par indexer les documents de langue source et langue cible. Les documents sources sont utilisé pour 
+faire une pseudo-requête composée d'une fraction des termes constituant les documents dans la langue source. 
+Les termes choisis sont trouvés à partir d'un score basé sur une équation où {« }$tf(t,d)$ dénote la fréquence 
+d'un terme $t$ dans un document $d$, $len(d)$ dénote la longueur de $d$ et $N$ et $df(t)$ dénotent respectivement
+le nombre total de documents et le nombre de documents dans lesquels $t$ apparaît. De plus, $\tau(t,d)$
+représente le score de sélection des termes.
+\[ \tau(t,d)=\lambda\frac{tf(t,d)}{len(d)}+(1-\lambda)log(\frac{N}{df(t)}) \]{ »}
+\footnote{{« }$tf(t, d)$ denotes the term frequency of a term $t$ in document $d$, $len(d)$ denotes the length of $d$
+, and $N$ and $df(t)$ denote the total number of documents and the number of documents in which $t$ occurs, 
+respectively. Furthermore, $\tau(t, d)$ represents the term-selection score{ »} \citep{lohar_2016} 
+traduit par Thibault DUMORTIER} \citep{lohar_2016}
+Les termes en langue source sont ensuite traduient via un dictionnaire vers la langue cible indexée avant 
+d'être utilisés pour réaliser une comparaison entre la liste de termes et les documents dans la langue cible. 
+Cette méthode de comparaison permet d'extraire les meilleurs documents avec de sélectionner celui avec le 
+meilleur score pour avoir le meilleur candidat pour l'alignement.
 
 \citet{steingrimsson_2021} utilisent FaDA ainsi qu'une méthode de notation de phrases candidates basées sur 
 le plongement contextualisé et d'autres alignement par mot de haute précision. Enfin, un classificateur 
@@ -117,13 +123,35 @@ outils CLIR utilisés pour obtenir les traductions candidates.
 \citet{steingrimsson_2023} ont réalisé des travaux de recherche sur la réexamination de données 
 d'entraînement parallèles rejetés en les segmentant avant d'extraire sémantiquement d'autres segments 
 bilingues équivalents. Ces segments sont gardés si ceux-ci sont reconnus comme utiles pour l'entraînement 
-de traducteur automatique selon la méthode présentée dans leurs travaux. La qualité de la sortie est 
-comparée à celle d'un modèle référentiel. 
-%! EXPLIQUER LA METHODE ET LE MODELE REFERENTIEL
-En utilisant cette technique, le temps d'entraînement est 
-réduit de 65\% tout en augmentant le score BLEU\footnote{\gls{BLEU}}
-%! EXPLIQUER LE SCORE BLEU
-de 1,6. Ce système, entraîné sur 
-moins de données montre de meilleures résultat que le référentiel selon des tests fait avec MultEval 
-\citep{clark_2011}.
-%! EXPLIQUER MULTEVAL
+de traducteur automatique selon leur méthode. Celle-ci se base sur l'entraînement de modèles de traduction
+automatique neuronal (\textit{Neural Machine Translation} (NMT)) séparés pour les deux directions de la traductions.
+Dans leur cas de l'anglais au bengalais et du bengalais à l'anglais. \citet{steingrimsson_2023} utilisent LASER,
+LaBSE et WAScore afin de noter chacune des paires de phrases parallèles. Ces 3 scores sont ensuite utilisés par un
+classificateur à régression logistique\footnote{régression logistique} afin de filtrer les paires de phrases.
+Une fois classer un score BLEU\footnote{\gls{BLEU}} est établis pour des ensemble allant des 500K paires les plus hautes jusqu'au
+5.6 million de paires les plus hautes. Le score BLEU est un score compris entre zéro et un représentant
+l'exactitude d'une traduction. Le score est souvent représenté sous forme de pourcentage, au dessus de 30\%
+la traduction est considéré comme bonne. Il se base sur une correspondance de n-gramme et une pénalité de concision.
+La pénalité de concision est la première partie. Elle pénalise les traductions générées trop courte par rapport
+aux traductions de références. La correspondance de n-gramme compte le nombre de n-grammes (allant de unigrammes à quadrigrammes)
+correspondant à leur équivalent dans la traduction de référence. C'est une méthode de calcul de précision.
+
+Sous la forme : 
+\[ BLEU=min(1,exp(1-\frac{reference-longueur}{sortie-longueur}))(\prod_{i=1}^{4}precision_{i}^{1/4}) \]
+et $precision_{i}$ correspond à :
+\[ precision_{i}=\frac{\sum_{snt \in Cand-Corpus}\sum_{i \in snt}min(m^{i}_{cand},m^{i}_{ref})}{w^{i}_{t}\sum_{snt' \in Cand-Corpus}=\sum_{i' \in snt'}m^{i'}_{cand}} \]
+Où 
+\begin{itemize}
+    \item $m^{i}_{cand}$ est le nombre d'i-grammes correspondant à la traduction de référence.
+    \item $m^{i}_{ref}$ est le nombre d'i-grammes dans la traduction de référence.
+    \item $w^{i}_{t}$ est le nombre d'i-grammes dans la traduction automatique.
+\end{itemize}
+
+En utilisant leur méthode, \citet{steingrimsson_2023} ont réduit le temps d'entraînement de 65\% tout en augmentant le score 
+BLEU de 1,6. Ce système, entraîné sur 
+moins de données montre de meilleures résultats que des tests se basant sur un modèle de transformer référentiel
+entraîné avec Fairseq \citep{ott_2019} mais utilisant un vocabulaire de 32K termes encodés par paires de byte. Qui a ensuite
+était évalué automatiquement selon le score BLEU et les mêmes ensemble de données que les modèles principaux. Fairseq étant un
+outil open-source pour {« }l'entraînement de modèles de traduction, de résumer, de modélisation linguistique et d'autres tâches de génération.
+{ »}\footnote{{« }train custom models for translation, summarization, language modeling, and other text generation tasks.{ »} \citep{ott_2019} 
+traduit par Thibault DUMORTIER} \citep{ott_2019}.

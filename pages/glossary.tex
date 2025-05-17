@@ -13,11 +13,12 @@
 \newglossaryentry{BLEU}{
     name=BLEU,
     description={
-        BLEU (\textit{bilingual evaluation understudy}) est un algorithme d’évaluation de la qualité du 
-        texte qui a été traduit automatiquement d’une langue naturelle à une autre. La qualité est considérée 
-        comme la correspondance entre la production d’une machine et celle d’un humain : {« }plus une traduction 
-        automatique est proche d’une traduction humaine professionnelle, mieux c’est.{ »}
-        \\(\hyperlink{https://fr.wikipedia.org/wiki/BLEU_(algorithme)}{Wikipedia/BLEU\_(algorithme)})
+        BLEU (\textit{BiLingual Evaluation Understudy}) est un algorithme d’évaluation de la qualité d'un
+        texte traduit automatiquement d’une langue naturelle à une autre. La qualité est considérée 
+        comme la correspondance entre la production d’une machine et celle d’un humain. Le score est compris
+        entre 0 et 1, 0 indiquant une traduction éloignée d'une traduction humaine, et 1 indiquant une
+        traduction automatique très similaire.
+        \\(\hyperlink{https://cloud.google.com/translate/automl/docs/evaluate?hl=fr}{Évaluer des modèles (Google)})
     }    
 }
 
@@ -58,6 +59,25 @@
     }
 }
 
+\newglossaryentry{Fonction softmax}{
+    name=Softmax,
+    description={
+        La fonction Softmax est une fonction de normalisation de vecteurs.
+        Elle convertit un vecteur de nombre réels en une distribution de probabilités.
+        Dans le cas dés réseaux neuronaux elle sert de méthode de classification multiple.
+    }    
+}
+
+\newglossaryentry{Régression logistique}{
+    name=Régression logistique,
+    description={
+        Il s'agit d'une technique de modélisation qui vise à prédire et expliquer les valeurs 
+        d'une variable catégorielle binaire $Y$ à partir d'une collection de variables 
+        $X$ continues ou binaires.\\
+        \citep{rakotomalala_2015}
+    }    
+} %TODO
+
 \newglossaryentry{MNR}{
     name=MNR,
     description={
@@ -90,8 +110,8 @@
     name=Réseau siamois,
     description={
         Le réseau siamois se compose de deux \gls{CNN} et utilise \allowbreak une perte contrastive. 
-        Le réseau Triplet se compose de trois CNN et utilise une perte triplet.
-        \\(\hyperlink{https://www.researchgate.net/publication/320241762_Tracking_Persons-of-Interest_via_Unsupervised_Representation_Adaptation}{Zhang S. et al., 2020})
+        Le réseau Triplet se compose de trois CNN et utilise une perte triplet.\\
+        \citep{zhang_2017}
     }    
 }
 
@@ -106,7 +126,6 @@
         \\(\hyperlink{https://fr.wikipedia.org/wiki/Similarité_cosinus}{Wikipedia/Similarité\_cosinus})
     }    
 }
-
 
 \newglossaryentry{Similarité sémantique}{
     name=Similarité sémantique,
@@ -130,7 +149,5 @@
         \\(\hyperlink{https://fr.wikipedia.org/wiki/Transformeur}{Wikipedia/Transformeur})
     }    
 }
-
-
 
 \makenoidxglossaries
