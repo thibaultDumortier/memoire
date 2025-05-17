@@ -2,7 +2,7 @@
 
 Le travail de recherche sur les corpus comparables a un peu moins de 30 ans dans le domaine de la 
 traduction automatique. Mais durant les années 1990 et au début des années 2000, le travail dans la traduction 
-automatique statistique ou l'extraction terminologique se basait principalement sur les corpus parallèles et 
+automatique statistique où l'extraction terminologique se basait principalement sur les corpus parallèles et 
 n'utilisait pas les corpus peu comparables ou sans liens \citep{sharoff_2013a}.
 En traitement automatique des langues (TAL) le début des années 90 marque le début de l'utilisation de 
 larges collections de textes et donc de corpus parallèles, surtout dans le cas des recherches en 
@@ -12,15 +12,17 @@ De nos jours, la plupart des ressources pour ce genre de corpus parallèles sont
 liées à des documents législatifs ou institutionnels. Ce genre de document est très utile pour la 
 recherche dans la traduction, car ils utilisent parfois un vocabulaire très précis et spécifique à 
 leur domaine. {« }Cependant, les domaines et genres de ces textes institutionnels ne correspondent pas 
-toujours bien aux cibles des applications TAL. La précision des traductions automatiques statistiques dépende 
+toujours bien aux cibles des applications TAL. La précision des traductions automatiques statistiques dépend
 principalement d'une bonne correspondance entre le corpus d'entraînement et les textes à traduire 
 \citep{babych_2007, eisele_2008}{ »}\footnote{{« }However, reliance only on existing parallel texts leads 
 to serious limitations, since the domains and genres of texts from such institutional repositories often 
 do not match well the targets of NLP applications, e.g., the accuracy of statistical machine translation 
 crucially depends on a good match between the training corpus and the texts to be translated.
 \citep{babych_2007, eisele_2008}{ »} \citep{sharoff_2013a} traduit par Thibault DUMORTIER} \citep{sharoff_2013a}.
-Pour mieux comprendre le principe des corpus comparable comparés aux corpus parallèles, il nous faut 
+Pour mieux comprendre le principe des corpus comparables comparés aux corpus parallèles, il nous faut 
 d'abord définir ces termes.
+
+\newpage
 
 \section{Définition}
 
@@ -33,19 +35,21 @@ non-parallel multilingual corpora, but also sets of monolingual corpora that are
 purposes.{ »} \citep{sharoff_2013b} traduit par Thibault DUMORTIER}
 
 Il est aussi important de définir qu'il existe aussi différents degrés de comparabilité des corpus. 
-\citet{sharoff_2016} présentent 2 tableaux réalisées par \citet{sharoff_2013a} et \citet{wu_2005} que 
-l'on peux fusionner afin de donner une liste de définitions ressemblant à cela{ :}
+\citet{sharoff_2016} présentent 2 tableaux réalisés par \citet{sharoff_2013a} et \citet{wu_2005} que 
+l'on peut fusionner afin de donner une liste de définitions ressemblant à cela{ :}
 \begin{enumerate}
-\item Corpus parallèles{ :} composé de textes parallèles alignés par leurs phra\-ses qui sont une 
+\item Corpus parallèles{ :} composé de textes parallèles alignés par leurs phr\-ases qui sont une 
 traduction plus ou moins précise l'une de l'autre.
 \item Corpus comparable{ :} composé de textes comparables non-alignés par leurs phrases et des 
 documents bilingues non-traduits qui sont alignés par leur sujet. Les textes comparables possèdent 
 souvent des similarités dans ce qu'ils décrivent.
-\item Corpus quasi-comparable{ :} composé de textes comparables non-alignés par leurs phrases et des 
+\item Corpus quasi-comparable{ :} composé de textes comparables non\-alignés par leurs phrases et des 
 documents bilingues non-traduits qui peuvent être alignés par leur sujet.
-\item  Des textes sans liens{ :} morceaux aléatoires provenant du web qui peuv\-ent tout de même être 
+\item  Des textes sans liens{ :} morceaux aléatoires provenant du web qui peu\-vent tout de même être 
 utilisé pour de la comparaison linguistique.
 \end{enumerate}
+
+\newpage
 
 \section{Corpus web et Wikipedia}
 
@@ -56,12 +60,12 @@ l'utilisation que nous allons en faire dans ce mémoire, il est intéressant de 
 corpus provenant du web. Plus précisément du cas de Wikipédia.
 
 Le web nous permet de trouver plusieurs textes permettant de créer un corpus. 
-On peux définir un tel corpus de différentes manières{ :}
+On peut définir un tel corpus de différentes manières{ :}
 \begin{itemize}
-\item En utilisant des ressources parallèles alignés par document;
+\item En utilisant des ressources parallèles, alignées par document;
 \item En utilisant des corpus comparables alignés par document, comme les extractions d'articles Wikipédia 
 avec des informations sur leurs catégories et liens inter-langues;
-\item En collectant des ressources comparables, en utilisant des mots-clés bien aligné envoyé à un moteur de 
+\item En collectant des ressources comparables, en utilisant des mots-clés bien alignés envoyés à un moteur de 
 recherche, e.g., autosave en anglais aligné à autoguardar en espagnol \citep{baroni_2004}.
 \end{itemize} \citep{sharoff_2013a}
 
@@ -94,9 +98,9 @@ Cependant, il nous faut poser quelques limites pour s'assurer de la qualité du 
 les liens inter-langues. \citet{sharoff_2016} donne 2 critères qui semblent importants pour ce genre 
 de réalisation{ :}
 \begin{itemize}
-\item Le liens entre 2 articles doit être bidirectionnel. Cela assure que la page dans une langue n'est pas 
+\item Le lien entre 2 articles doit être bidirectionnel. Cela assure que la page dans une langue n'est pas 
 liée seulement à un morceau de l'autre page.
-\item La taille du contenu entre les 2 articles doit-être similaire (i.e. leur nom\-bre de caractères).
+\item La taille du contenu entre les 2 articles doit être similaire (i.e. Leur nom\-bre de caractères).
 \end{itemize}
 Il nous faut atteindre ce standard afin d'avoir un corpus comparable propre.
 
@@ -118,13 +122,15 @@ la taxonomie à 6 niveaux établie par \citep{joshi_2020} les langues régionale
 ont peu voire pas de ressources avec des niveaux entre 0 et 1 là où le français est de niveau 5, atteignant 
 le niveau maximal. \citep{stosic_2024} Cette taxonomie se basant sur le nombre de ressources langagières 
 existantes, on peut déterminer qu'il est bien plus dur de trouver des ressources correctes permettant 
-d'élaborer un corpus parallèle.
+d'élaborer un corpus parallèle. Ces 2 citations, mises en parallèle, nous montrent le problème principal avec les 
+corpus parallèles dans le cas de notre projet. Ce dernier se basant sur des langues peu dotées, il est 
+important de noter qu'il est complexe de trouver des corpus parallèles les impliquant.
 
 \citet{sharoff_2016} donne plusieurs raisons pour lesquelles la rareté de corpus parallèles est un 
 problème important{ :}
 \begin{enumerate}
-\item En utilisant un corpus parallèles, un bitexte est nécessaire par paire langagière. En utilisant un 
-corpus comparable, un corpus monolingue par langue suffie.
+\item En utilisant un corpus parallèle, un bitexte est nécessaire par paire langagière. En utilisant un 
+corpus comparable, un corpus monolingue par langue suffit.
 \item Il est bien plus difficile de trouver un corpus d'entraînement parallèle approprié qu'un corpus 
 d'entraînement comparable pour des systèmes de traductions spécialisés.
 \item Une langue évoluant dans le temps, il est plus compliqué de mettre à jour un corpus parallèle.
@@ -142,21 +148,21 @@ Les corpus comparables ont plusieurs avantages comparés aux corpus parallèles{
 \item Moins de corpus nécessaires. E.g. dans le cas d'extraction de dictionnaires couvrant toutes paires 
 possibles dans 10 langues soit 45 paires langagières (les corpus parallèles et comparables étant 
 bidirectionnels). Pour s'occuper des 45 paires, on aurait besoin de 10 corpus dans le cas d'un corpus 
-comparable contre 45 corpus potentiel dans le cas des corpus parallèles. Bien que le nombre de corpus 
-parallèles puissent être réduit dépendant des traductions présentes entre les documents.
+comparable contre 45 corpus potentiels dans le cas des corpus parallèles. Bien que le nombre de corpus 
+parallèles puisse être réduit dépendant des traductions présentes entre les documents.
 \end{itemize}
 \citep{sharoff_2013a}
 
 Il est intéressant de remarquer une augmentation dans le nombre de projets sur les corpus 
-comparable qui ont vu le jour (E.g., ACCURAT\footnote{\hyperlink{http://www.accurat-project.eu/}{ACCURAT}} ou 
+comparables qui ont vu le jour (E.g., ACCURAT\footnote{\hyperlink{http://www.accurat-project.eu/}{ACCURAT}} ou 
 TTC\footnote{\hyperlink{https://www.ttc-project.eu/concept-and-objectives/}{TTC}}). Ces projets s'intéressent à 
 l'utilisation de corpus pour la traduction automatique \citep{sharoff_2016}. 
 
 Il est aussi important de noter qu'une des méthodes de co-occurrence dictant que l'apparence de certains 
-mots sémantiquement proche se fait peu importe la langue (E.g. école et professeur apparaissant ensemble, 
-\citep{rapp_1995}). Cette méthode peut-être observer comme marchant le mieux avec des corpus parallèles 
+mots sémantiquement proches se fait peu importe la langue (E.g. école et professeur apparaissant ensemble, 
+\citep{rapp_1995}). Cette méthode peut être observée comme marchant le mieux avec des corpus parallèles 
 et comme 2e meilleure pour des corpus comparable.\citep{sharoff_2013a} Malgré que cette méthode
-marche principalement avec les corpus parallèles. Elle permettrait, dans le cas des corpus comparable, 
-de vérifier la présence de fragment parallèles par la présence de co-occurrence de mots sémantiquement proches. 
-Cela pourrait être intéressant dans le cas des langues peu dotées et permettrait de trouver des fragment 
+marche principalement avec les corpus parallèles. Elle permettrait, dans le cas des corpus comparables, 
+de vérifier la présence de fragments parallèles par la présence de co-occurrence de mots sémantiquement proches. 
+Cela pourrait être intéressant dans le cas des langues peu dotées et permettrait de trouver des fragments
 entre une langue source dotée et une langue cible peu dotée relativement simplement.

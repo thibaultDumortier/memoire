@@ -1,7 +1,7 @@
 \chapter{Langues peu dotées}
 
-Les langues peu dotées, sont au centre de la recherche menée dans ce mémoire. Ces langues 
-(ici corse, occitans et alsacien) sont des langues qu'il est intéressant d'étudier. Elles posent 
+Les langues peu dotées sont au centre de la recherche menée dans ce mémoire. Ces langues 
+(ici corse, occitan et alsacien) sont des langues qu'il est intéressant d'étudier. Elles posent 
 diverses problématiques qui, si résolues, permettraient de faire avancer la recherche sur le TAL. 
 
 Hélas, il est important de noter que {« }la plupart des travaux de recherche en TAL se sont concentrés 
@@ -29,7 +29,7 @@ mieux comprendre les langues peu dotées. En général, une langue peu dotée se
 Il est aussi important de remarquer qu'une langue peu dotée ou minoritaire peut-être parlée par beaucoup, 
 mais posséder peu voire aucune trace écrite. C'est cette absence de trace écrite qui fait que la langue est 
 peu dotée. Elle devient donc complexe à étudier, particulièrement dans le cadre de la recherche. Mais celle-ci 
-reste intéressante à étudier de par ces implications pour le TAL. Une langue peu dotée pose plusieurs 
+reste intéressante à étudier de par ses implications pour le TAL. Une langue peu dotée pose plusieurs 
 problèmes importants qui, une fois résolus, permettront un meilleur traitement de celle-ci par l'informatique. 
 Mais aussi un meilleur traitement des langues plus communes de par les recherches menées sur des langues 
 possédant moins de données informatisées.
@@ -40,8 +40,8 @@ Les langues peu dotées posent les problèmes suivants{ :}
 \begin{enumerate}
 \item Absence partielle ou totale de documents écrits informatisés rendant l'élaboration de corpus parallèle
 complexe voire impossible.
-\item Recherche dans les langues sous-dotées réalisées par des groupes isolés ou dispersés 
-\citep{bernhard_2018}. Ces recherches, non centralisées complexifient la recherche dans le domaine.
+\item Recherche dans les langues sous-dotées réalisée par des groupes isolés ou dispersés 
+\citep{bernhard_2018}. Ces recherches, non centralisées, complexifient la recherche dans le domaine.
 \item {« }Variations dans la graphie, dues soit à une évolution des normes orthographiques dans le temps, 
 soit à l’absence de normes orthographiques pour les langues ou les variétés linguistiques qui sont 
 essentiellement orales et rarement écrites \citep{kurimo_2017}{ »} \citep{bernhard_2018}
@@ -51,13 +51,13 @@ bonne qualité en grande quantité. \citep{steingrimsson_2023}
 \item Manque d'intérêt de la part de la communauté scientifique pour différentes raisons{ :} {« }Manque de 
 financement, de ressources humaines, de technologie appropriée, de descriptions linguistiques complètes et 
 précises, de reconnaissance académique{ »} \citep{bernhard_2018}
-\item Un pourcentage important de phrase anormales dans le peu d'écrit disponible
+\item Un pourcentage important de phrases anormales dans le peu d'écrit disponible
 qui pourrait affecter la performance de logiciels d'alignement. \citep{steingrimsson_2023}
 \end{enumerate}
 
 Ces problèmes sont particuliers, d'après \citet{sharoff_2016}{ :} 
-« Parmi environ 7 000 langues existantes dans le monde, parmi lesquelles 600 ont une forme écrite, 
-la vaste majorité sont "peu dotées". » \footnote{{« }Among the about 7,000 world languages, of which 600 
+{« }Parmi environ 7 000 langues existantes dans le monde, parmi lesquelles 600 ont une forme écrite, 
+la vaste majorité sont "peu dotées".{ »} \footnote{{« }Among the about 7,000 world languages, of which 600 
 have a written form, the vast majority are of the ‘low resource’ type.{ »} \citep{sharoff_2016} traduit par Thibault Dumortier}
 Cela implique que des langues, communes de par leur nombre, sont peu voire pas étudiées. 
 Ces problèmes commencent avec le temps à avoir diverses solutions intéressantes, passant souvent par la 
@@ -80,14 +80,14 @@ un corpus parallèle pour des langues peu dotées comme certaines langues régio
 \subsubsection{Collaborations}
 
 \citet{miletic_2018} propose par exemple la composition de large corpus annoté. En adaptant des ressources de 
-langues proches en utilisant des ressources lexicales collaboratives comme Wiktionary en pré annotant 
+langues proches en utilisant des ressources lexicales collaboratives comme Wiktionary en préannotant 
 le corpus automatiquement. Il est à noter qu'en 2018 d'autres outils pour le traitement du serbe existaient 
-déjà, mais que la plupart n'étaient pas disponibles librement \citep{bernhard_2018}.
+déjà, mais que la plupart n'étaient pas disponibles librement.
 
-\citet{millour_2018}, eux, propose une méthodologie par l'annotation en parties de discours basé sur le crowdsourcing. 
-Les chercheurs ont mis en place 2 plateformes permettant le crowdsourcing. L'une possède des corpus prés 
+\citet{millour_2018}, eux, propose une méthodologie par l'annotation en parties de discours basée sur le crowdsourcing. 
+Les chercheurs ont mis en place 2 plateformes permettant le crowdsourcing. L'une possède des corpus près 
 annotés présentés aux participants avant d'entraîner des étiqueteurs et l'autre permettant une collecte de 
-corpus bruts \citep{bernhard_2018}.
+corpus bruts.
 
 \subsubsection{Entraînement d'IA}
 
@@ -100,17 +100,19 @@ langues peu dotées. De plus d'après \citet{gerken_2022} le CAHAI aurait remarq
 cela permet de faire mieux connaître ces langues amenant, plus tard, à une meilleure représentation de 
 ces langues en ligne.
 
-Cependant \citet{steingrimsson_2023} nous dit que beaucoup de phra\-ses atypiques se retrouvant dans les 
+Cependant \citet{steingrimsson_2023} nous dit que beaucoup de phr\-ases atypiques se retrouvant dans les 
 données parallèles pour les langues peu dotées. Cela nous pose un problème dans le contexte de la traduction 
 automatique par réseau neuronal moderne qui dépend énormément de la bonne qualité des ressources 
-d'entraînements. \citep{tan_2022} Dans ce cas d'autres méthodes non-supervisées ont étaient proposés comme 
+d'entraînements. \citep{tan_2022} Dans ce cas d'autres méthodes non-supervisées ont été proposées comme 
 l'entraînement sur des corpus monolingues seuls \citep{artetxe_2018, lample_2018}. Cependant 
 \citet{steingrimsson_2021} nous expliquent que d'autres travaux par \citet{kim_2020} montrent que des méthodes 
-supervisées et semi-supervisées avec de petits corpus parallèles seront toujours meilleurs que des méthodes 
+supervisées et semi-supervisées avec de petits corpus parallèles seront toujours meilleures que des méthodes 
 non-supervisées pour beaucoup de langues. Cependant, peu de ressources parallèles existantes impliquent qu'il 
 faudrait plutôt utiliser des corpus comparables en supplément de corpus parallèles pour les langues peu 
-dotées. Ces données permettraient l'entraînement de réseaux neuronaux moderne (IA) afin d'atteindre une 
+dotées. Ces données permettraient l'entraînement de réseaux neuronaux modernes (IA) afin d'atteindre une 
 meilleure qualité sur des modèles plus récents.
+
+\newpage
 
 \section{Bonnes nouvelles}
 
@@ -122,7 +124,7 @@ internet augmente par ailleurs sa visibilité. C’est par exemple le cas du cat
 les plus employées sur Wikipédia.{ »} \citep{gerken_2022}
 
 On peut aussi remarquer que l'Union européenne essaye de rendre l'emploi des langues minoritaires ou 
-régionales plus fréquent dans des domaines importants d'après \citet{gerken_2022}{ :} l'administration, 
+régionales plus fréquentes dans des domaines importants d'après \citet{gerken_2022}{ :} l'administration, 
 l'éducation, la justice ou les médias. Cet effort est exacerbé par la charte européenne des langues 
 régionales ou minoritaires {« }ratifiée par 25 États, et signée (mais non ratifiée) par neuf autres.{ »} 
 \citep{gerken_2022}
