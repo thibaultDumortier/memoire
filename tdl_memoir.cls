@@ -67,6 +67,7 @@
     isbn=false,
     url=true,
     defernumbers,
+    uniquename=false,
     date=year,
     labeldate=year,
     natbib
