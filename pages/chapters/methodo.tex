@@ -1,0 +1,191 @@
+\chapter{Méthodologie}
+
+La méthodologie décrite dans ce chapitre expose l’ensemble des étapes permettant de constituer, d’aligner et 
+d’exploiter un corpus contenant des textes en français, alsacien, corse et occitan. Le but est d’entraîner 
+un modèle capable d’identifier automatiquement des 
+paires de phrases parallèles. Pour ce faire nous utiliserons des outils d’alignement interlinguistique, 
+des techniques de représentation sémantique, ainsi que des méthodes statistiques de classification supervisée. 
+
+Dans un premier temps, nous utiliserons l’outil \textit{InterText} afin d'aligner les données issues de 
+l’Atlas des langues régionales du LIMSI. Ce premier travail nous permet d'avoir une autre partie de données pour le corpus,
+avec PARCOLAB et la parabole de l'enfant prodigue. Nous calculerons ensuite des scores de similarité textuelle
+sur ce corpus.
+
+Les similarités sémantiques issues du modèle SBERT seront 
+exploitées pour attribuer des scores aux comparaisons interphrastiques sur des données parallèles, 
+semi-parallèles ou non parallèles issues du corpus d'entraînement. Avec ces annotations, 
+nous entraînerons un modèle se basant sur la régression logistique 
+afin d’identifier automatiquement les phrases parallèles à partir de représentations vectorielles.
+
+Enfin, nous présentons une étape complémentaire permettant d’évaluer le bon fonctionnement du modèle en nous 
+appuyant sur le corpus de P.Tsolakis. Après validation du modèle sur ce corpus de 
+référence, il nous faudra étendre le code du modèle afin d'identifier non plus seulement des phrases 
+parallèles, mais également des fragments semi-parallèles.
+
+\newpage
+
+\section{InterText}
+
+\textit{InterText}\footnote{\hyperlink{https://wanthalf.saga.cz/intertext}{InterText}} \citep{vondricka_2014} est un environnement conçu pour faciliter 
+l’annotation et l’alignement de textes multilingues. Développé à l’origine pour les études contrastives et les 
+sciences du texte, \textit{InterText} permet de comparer des documents appartenant à des langues différentes 
+et de produire des alignements fiables au niveau phrase ou paragraphe. \textit{InterText} se base sur des aligner déjà existant
+telles que Hunalign \citep{nicolov_2007} et TCA2 \citep{hofland_1996, hofland_1998, Vondricka_2010}.
+
+Son principal avantage réside dans sa capacité à fournir une interface permettant
+d’afficher côte à côte deux versions d’un même document (ou de deux documents comparables) afin d’aligner 
+manuellement ou semi-automatiquement les segments. Il permet aussi de gérer et exporter ces alignements sous 
+forme de paires structurées. U  tiliser ce programme nous est intéressant car il permet de traiter des langues 
+variées, incluant des langues régionales peu dotées.
+
+Pour un corpus tel que celui de l’Atlas LIMSI, qui n’a pas été initialement conçu comme un corpus parallèle, 
+\textit{InterText} représente un outil indispensable permettant de pallier l’absence d’alignement natif. Sa capacité à 
+segmenter automatiquement les phrases facilite également la préparation des données pour les étapes de calcul 
+de similarité.
+
+L'outil fonctionne selon un principe d’alignement multi-niveaux. L’utilisateur importe deux documents, qui 
+sont ensuite segmentés en unités textuelles (phrases, syntagmes, ou paragraphes). Ces segments peuvent être 
+alignés de trois manières{ :}
+
+\begin{itemize}
+    \item {alignement automatique}{ :} l’outil tente de trouver des correspondances directes sur la 
+    base d’indices lexicaux ou structurels
+    \item {alignement assisté}{ :} l’utilisateur valide ou corrige les propositions générées 
+    automatiquement
+    \item {alignement manuel}{ :} utilisé lorsque la langue ou la variation dialectale rendent les 
+    procédures automatiques peu fiables (par exemple dans le cas de langues peu dotées)
+\end{itemize}
+
+Au terme du processus, \textit{InterText} exporte un fichier structuré où chaque ligne correspond à une paire de 
+segments alignés. Ce format sera ensuite utilisé pour l’évaluation des similarités sémantiques.
+
+\newpage
+
+\section{Alignement du corpus LIMSI avec InterText}
+
+Le corpus issu de l’Atlas des langues régionales du LIMSI est un corpus comparable. En effet, bien que tous 
+les textes reposent sur une traduction du poème 
+\textit{La bise et le soleil} d'Ésope, les variations dialectales, les découpages phrastiques  
+et les divergences d’interprétation rendent l’alignement automatique impossible. 
+
+Dans cette perspective, \textit{InterText} a été mobilisé afin de constituer un corpus parallélisé entre les variétés 
+régionales. L’alignement s’effectue à partir du texte de référence en français et des versions du poème dans les
+langues régionales de France sur lesquelles nous travaillons. 
+
+Cette étape produit un ensemble de paires alignées, accompagné d’un nombre de 
+segments imparfaits non négligeable{ :} phrases plus longues d’un côté que de l’autre, segments fusionnés ou fragmentés, etc.
+Ce phénomène justifie la nécessité d'introduire plus loin une notion de \textit{semi-parallélisme}.
+
+\section{Calcul des similarités sémantiques avec SBERT}
+
+Une fois l’alignement réalisé, chaque paire de phrases est comparée au moyen d’un modèle reposant sur 
+l’architecture SBERT. SBERT nous permet de générer des
+représentations vectorielles fixes pour chaque phrase, facilitant ainsi le calcul de similarité cosinus.
+
+Comme modèle SBERT nous décidons d'utiliser le modèle 
+\textit{paraphrase-multilingual-MiniLM-L12-v2}\footnote{\hyperlink{https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}{paraphrase-multilingual-MiniLM-L12-v2}} \citep{reimers_2019}. 
+MiniLM est un modèle distillé, il a été entraîné à imiter le comportement d'un modèle plus grand en 
+reproduisant des relations d'attention. Le suffixe L12 indique qu'il possède 12 couches de
+transformer, et la dimension de ses embeddings est de 384 dimensions. Un autre modèle nommé 
+\textit{paraphrase-multilingual-mpnet-base-v2}\footnote{\hyperlink{https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2}{paraphrase-multilingual-mpnet-base-v2}} \citep{reimers_2019}
+pourrait aussi être intéressant. 
+\begin{table}[h!]
+\centering
+\begin{tabular}{lccc}
+\hline
+\textbf{Caractéristique} & \textbf{mpnet-base-v2} & \textbf{MiniLM-L12-v2} \\
+\hline
+Dimension des embeddings & 768 & 384 \\
+Nombre de paramètres & ~278M & ~118M \\
+Vitesse d'inférence & Modérée & Rapide \\
+Qualité sémantique & Supérieure & Inférieure \\
+Mémoire nécessaire & Élevée & Faible \\
+\hline
+\end{tabular}
+\caption{Tableau comparatif des modèles MPNet et MiniLM}
+\end{table}
+Pour plusieurs raisons nous allons plutôt utilisé MiniLM{:}
+Les embeddings à 384 dimensions restent suffisamment riches pour capturer les similarités sémantiques 
+entre phrases françaises et régionales. De plus la légère perte de qualité de MiniLM par rapport à MPNet 
+aura peu d'impact visible sur les résultats finaux étant donné que nous allons utilisé des corpus plutôt 
+modeste. De plus MiniLM est moins lourd et nécessite moins de mémoire ce qui rend l'entraînement plus rapide.
+
+Pour entraîner un modèle supervisé à reconnaître les phrases parallèles, il est nécessaire de disposer de 
+données annotées selon différents degrés de correspondance. Nous distinguons trois catégories{ :}
+
+\begin{itemize}
+    \item Parallèles{ :}
+    \[
+    \text{phrase A} \Rightarrow \text{phrase A traduite.}
+    \]
+    Les deux segments expriment exactement la même information, même si la structure syntaxique varie.
+    
+    \item Semi-parallèles{ :}
+    \[
+    \text{phrase A} \Rightarrow \text{phrase A traduite, mais avec une partie manquante.}
+    \]
+    Ce cas se rencontre fréquemment lorsque certains détails sont omis ou condensés dans une version dialectale.
+    Dans notre mémoire nous allons devoir créer artificiellement des variations de phrases existantes afin 
+    de produire des paires ayant un contenu informationnel similaire sans être des traductions exactes. 
+    Par exemple, une phrase peut être transformée par paraphrasage automatique, par suppression de certains 
+    éléments d’information (comme une suite de phrase après une virgule) ou par reformulation partielle.
+    
+    \item Non parallèles{ :}
+    \[
+    \text{phrase A} \Rightarrow \text{phrase B distincte sans corrélation sémantique.}
+    \]
+    Ces paires servent de négatifs dans l’apprentissage supervisé.
+\end{itemize}
+
+Pour chacune de ces catégories, un score STS est calculé à partir des 
+embeddings SBERT. Ces scores constituent la base d’apprentissage du modèle de régression logistique décrit 
+ci-dessous.
+
+\section{Entraînement d’un modèle de régression logistique}
+
+La régression logistique est un modèle statistique utilisé pour prédire une probabilité appartenant à deux 
+catégories (Dans notre cas : parallèle / non parallèle). La régression logistique transforme la sortie en une 
+probabilité comprise entre 0 et 1 grâce à la fonction sigmoïde{ :}
+\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]
+
+Elle constitue un modèle simple pour classifier les paires de phrases selon 
+qu’elles soit parallèles, semi-parallèles ou non parallèles. Les scores STS obtenus précédemment serviront de variables d'apprentissage. 
+Le modèle apprend ainsi à reconnaître les scores typiques des phrases parallèles et à distinguer les paires 
+non parallèles. De plus, avoir entraîné le modèle sur des données semi-parallèle devrait le rendre capable 
+d'identifier ce genre de segments textuels.
+
+\section{Validation du modèle}
+
+Afin d’évaluer la qualité du modèle obtenu, nous procédons à une validation externe en utilisant le corpus 
+de \citet{tsolakis_2024} à partir des données Wikimedia. Il contient des paires de phrases alignées en corse, occitan, 
+alsacien et français
+
+L’application du modèle sur ce corpus permet de vérifier{ :}
+\begin{itemize}
+    \item la capacité du classifieur à identifier correctement des phrases parallèles dans un contexte 
+    différent
+    \item l’absence de surapprentissage spécifique au corpus LIMSI et à ses textes majoritairement occitan
+\end{itemize}
+
+% \newpage
+
+% \section{Segmentation en fragments et parallélisme}
+
+% Après avoir établi un modèle fonctionnel d’identification des phrases parallèles, nous poursuivons la démarche 
+% en cherchant à détecter des fragments parallèles. L’idée est 
+% d’aller au-delà des phrases et d’identifier des unités plus fines.
+
+% La procédure consiste à{ :}
+% \begin{enumerate}
+%     \item segmenter chaque phrase selon sa structure syntaxique
+%     \item fragmenter des phrases comme : {« }le chien mange, il est repu{ »} en{ :}
+%     {« }\text{Le chien mange}{ »} et {« }\text{, il est repu.}{ »}
+%     \item effectuer cette fragmentation sur les phrases du corpus
+%     \item comparer les fragments entre eux à l’aide de la même manière que les phrases issues du corpus
+%     \item identifier les fragments considérés comme parallèles.
+% \end{enumerate}
+
+% Cette approche ouvre la voie à une analyse plus fine des correspondances, particulièrement utile dans les 
+% corpus dialectaux où les déplacements syntaxiques ou reformulations locales sont fréquents.   

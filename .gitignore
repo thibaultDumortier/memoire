@@ -15,3 +15,6 @@
 *.glsdefs
 *.glo
 *.ist
+.venv/
+data/
+resultats_corpus.*

@@ -1,33 +1,32 @@
 \chapter{Langues peu dotées}
 
-Les langues peu dotées sont au centre de la recherche menée dans ce mémoire. Ces langues 
-(ici corse, occitan et alsacien) sont des langues qu'il est intéressant d'étudier. Elles posent 
+Les langues peu dotées sont au centre de la recherche menée dans ce mémoire. Ces langues (corse, 
+occitan et alsacien) constituent des cas d’étude particulièrement pertinents car elles combinent 
+plusieurs caractéristiques : faible disponibilité de ressources numériques, variations dialectales 
+importantes, normalisation orthographique parfois incomplète et faible présence dans les grands 
+jeux de données multilingues utilisés en TAL. Elles représentent ainsi un terrain d’expérimentation 
+idéal pour les méthodes adaptées aux environnements peu dotés. Elles posent 
 diverses problématiques qui, si résolues, permettraient de faire avancer la recherche sur le TAL. 
 
-Hélas, il est important de noter que {« }la plupart des travaux de recherche en TAL se sont concentrés 
-sur quelques langues bien décrites et ayant de nombreux locuteurs 
-\citep{delgratta_2014}{ »} \citep{bernhard_2018}.
+Hélas, il est important de noter que les travaux de recherche en TAL, dans leur majorité, se sont concentrés 
+sur des langues, généralement bien décrites et étant majoritaire ou parler par un grand nombre de locuteurs \citep{delgratta_2014, bernhard_2018}.
 
-Plus important encore, le fait que des {« }travaux de recherche universitaire de grande qualité soient menés 
-pour les langues peu dotées pourrait être lié à une prise de conscience partagée et de plus en plus répandue 
-de l’importance de la représentation numérique pour toutes les langues{ »} \citep{bernhard_2018}.
+Cependant de plus en plus de travaux de recherche universitaire de grande qualité sont menés 
+pour les langues peu dotées. Ce qui pourrait être lié à une prise de conscience majeure et partagée dans le domaine du TAL
+sur l’importance de la représentation numérique pour toutes les langues \citep{bernhard_2018}.
 
 \section{Définition}
 
-Le site Wiktionnaire nous dit{ :} {« }Une langue peu dotée est une langue disposant de peu de ressources 
-linguistiques informatisées.{ »} Cette définition semble principalement caractériser l'idée d' {« }extinction 
-numérique{ »} bien plus que l'idée de langue peu dotée. Une langue qui ne parvient pas à s'implanter dans 
-les nouveaux moyens de communication et les technologies nouvelles. \citep{gerken_2022} est une langue qui 
-souffre d' {« }extinction numérique{ »}. \citet{gerken_2022} ajoute dans sa définition{ :} {« }Le phénomène peut 
-affecter des langues peu répandues, mais aussi une langue qui, bien que majoritaire dans un pays, est 
-minoritaire et menacée dans un autre.{ »} Cette définition plus précise que celle du Wiktionnaire permet de 
-mieux comprendre les langues peu dotées. En général, une langue peu dotée sera une langue en état d' 
-{« }extinction numérique{ »}. Cependant, cela n'est pas toujours le cas comme précisé par \citet{bernhard_2018} : 
-{« }Les langues sous-dotées peuvent être minoritaires ou menacées, mais l’inverse ne s’applique pas toujours 
-(par exemple, le catalan est une langue minoritaire en Espagne, mais ne dispose pas de moins de ressources.).{ »}
+Une langue peu dotée peut être définie comme une langue disposant d’un nombre limité de ressources 
+linguistiques numériques exploitables pour des tâches de TAL. Cette sous-dotation peut concerner l’absence 
+de corpus annotés, de lexiques structurés, de modèles pré-entraînés ou de normes orthographiques stabilisées. 
+Elle ne recouvre pas nécessairement la notion de langue minoritaire. Certaines langues peuvent être 
+majoritaire dans un pays mais, étant minoritaire et menacée dans un autre, celle-ci reste sous-dotée \citep{gerken_2022}.
+Il est à noter que certaines langues, pourtant minoritaire ou menacée, ne seront pas sous-dotée. Le catalan par exemple
+rentre dans cette catégorie de langues minoritaire qui ne sont pourtant pas sous-dotées \citep{bernhard_2018}.
 
-Il est aussi important de remarquer qu'une langue peu dotée ou minoritaire peut-être parlée par beaucoup, 
-mais posséder peu voire aucune trace écrite. C'est cette absence de trace écrite qui fait que la langue est 
+Il est aussi important de remarquer qu'une langue peu dotée ou minoritaire peut être parlée par beaucoup, 
+mais posséder peu voire aucune production écrite. C'est cette absence de production écrite qui fait que la langue est 
 peu dotée. Elle devient donc complexe à étudier, particulièrement dans le cadre de la recherche. Mais celle-ci 
 reste intéressante à étudier de par ses implications pour le TAL. Une langue peu dotée pose plusieurs 
 problèmes importants qui, une fois résolus, permettront un meilleur traitement de celle-ci par l'informatique. 
@@ -41,73 +40,80 @@ Les langues peu dotées posent les problèmes suivants{ :}
 \item Absence partielle ou totale de documents écrits informatisés rendant l'élaboration de corpus parallèle
 complexe voire impossible.
 \item Recherche dans les langues sous-dotées réalisée par des groupes isolés ou dispersés 
-\citep{bernhard_2018}. Ces recherches, non centralisées, complexifient la recherche dans le domaine.
-\item {« }Variations dans la graphie, dues soit à une évolution des normes orthographiques dans le temps, 
-soit à l’absence de normes orthographiques pour les langues ou les variétés linguistiques qui sont 
-essentiellement orales et rarement écrites \citep{kurimo_2017}{ »} \citep{bernhard_2018}
+\citep{bernhard_2018}. Ces travaux, non centralisées, complexifient la recherche dans le domaine.
+\item Variations dans la manière d'écrire une langue, dues soit à une évolution des normes orthographiques dans le temps, 
+soit à l’absence de ces normes pour les langues essentiellement orales \citep{kurimo_2017} \citep{bernhard_2018}
 \item Une bonne performance est compliquée à atteindre sur des systèmes de traduction par réseau 
-neuronal pour des langues peu dotées dû à leur nature et l'absence de paires de phrases bilingues de 
+neuronal pour des langues peu dotées en raison de leur nature et l'absence de paires de phrases bilingues de 
 bonne qualité en grande quantité. \citep{steingrimsson_2023}
 \item Manque d'intérêt de la part de la communauté scientifique pour différentes raisons{ :} {« }Manque de 
 financement, de ressources humaines, de technologie appropriée, de descriptions linguistiques complètes et 
 précises, de reconnaissance académique{ »} \citep{bernhard_2018}
-\item Un pourcentage important de phrases anormales dans le peu d'écrit disponible
-qui pourrait affecter la performance de logiciels d'alignement. \citep{steingrimsson_2023}
+\item Un pourcentage important de segments bruités ou mal formés (erreurs typographiques, mélanges de langues, 
+traductions partielles, segments tronqués) peut être observé dans les ressources disponibles. Ces segments 
+dégradent la qualité des modèles d’alignement et compliquent l’extraction automatique de correspondances fiables. 
+dans le peu d'écrit disponible. Ce qui pourrait affecter la performance de logiciels d'alignement. \citep{steingrimsson_2023}
 \end{enumerate}
 
-Ces problèmes sont particuliers, d'après \citet{sharoff_2016}{ :} 
-{« }Parmi environ 7 000 langues existantes dans le monde, parmi lesquelles 600 ont une forme écrite, 
-la vaste majorité sont "peu dotées".{ »} \footnote{{« }Among the about 7,000 world languages, of which 600 
-have a written form, the vast majority are of the ‘low resource’ type.{ »} \citep{sharoff_2016} traduit par Thibault Dumortier}
-Cela implique que des langues, communes de par leur nombre, sont peu voire pas étudiées. 
+Ces problèmes sont particuliers, d'après Parmi toutes les langues existantes dans le monde de nos jours, dont environ 600 ont une forme écrite, 
+la vaste majorité sont "peu dotées" \citep{sharoff_2016}.
+Cela implique que les langues peu dotées, parlées par environ 3 milliards de personnes, sont peu voire pas étudiées. 
 Ces problèmes commencent avec le temps à avoir diverses solutions intéressantes, passant souvent par la 
 recherche en traduction automatique ou en TAL.
 
+On peut remarquer que d'après 
+la taxonomie à 6 niveaux établie par \citep{joshi_2020} les langues régionales étudiées dans notre cas, 
+ont peu voire pas de ressources avec des niveaux entre 0 et 1. Là où le français est de niveau 5, atteignant 
+le niveau maximal \citep{stosic_2024}. Cette taxonomie, se basant sur le nombre de ressources langagières 
+existantes, nous permet de déterminer qu'il est bien plus dur de trouver des ressources correctes permettant 
+d'élaborer un corpus parallèle pour les langues régionales qu'un corpus comparable.
+
 \section{Solutions explorées}
 
-Pour commencer, on peut remarquer qu' {« }il ne s’agit plus d’un sujet de recherche très spécialisé et 
-secondaire.{ »} \citep{bernhard_2018} Cette augmentation de la recherche dans le sujet des langues peu 
-dotées est importante, car elle permet d'observer plusieurs nouvelles solutions explorées par différents 
+Pour commencer, on peut remarquer une augmentation de la recherche dans le sujet des langues peu 
+dotées importante. Celui-ci n'est donc plus très spécialisé \citep{bernhard_2018}. Celle-ci permet d'observer plusieurs nouvelles solutions explorées par différents 
 groupes de chercheurs.
 
-\subsubsection{Élaboration d'un corpus parallèle}
+\subsection{Élaboration d'un corpus parallèle}
 
 On peut citer le travail sur l'élaboration d'un corpus parallèle pour les langues 
-régionales de France avec le corpus parallèle ParCoLab \citet{stosic_2024}. Ce projet vise à créer 
+régionales de France avec le corpus parallèle ParCoLab \citep{stosic_2024}. Ce projet vise à créer 
 un corpus parallèle pour des langues peu dotées comme certaines langues régionales de France 
 (occitan, corse, alsacien ou poitevin saintongeais).
 
-\subsubsection{Collaborations}
+\subsection{Ressources collaboratives}
 
-\citet{miletic_2018} propose par exemple la composition de large corpus annoté. En adaptant des ressources de 
-langues proches en utilisant des ressources lexicales collaboratives comme Wiktionary en préannotant 
+\citet{miletic_2018} propose par exemple la composition de large corpus annoté pour le serbe en adaptant des ressources de 
+langues proches, en utilisant des ressources lexicales collaboratives, comme Wiktionary, ou en préannotant 
 le corpus automatiquement. Il est à noter qu'en 2018 d'autres outils pour le traitement du serbe existaient 
 déjà, mais que la plupart n'étaient pas disponibles librement.
 
-\citet{millour_2018}, eux, propose une méthodologie par l'annotation en parties de discours basée sur le crowdsourcing. 
-Les chercheurs ont mis en place 2 plateformes permettant le crowdsourcing. L'une possède des corpus près 
-annotés présentés aux participants avant d'entraîner des étiqueteurs et l'autre permettant une collecte de 
-corpus bruts.
+\citet{millour_2018}, quant à elles, proposent une méthodologie par l'annotation en parties de discours basée sur le crowdsourcing dans le cas de l'alsacien et du créole guadeloupéen. 
+Les chercheuses ont mis en place 2 plateformes permettant le crowdsourcing. Cette méthode consiste à demander à un grand nombre de 
+personnes de contribuer à un projet, en général via internet. Une des plateformes possède des corpus pré-annotés 
+présentés aux participants avant d'entraîner des étiqueteurs et l'autre permet une collecte de corpus bruts.
 
-\subsubsection{Entraînement d'IA}
+\subsection{Intelligence artificielle pour les langues peu dotées}
 
 Le Comité \textit{ad hoc} sur l’intelligence artificielle du Conseil de l’Europe (CAHAI)\footnote{\gls{CAHAI}} 
 {« }a constaté que l'IA peut aider les locuteurs de langues minoritaires à participer 
 plus activement à la vie publique, aux débats, aux délibérations ou aux décisions, mais aussi mieux 
-faire connaître ces langues.{ »} \citep{gerken_2022} L'IA et les réseaux neuronaux étant en plein essor, 
-il est intéressant de considérer cette possibilité dans le cas de la création de ressources pour des 
-langues peu dotées. De plus d'après \citet{gerken_2022} le CAHAI aurait remarqué que 
+faire connaître ces langues.{ »} \citep{gerken_2022} De plus, d'après \citet{gerken_2022}, le CAHAI aurait remarqué que 
 cela permet de faire mieux connaître ces langues amenant, plus tard, à une meilleure représentation de 
-ces langues en ligne.
+ces langues en ligne. L'IA et les réseaux neuronaux étant en plein essor, 
+il est intéressant de considérer cette possibilité dans le cas de la création de ressources pour des 
+langues peu dotées.
 
-Cependant \citet{steingrimsson_2023} nous dit que beaucoup de phr\-ases atypiques se retrouvant dans les 
+Cependant \citet{steingrimsson_2023} remarquent que beaucoup de \linebreak phrases atypiques (avec un 
+rapport de longueur impaire, un texte se chevauchant entre langue source et langue cible ou d'autres échecs 
+liés à des tests d'équivalences sémantiques) risquent de se retrouver dans les 
 données parallèles pour les langues peu dotées. Cela nous pose un problème dans le contexte de la traduction 
 automatique par réseau neuronal moderne qui dépend énormément de la bonne qualité des ressources 
-d'entraînements. \citep{tan_2022} Dans ce cas d'autres méthodes non-supervisées ont été proposées comme 
+d'entraînements \citep{tan_2022}. Dans ce cas d'autres méthodes non-supervisées ont été proposées comme 
 l'entraînement sur des corpus monolingues seuls \citep{artetxe_2018, lample_2018}. Cependant 
 \citet{steingrimsson_2021} nous expliquent que d'autres travaux par \citet{kim_2020} montrent que des méthodes 
 supervisées et semi-supervisées avec de petits corpus parallèles seront toujours meilleures que des méthodes 
-non-supervisées pour beaucoup de langues. Cependant, peu de ressources parallèles existantes impliquent qu'il 
+non-supervisées pour beaucoup de langues. Ce manque de ressources parallèles existantes impliquent qu'il 
 faudrait plutôt utiliser des corpus comparables en supplément de corpus parallèles pour les langues peu 
 dotées. Ces données permettraient l'entraînement de réseaux neuronaux modernes (IA) afin d'atteindre une 
 meilleure qualité sur des modèles plus récents.
@@ -119,12 +125,19 @@ meilleure qualité sur des modèles plus récents.
 À l'ère d'Internet il est important de noter que de plus en plus d'entre nous utilisons le web. Les 
 utilisateurs parlant des langues minoritaires ou peu dotées participent parfois à des efforts 
 d'écriture communautaire et ajoutent leur langue sur des sites où celle-ci devient alors visible à tous. 
-Cela est très intéressant, car {« }la présence d’une langue régionale ou minoritaire sur des plateformes 
-internet augmente par ailleurs sa visibilité. C’est par exemple le cas du catalan, l’une des vingt langues 
-les plus employées sur Wikipédia.{ »} \citep{gerken_2022}
+Cela est très intéressant, car la diffusion d’une langue régionale ou minoritaire sur les plateformes en 
+ligne contribue à renforcer sa visibilité. C’est notamment le cas du catalan, qui figure parmi les 
+vingt langues majoritairement traduites sur Wikipédia \citep{gerken_2022}.
 
 On peut aussi remarquer que l'Union européenne essaye de rendre l'emploi des langues minoritaires ou 
 régionales plus fréquentes dans des domaines importants d'après \citet{gerken_2022}{ :} l'administration, 
 l'éducation, la justice ou les médias. Cet effort est exacerbé par la charte européenne des langues 
-régionales ou minoritaires {« }ratifiée par 25 États, et signée (mais non ratifiée) par neuf autres.{ »} 
-\citep{gerken_2022}
+régionales ou minoritaires {« }ratifiée par 25 États, et signée (mais non ratifiée) par neuf autres{ »} 
+\citep{gerken_2022}. La France signe cette charte en 1999 mais ne l'a toujours pas ratifiée. Celle-ci n'étant
+pas ratifiée la France n'a mis en place aucun engagement et laisse donc les langues minoritaires ou régionales
+disparaître sans encourager leur utilisation.
+
+Ainsi, malgré un intérêt croissant pour les langues peu dotées, la rareté et l’hétérogénéité des ressources disponibles 
+rendent nécessaire l’exploration de stratégies alternatives à la constitution directe de corpus parallèles.
+Dans cette perspective, les corpus comparables apparaissent comme une piste prometteuse, ce qui conduit à examiner 
+plus précisément leur définition, leurs propriétés et leurs usages en TAL.
