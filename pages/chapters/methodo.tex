@@ -1,96 +1,102 @@
 \chapter{Méthodologie}
 
-La méthodologie décrite dans ce chapitre expose l’ensemble des étapes permettant de constituer, d’aligner et 
-d’exploiter un corpus contenant des textes en français, alsacien, corse et occitan. Le but est d’entraîner 
-un modèle capable d’identifier automatiquement des 
-paires de phrases parallèles. Pour ce faire nous utiliserons des outils d’alignement interlinguistique, 
-des techniques de représentation sémantique, ainsi que des méthodes statistiques de classification supervisée. 
+La méthodologie décrite dans ce chapitre expose l’ensemble des étapes permettant de constituer, d’aligner et
+d’exploiter un corpus contenant des textes en français, alsacien, corse et occitan. Le but est d’entraîner
+un modèle capable d’identifier automatiquement des
+paires de phrases parallèles. Pour ce faire nous utiliserons des outils d’alignement interlinguistique,
+des techniques de représentation sémantique, ainsi que des méthodes statistiques de classification supervisée.
 
-Dans un premier temps, nous utiliserons l’outil \textit{InterText} afin d'aligner les données issues de 
+Dans un premier temps, nous utiliserons l’outil \textit{InterText} afin d'aligner les données issues de
 l’Atlas des langues régionales du LIMSI. Ce premier travail nous permet d'avoir une autre partie de données pour le corpus,
 avec PARCOLAB et la parabole de l'enfant prodigue. Nous calculerons ensuite des scores de similarité textuelle
 sur ce corpus.
 
-Les similarités sémantiques issues du modèle SBERT seront 
-exploitées pour attribuer des scores aux comparaisons interphrastiques sur des données parallèles, 
-semi-parallèles ou non parallèles issues du corpus d'entraînement. Ces scores, combinés à d'autres variables 
-complémentaires mesurant la proximité structurelle et phonétique entre les phrases, 
-serviront de variables d'entrée pour l'entraînement d'un modèle de régression logistique capable 
+Les similarités sémantiques issues du modèle SBERT seront
+exploitées pour attribuer des scores aux comparaisons interphrastiques sur des données parallèles,
+semi-parallèles ou non parallèles issues du corpus d'entraînement. Ces scores, combinés à d'autres variables
+complémentaires mesurant la proximité structurelle et phonétique entre les phrases,
+serviront de variables d'entrée pour l'entraînement d'un modèle de régression logistique capable
 d'identifier automatiquement les phrases parallèles.
 
-Enfin, nous présentons une étape complémentaire permettant d’évaluer le bon fonctionnement du modèle en nous 
-appuyant sur le corpus établi à partir du programme de \citet{tsolakis_2024}. Après validation du modèle sur ce corpus de 
-référence, il nous faudra étendre le code du modèle afin d'identifier non plus seulement des phrases 
+Enfin, nous présentons une étape complémentaire permettant d’évaluer le bon fonctionnement du modèle en nous
+appuyant sur le corpus établi à partir du programme de \citet{tsolakis_2024}. Après validation du modèle sur ce corpus de
+référence, il nous faudra étendre le code du modèle afin d'identifier non plus seulement des phrases
 parallèles, mais également des fragments semi-parallèles.
 
 \newpage
 
 \section{InterText}
 
-\textit{InterText}\footnote{\hyperlink{https://wanthalf.saga.cz/intertext}{InterText}} \citep{vondricka_2014} est un environnement conçu pour faciliter 
-l’annotation et l’alignement de textes multilingues. Développé à l’origine pour les études contrastives et les 
-sciences du texte, \textit{InterText} permet de comparer des documents appartenant à des langues différentes 
-et de produire des alignements fiables au niveau phrase ou paragraphe. Pour réaliser ces alignements \textit{InterText} 
+\textit{InterText}\footnote{\hyperlink{https://wanthalf.saga.cz/intertext}{InterText}} \citep{vondricka_2014} est un environnement conçu pour faciliter
+l’annotation et l’alignement de textes multilingues. Développé à l’origine pour les études contrastives et les
+sciences du texte, \textit{InterText} permet de comparer des documents appartenant à des langues différentes
+et de produire des alignements fiables au niveau phrase ou paragraphe. Pour réaliser ces alignements \textit{InterText}
 se base sur des aligneurs déjà existant
-telles que Hunalign \citep{nicolov_2007}, qui exploite des heuristiques basées sur la longueur des phrases et la 
-fréquence des mots et TCA2 \citep{hofland_1996, hofland_1998, Vondricka_2010}, un aligneur développé 
+telles que Hunalign \citep{nicolov_2007}, qui exploite des heuristiques basées sur la longueur des phrases et la
+fréquence des mots et TCA2 \citep{hofland_1996, hofland_1998, Vondricka_2010}, un aligneur développé
 initialement pour des corpus de langues scandinaves.
 
-Son principal avantage réside dans sa capacité à fournir une interface permettant
-d’afficher côte à côte deux versions d’un même document (ou de deux documents comparables) afin d’aligner 
-semi-automatiquement ou manuellement les segments. Concrètement, l'utilisateur 
-importe deux documents au format XML ou txt, qui sont ensuite segmentés automatiquement en unités textuelles 
-(phrases, syntagmes, ou paragraphes) selon des règles de segmentation paramétrables. Ces segments peuvent 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{ui_intertext.png}
+    \caption{L'interface utilisateur d'InterText.}
+    \label{ui_intertext}
+\end{figure}
+
+Son principal avantage réside dans sa capacité à fournir une interface (voir \ref{ui_intertext}) permettant
+d’afficher côte à côte deux versions d’un même document (ou de deux documents comparables) afin d’aligner
+semi-automatiquement ou manuellement les segments. Concrètement, l'utilisateur
+importe deux documents au format XML ou txt, qui sont ensuite segmentés automatiquement en unités textuelles
+(phrases, syntagmes, ou paragraphes) selon des règles de segmentation paramétrables. Ces segments peuvent
 être alignés de trois manières{ :}
 
 \begin{itemize}
-\item \textbf{Alignement automatique}{ :} l'outil s'appuie sur Hunalign ou TCA2 pour établir des 
+\item \textbf{Alignement automatique}{ :} l'outil s'appuie sur Hunalign ou TCA2 pour établir des
 correspondances probabilistes entre segments sur la base d'indices lexicaux ou structurels.
-\item \textbf{Alignement assisté}{ :} l'utilisateur valide ou corrige les propositions générées 
-automatiquement. Cette modalité constitue un compromis intéressant entre efficacité et précision, 
+\item \textbf{Alignement assisté}{ :} l'utilisateur valide ou corrige les propositions générées
+automatiquement. Cette modalité constitue un compromis intéressant entre efficacité et précision,
 permettant de corriger les erreurs de l'alignement automatique tout en réduisant la charge de travail manuel.
-\item \textbf{Alignement manuel}{ :} utilisé lorsque la langue ou la variation dialectale rendent 
-les procédures automatiques peu fiables. C'est cette modalité qui a été principalement mobilisée 
+\item \textbf{Alignement manuel}{ :} utilisé lorsque la langue ou la variation dialectale rendent
+les procédures automatiques peu fiables. C'est cette modalité qui a été principalement mobilisée
 dans notre cas, compte tenu de la forte variabilité dialectale des textes de l'Atlas LIMSI.
 \end{itemize}
 
-Au terme du processus, \textit{InterText} exporte un fichier permet d'exporter ces 
-alignements sous forme de paires structurées ou de fichiers textes séparés.
-
-Pour un corpus tel que celui de l’Atlas LIMSI, qui n’a pas été initialement conçu comme un corpus parallèle, 
+Au terme du processus, \textit{InterText} permet d'exporter ces
+alignements sous forme de paires structurées ou de fichiers textes séparés. Pour un corpus 
+tel que celui de l’Atlas LIMSI, qui n’a pas été initialement conçu comme un corpus parallèle,
 \textit{InterText} représente un outil indispensable permettant de pallier l’absence d’alignement natif.
 
 \section{Alignement du corpus LIMSI avec InterText}
 
-Le corpus issu de l’Atlas des langues régionales du LIMSI est un corpus comparable. En effet, bien que tous 
-les textes reposent sur une traduction du poème 
-\textit{La bise et le soleil} d'Ésope, les variations dialectales, les découpages phrastiques  
-et les divergences d’interprétation rendent l’alignement automatique impossible. 
+Le corpus issu de l’Atlas des langues régionales du LIMSI est un corpus comparable. En effet, bien que tous
+les textes reposent sur une traduction de la fable
+\textit{La bise et le soleil} d'Ésope, les variations dialectales, les découpages phrastiques
+et les divergences d’interprétation rendent l’alignement automatique impossible.
 
-Dans cette perspective, \textit{InterText} a été mobilisé afin de constituer un corpus parallélisé entre les 
-variétés régionales. L’alignement s’effectue à partir du texte de référence en français et des versions du 
-poème dans les langues régionales de France sur lesquelles nous travaillons. 
-our chaque paire de documents, les segments sont alignés un à un lorsque la correspondance est claire, 
-ou fusionnés lorsqu'une phrase française correspond à plusieurs segments dans la langue régionale, ou 
+Dans cette perspective, \textit{InterText} a été mobilisé afin de constituer un corpus parallélisé entre les
+variétés régionales. L’alignement s’effectue à partir du texte de référence en français et des versions du
+poème dans les langues régionales de France sur lesquelles nous travaillons.
+Pour chaque paire de documents, les segments sont alignés un à un lorsque la correspondance est claire,
+ou fusionnés lorsqu'une phrase française correspond à plusieurs segments dans la langue régionale, ou
 inversement.
 
-Cette étape produit un ensemble de paires alignées, accompagné d’un nombre de 
-segments imparfaits non négligeable{ :} phrases plus longues d’un côté que de l’autre, 
+Cette étape produit un ensemble de paires alignées, accompagné d’un nombre de
+segments imparfaits non négligeables{ :} phrases plus longues d’un côté que de l’autre,
 segments fusionnés ou fragmentés, etc.
 Ce phénomène justifie la nécessité d'introduire plus loin une notion de \textit{semi-parallélisme}.
-Cette notion permettra au modèle de traiter ces cas intermédiaires sans les rejeter systématiquement 
+Cette notion permettra au modèle de traiter ces cas intermédiaires sans les rejeter systématiquement
 comme des paires non parallèles.
 
 \section{Calcul des similarités sémantiques avec SBERT}
 
-Une fois l’alignement réalisé, chaque paire de phrases est comparée au moyen d’un modèle reposant sur 
-l’architecture SBERT\citep{reimers_2019}. SBERT génère pour chaque phrase un embedding, obtenu 
-par agrégation des sorties de l'encodeur via un mécanisme de \textit{mean pooling}. La similarité entre 
-deux phrases est ensuite calculée par similarité cosinus entre leurs embeddings respectifs, 
+Une fois l’alignement réalisé, chaque paire de phrases est comparée au moyen d’un modèle reposant sur
+l’architecture SBERT\citep{reimers_2019}. SBERT génère pour chaque phrase un embedding, obtenu
+par agrégation des sorties de l'encodeur via un mécanisme de \textit{mean pooling}. La similarité entre
+deux phrases est ensuite calculée par similarité cosinus entre leurs embeddings respectifs,
 produisant un score compris entre 0 et 1.
 
 Comme modèle SBERT nous décidons d'utiliser le modèle 
-\textit{paraphrase-multilingual-MiniLM-L12-v2}\footnote{\hyperlink{https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}{paraphrase-multilingual-MiniLM-L12-v2}} \citep{reimers_2019}. 
+\textit{paraphrase-multilingual-MiniLM-L12-v2}\footnote{\hyperlink{https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}{paraphrase-multilingual-MiniLM-L12-v2}} \citep{reimers_2019}.
 MiniLM est un modèle distillé, il a été entraîné à imiter le comportement d'un modèle plus grand en 
 reproduisant ses relations d'attention. Le suffixe L12 indique qu'il possède 12 couches de
 transformer, et la dimension de ses embeddings est de 384 dimensions. Un autre modèle nommé 
@@ -112,17 +118,17 @@ Mémoire nécessaire & Élevée & Faible \\
 \caption{Tableau comparatif des modèles MPNet et MiniLM}
 \end{table}
 Le choix de MiniLM se justifie pour plusieurs raisons complémentaires. Tout d'abord,
-les embeddings à 384 dimensions restent suffisamment riches pour capturer les similarités sémantiques 
-entre phrases françaises et régionales. De plus la légère perte de qualité de MiniLM par rapport à MPNet 
-aura peu d'impact visible sur les résultats finaux étant donné la taille modeste de nos corpus. 
-Enfin, la réduction de la mémoire nécessaire et l'accélération de l'inférence deviennent des avantages 
-concrets lors de l'étape de fragmentation, où le nombre de paires à comparer croît significativement. 
+les embeddings à 384 dimensions restent suffisamment riches pour capturer les similarités sémantiques
+entre phrases françaises et régionales. De plus la légère perte de qualité de MiniLM par rapport à MPNet
+aura peu d'impact visible sur les résultats finaux étant donné la taille modeste de nos corpus.
+Enfin, la réduction de la mémoire nécessaire et l'accélération de l'inférence deviennent des avantages
+concrets lors de l'étape de fragmentation, où le nombre de paires à comparer croît significativement.
 Les deux modèles étant entraînés sur des données de paraphrase dans plus de 50 langues,
 ils sont tous deux capables de projeter des phrases de langues différentes dans un espace sémantique partagé.
-C'est indispensable pour comparer directement le français aux langues régionales sans traduction 
+C'est indispensable pour comparer directement le français aux langues régionales sans traduction
 intermédiaire.
 
-Pour entraîner un modèle supervisé à reconnaître les phrases parallèles, il est nécessaire de disposer de 
+Pour entraîner un modèle supervisé à reconnaître les phrases parallèles, il est nécessaire de disposer de
 données annotées selon différents degrés de correspondance. Nous distinguons trois catégories{ :}
 
 \begin{itemize}
@@ -137,9 +143,9 @@ données annotées selon différents degrés de correspondance. Nous distinguons
     \text{phrase A} \Rightarrow \text{phrase A traduite, mais avec une partie manquante.}
     \]
     Ce cas se rencontre fréquemment lorsque certains détails sont omis ou condensés dans une version dialectale.
-    Dans notre mémoire nous allons devoir créer artificiellement des variations de phrases existantes afin 
-    de produire des paires ayant un contenu informationnel similaire sans être des traductions exactes. 
-    Par exemple, une phrase peut être transformée par paraphrasage automatique, par suppression de certains 
+    Dans notre mémoire nous allons devoir créer artificiellement des variations de phrases existantes afin
+    de produire des paires ayant un contenu informationnel similaire sans être des traductions exactes.
+    Par exemple, une phrase peut être transformée par paraphrasage automatique, par suppression de certains
     éléments d’information (comme une suite de phrase après une virgule) ou par reformulation partielle.
     
     \item Non parallèles{ :}
@@ -149,78 +155,78 @@ données annotées selon différents degrés de correspondance. Nous distinguons
     Ces paires servent de négatifs dans l’apprentissage supervisé.
 \end{itemize}
 
-Pour chacune de ces catégories, un score STS est calculé à partir des 
-embeddings SBERT par similarité cosinus. Ces scores, accompagnés des variables complémentaires décrites ci-dessous, 
+Pour chacune de ces catégories, un score STS est calculé à partir des
+embeddings SBERT par similarité cosinus. Ces scores, accompagnés des variables complémentaires décrites ci-dessous,
 constituent la base d’apprentissage du modèle de régression logistique.
 
 \section{Entraînement d’un modèle de régression logistique}
 
-La régression logistique est un modèle statistique utilisé pour prédire une probabilité appartenant à deux 
-catégories (Dans notre cas : parallèle / non parallèle). La régression logistique transforme la sortie en une 
+La régression logistique est un modèle statistique utilisé pour prédire une probabilité appartenant à deux
+catégories (Dans notre cas{ :} parallèle / non parallèle). La régression logistique transforme la sortie en une
 probabilité comprise entre 0 et 1 grâce à la fonction sigmoïde{ :}
 \[
 \sigma(x) = \frac{1}{1 + e^{-x}}
 \]
 
-Elle constitue un modèle simple pour classifier les paires de phrases selon 
-qu’elles soit parallèles, semi-parallèles ou non parallèles. Afin d'enrichir la capacité discriminante du 
+Elle constitue un modèle simple pour classifier les paires de phrases selon
+qu’elles soient parallèles, semi-parallèles ou non parallèles. Afin d'enrichir la capacité discriminante du
 modèle, plusieurs variables d'apprentissage sont combinées en complément des scores STS produits par SBERT.
 
-Les scores issus du modèle SBERT constituent la variable principale. Ils capturent la proximité sémantique 
-globale entre deux phrases dans un espace vectoriel multilingue partagé. Cette méthode est particulièrement adapté à 
+Les scores issus du modèle SBERT constituent la variable principale. Ils capturent la proximité sémantique
+globale entre deux phrases dans un espace vectoriel multilingue partagé. Cette méthode est particulièrement adaptée à
 la comparaison entre le français et les langues régionales.
 
 \subsection{Score de longueur}
 
-Une variable complémentaire mesure la similarité structurelle entre deux phrases par le biais de leur 
-longueur respective. Ce score est calculé en divisant la valeur absolue de la différence du nombre de mots 
+Une variable complémentaire mesure la similarité structurelle entre deux phrases par le biais de leur
+longueur respective. Ce score est calculé en divisant la valeur absolue de la différence du nombre de mots
 des deux phrases par la longueur de la phrase la plus longue{ :}
 \[ score de longueur = \frac{\left| len(P_{1})-len(P_{2}) \right|}{max(len(P_{1}),len(P_{2}))} \]
 Où $P$ correspond à une phrase.
-Un score proche de 0 indique des phrases de longueur similaire, ce qui constitue un indice favorable au 
-parallélisme. Cette mesure s'inscrit dans la tradition des premières méthodes d'alignement statistique, 
-comme celle de \citet{gale_1991}, qui exploitaient déjà la corrélation entre longueurs de phrases pour 
+Un score proche de 0 indique des phrases de longueur similaire, ce qui constitue un indice favorable au
+parallélisme. Cette mesure s'inscrit dans la tradition des premières méthodes d'alignement statistique,
+comme celle de \citet{gale_1991}, qui exploitaient déjà la corrélation entre longueurs de phrases pour
 établir des correspondances probabilistes.
 
 \subsection{Indices de Jaccard}
 
-Afin d'exploiter les similarités de surface entre les phrases, notamment les emprunts lexicaux et les 
-transfuges fréquents entre le français et les langues régionales, des indices de Jaccard 
-sont calculés sur les bigrammes, trigrammes et quadrigrammes de caractères. L'indice de Jaccard mesure le 
-chevauchement entre deux ensembles en divisant la taille de leur intersection par la taille de leur union. 
-Avant ce calcul, les phrases sont normalisées par suppression de la casse, de la ponctuation et des accents, 
-afin de réduire le bruit lié aux variations orthographiques, très fréquentes dans les langues 
+Afin d'exploiter les similarités de surface entre les phrases, notamment les emprunts lexicaux et les
+transfuges fréquents entre le français et les langues régionales, des indices de Jaccard
+sont calculés sur les bigrammes, trigrammes et quadrigrammes de caractères. L'indice de Jaccard mesure le
+chevauchement entre deux ensembles en divisant la taille de leur intersection par la taille de leur union.
+Avant ce calcul, les phrases sont normalisées par suppression de la casse, de la ponctuation et des accents,
+afin de réduire le bruit lié aux variations orthographiques, très fréquentes dans les langues
 régionales dont la normalisation est parfois incomplète.
 
 \subsection{Représentations pseudo-phonétiques}
 
-Une dernière variable exploite les similarités phonétiques entre les phrases via la bibliothèque Python 
-jellyfish \citep{turk_2013}. Les phrases sont d'abord encodées selon l'algorithme Metaphone \citep{philips_1990}, 
-qui représente les mots selon leur prononciation approximative de sorte que des mots phonétiquement proches 
-partagent une même représentation. Par exemple, les mots français chant et champ produiraient des 
-représentations Metaphone similaires. Un indice de Jaccard est ensuite calculé sur ces représentations 
-phonétiques. Cette variable est particulièrement pertinente dans notre contexte, car les langues régionales de 
-France partagent souvent avec le français des racines étymologiques communes dont la proximité est davantage 
-perceptible à l'oral qu'à l'écrit, notamment en occitan ou en corse. Elle permet ainsi de capturer des 
+Une dernière variable exploite les similarités phonétiques entre les phrases via la bibliothèque Python
+jellyfish \citep{turk_2013}. Les phrases sont d'abord encodées selon l'algorithme Metaphone \citep{philips_1990},
+qui représente les mots selon leur prononciation approximative de sorte que des mots phonétiquement proches
+partagent une même représentation. Par exemple, les mots français {« }chant{ »} et {« }champ{ »} produiraient des
+représentations Metaphone similaires. Un indice de Jaccard est ensuite calculé sur ces représentations
+phonétiques. Cette variable est particulièrement pertinente dans notre contexte, car les langues régionales de
+France partagent souvent avec le français des racines étymologiques communes dont la proximité est davantage
+perceptible à l'oral qu'à l'écrit, notamment en occitan ou en corse. Elle permet ainsi de capturer des
 correspondances que les mesures purement lexicales ou sémantiques pourraient manquer.
 
-Le modèle apprend ainsi à combiner ces différentes variables pour reconnaître les configurations 
-typiques des phrases parallèles et à distinguer les paires non parallèles. L'entraînement sur des données 
-semi-parallèles devrait de plus rendre le modèle capable d'identifier ce type de segments, dont la présence 
+Le modèle apprend ainsi à combiner ces différentes variables pour reconnaître les configurations
+typiques des phrases parallèles et à distinguer les paires non parallèles. L'entraînement sur des données
+semi-parallèles devrait de plus rendre le modèle capable d'identifier ce type de segments, dont la présence
 est particulièrement fréquente dans les corpus dialectaux comme celui de l'Atlas LIMSI.
 
 \section{Validation du modèle}
 
-Afin d’évaluer la qualité du modèle obtenu, nous procédons à une validation externe en utilisant le corpus 
-de \citet{tsolakis_2024} issu de données Wikimedia. Il contient des paires de phrases alignées en corse, occitan, 
-alsacien et français. Il présente deux caractéristiques importantes pour notre évaluation. D'une part, il est 
-structurellemnt distinct du corpus d'entraînement, reposant sur des textes encyclopédiques hétérogènes 
-plutôt que sur des textes narratifs ou littéraires. D'autre part, il couvre les mêmes paires de langues que 
+Afin d’évaluer la qualité du modèle obtenu, nous procédons à une validation externe en utilisant le corpus
+de \citet{tsolakis_2024} issu de données Wikimedia. Il contient des paires de phrases alignées en corse, occitan,
+alsacien et français. Il présente deux caractéristiques importantes pour notre évaluation. D'une part, il est
+structurellement distinct du corpus d'entraînement, reposant sur des textes encyclopédiques hétérogènes
+plutôt que sur des textes narratifs ou littéraires. D'autre part, il couvre les mêmes paires de langues que
 notre corpus d'entraînement, ce qui permet une évaluation directe de la généralisation du modèle.
 
 L’application du modèle sur ce corpus permet de vérifier{ :}
 \begin{itemize}
-    \item la capacité du classifieur à identifier correctement des phrases parallèles dans un contexte 
+    \item la capacité du classifieur à identifier correctement des phrases parallèles dans un contexte
     différent
     \item l’absence de surapprentissage spécifique au corpus LIMSI et à ses textes majoritairement occitan
     \item la robustesse du modèle face au différence structurelle et thématique.
