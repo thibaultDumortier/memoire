@@ -1,7 +1,7 @@
 \chapter{Données}
 
-Dans le cadre de ce mémoire, les données textuelles exploitées reposent sur trois ressources principales : 
-le projet ParCoLab, l’Atlas sonore des langues régionales du LIMSI, et une traduction de la parabole du 
+Dans le cadre de ce mémoire, les données textuelles exploitées reposent sur trois ressources principales{ :} 
+le projet ParCoLab, l’Atlas sonore des lan\-gues régionales du LIMSI, et une traduction de la parabole du 
 fils prodigue. Ces corpus ont été choisis pour leur richesse linguistique, correspondant aux attentes de
 notre projet. En effet, ces 3 projets s'intéressent aux langues régionales de France particulièrement alsacien,
 corse et occitan.
@@ -59,10 +59,23 @@ Ce dernier utilise la bibliothèque Spacy de manière à trouver le nombre
 de phrases, de tokens (hors poncutations, avec apostrophes et contractions séparés en deux tokens), 
 ainsi que le nombre de lemmes français. Aucun modèle spacy n'existe pour l'alsacien, le corse et l'occitan,
 ce qui rend impossible une lemmatisation. Cette difficulté est exacerbée car ces langues sont principalement oral
-et ne possède pas de réelles règles ortographiques.
+et ne possède pas de norme ortographique stable.
 On retrouve dans notre corpus une majorité de textes en occitan (77), mais aussi 15 textes en corse et 16 
-textes en alsacien. Le fait que ParCoLab soit le corpus le plus textuellement riche (dû à la taille des textes 
+textes en alsacien. Cette répartition déséquilibrée s'explique principalement par la richesse dialectale de 
+l'occitan, dont les nombreuses variétés régionales sont largement documentées dans l'Atlas LIMSI 
+(dans notre cas surtout provenantes du languedoc et de nouvel-occitan). 
+Le fait que ParCoLab soit le corpus le plus textuellement riche (dû à la taille des textes 
 présents dans celui-ci) explique qu’il présente également le nombre de tokens le plus élevé.
+
+D'un point de vue qualitatif, les trois corpus présentent des profils linguistiques très distincts qui se 
+complètent utilement. ParCoLab offre des textes alignés au niveau des phrases dans un cadre méthodologique 
+rigoureux, ce qui en fait la ressource la plus fiable pour l'entraînement du modèle. L'Atlas LIMSI, 
+quant à lui, apporte une richesse dialectale considérable, notamment pour l'occitan dont les 47 variétés 
+couvrent un spectre phonétique et lexical très large. Les transcriptions dialectales pouvant présenter 
+des graphies très hétérogènes d'un locuteur à l'autre, cette variétés amène aussi plus de bruit dans les données
+d'entraînement. La parabole du fils prodigue, elle, joue le rôle de texte pivot.
+En effet, sa structure narrative fixe facilitent la comparaison inter-dialectale, mais limitent en 
+contrepartie la diversité lexicale et thématique des données.
 
 \begin{table}[h!]
 \centering
@@ -80,12 +93,15 @@ Lemmes & 3039 & -- & -- & -- \\
 \label{table_donnees_par_langues}
 \end{table}
 
-On peux remarquer avec ce second tableau (\ref{table_donnees_par_langues}) comparant la répartitions des fichiers, tokens et phrases
-précedemments établis en fonction des langues, que la langue avec la plus grande variété dialectique et
-l'occitan. Cette langue possédant la vaste majorité des tokens et un nombre de fichiers bien plus haut
-(justement dû au nombre de ces variétés présentes dans l'atlas LIMSI). Le corse et l'alsacien sont
-beaucoup plus proche statistiquement et sont même très similaire. Le français nous présente un nombre de
-lemmes qui devrait, en théorie, être similaire peu importe la langue utilisé (les textes étant des traductions). 
+Le tableau \ref{table_donnees_par_langues} permet d'affiner cette analyse en comparant la répartition des 
+données par langue. On constate que l'occitan domine très largement avec 25 674 tokens répartis sur 77 fichiers, 
+contre respectivement 9 677 et 9 601 tokens pour l'alsacien et le corse. Cette une surreprésentation de 
+l'occitan peux nous poser problème. Celle-ci pourrait conduire à un classifieur moins performant sur les 
+paires alsaciennes ou corses, qui disposent de moins d'exemples d'entraînement.
+Le corse et l'alsacien sont très similaire statistiquement. Cette similarité nous indique que les deux
+langues seront couverte de manière quasi-égalitaire. Enfin, le nombre de lemmes français (3 039) constitue 
+un indicateur indirect de la richesse lexicale des textes sources. En théorie, ce chiffre devrait être 
+similaire quelle que soit la langue cible, les textes étant des traductions d'un même contenu. 
 Cependant la lemmatisation des autres langues reste pour l'instant impossible dû au manque de modèle Spacy
 pour celles-ci.
 
@@ -107,10 +123,30 @@ Lemmes & -- & -- & 1\,519\,413 & -- \\
 \label{table_donnees_comp}
 \end{table}
 
-Le tableau \ref{table_donnees_comp} représente les données sur lesquelles le modèle entraîné va-t-être validé. 
+Le tableau \ref{table_donnees_comp} représente les données de validation de notre modèle. 
 Celles-ci ont étaient obtenue via Wikimedia et les liens interlangues. 
 Pour ce faire nous avons utilisé le programme de \citet{tsolakis_2024} que nous avons modifié afin d'avoir 
-les pages Wikimedia en français, alsacien, occitan et corse. On remarque dans notre cas que le nombre de
-tokens et bien plus conséquent, surtout dans le cas de l'alsacien qui possède une communauté très active
-et inclue les dialectes mulhousien et strasbourgeois qui apporte à la variété dialectique et ajoute des
-tests possibles sur les graphies dialectales.
+les pages Wikimedia en français, alsacien, occitan et corse.
+
+Le français domine massivement avec plus de 5 millions de tokens répartis sur 3 487 fichiers, reflétant la 
+richesse et la maturité de la communauté Wikipédia francophone. L'alsacien, avec 528 337 tokens sur 2 399 
+fichiers, se démarque nettement des deux autres langues régionales et témoigne de la contribution 
+de ses locuteurs, qui intègre notamment les dialectes mulhousien et strasbourgeois. 
+Cette variété dialectale interne à l'alsacien constitue un atout pour évaluer la robustesse du modèle face 
+à des graphies divergentes, mais introduit également une complexité supplémentaire que les données 
+d'entraînement parallèles, plus homogènes, ne couvrent qu'en moindre mesure.
+
+L'occitan, avec 380 374 tokens sur 2 949 fichiers, présente un volume intermédiaire cohérent avec sa présence 
+sur Wikipédia, où il bénéficie d'une communauté active bien que plus modeste que celle de l'alsacien. 
+Le corse, en revanche, apparaît très faiblement représenté avec seulement 9 004 tokens sur 22 fichiers, 
+soit un volume environ 60 fois inférieur à celui de l'alsacien. Cette disproportion est préoccupante pour 
+la phase de validation : le modèle disposera de très peu d'exemples pour être évalué, ce qui limitera la 
+portée des conclusions tirées sur les performances du classifieur pour cette langue.
+
+D'un point de vue qualitatif, les textes Wikimedia présentent une hétérogénéité thématique et stylistique 
+bien plus grande que les corpus parallèles. Cette diversité est à la fois un avantage et une difficulté. 
+Elle permet de tester la généralisation du modèle au-delà des genres textuels vus à l'entraînement, mais 
+elle expose aussi le classifieur à des registres, des vocabulaires spécialisés et des structures discursives 
+pour lesquels il n'a pas été préparé. Cette tension entre la richesse du corpus de validation et les 
+limites du corpus d'entraînement constitue une contrainte importante dont il faudra tenir 
+compte dans l'interprétation des résultats.

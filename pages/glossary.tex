@@ -3,10 +3,9 @@
     description={
         Dans le domaine de la traduction, un bitexte est un document fusionné composé de la version dans une 
         langue source et une langue cible d'un texte donné.
-        Les bitextes sont généré par un logiciel appelé un outil d'alignement, ou outil bitexte, qui aligne
-        automatiquement les versions original et traduites d'un même texte. L'outil fait correspondre ces
-        deux textes phrase par phrase.
-        \\(\hyperlink{https://en.wikipedia.org/wiki/Parallel_text\#Bitext}{Wikipedia/Parallel\_text\#Bitext})
+        Les bitextes sont générés par un logiciel appelé un outil d'alignement, ou outil bitexte, qui aligne
+        automatiquement les versions originales et traduites d'un même texte. L'outil fait correspondre ces
+        deux textes phrase par phrase(\hyperlink{https://en.wikipedia.org/wiki/Parallel_text\#Bitext}{Wikipedia/Parallel\_text\#Bitext})
     }
 }
 
@@ -17,8 +16,7 @@
         texte traduit automatiquement d’une langue naturelle à une autre. La qualité est considérée 
         comme la correspondance entre la production d’une machine et celle d’un humain. Le score est compris
         entre 0 et 1, 0 indiquant une traduction éloignée d'une traduction humaine, et 1 indiquant une
-        traduction automatique très similaire.
-        \\(\hyperlink{https://cloud.google.com/translate/automl/docs/evaluate?hl=fr}{Évaluer des modèles (Google)})
+        traduction automatique très similaire (\hyperlink{https://cloud.google.com/translate/automl/docs/evaluate?hl=fr}{Évaluer des modèles (Google)})
     }    
 }
 
@@ -26,12 +24,11 @@
     name=CAHAI,
     description={
         Le CAHAI ou Comité \textit{ad hoc} sur l’intelligence artificielle est un comité ayant été en 
-        mandat de 2019 à 2021, celui-ci examiné la faisabilité et les éléments potentiels, sur la base de 
+        mandat de 2019 à 2021, celui-ci examinait la faisabilité et les éléments potentiels, sur la base de 
         larges consultations multipartites, d'un cadre juridique pour le développement, la conception et 
         l'application de l'intelligence artificielle, fondé sur les normes du Conseil de l'Europe en matière 
-        de droits de l'homme, de démocratie et d'Etat de droit. Il à depuis était remplacé par le 
-        Comité sur l'IA (CAI).
-        \\(\hyperlink{https://www.coe.int/fr/web/artificial-intelligence/cahai-1}{site du conseil de l'europe (COE) sur le CAHAI})
+        de droits de l'homme, de démocratie et d'Etat de droit. Il à depuis été remplacé par le 
+        Comité sur l'IA (CAI) (\hyperlink{https://www.coe.int/fr/web/artificial-intelligence/cahai-1}{site du conseil de l'europe (COE) sur le CAHAI})
     }
 }
 
@@ -43,8 +40,7 @@
         langues différentes. La CLIR peut être très utile dans certains scénarios. Par exemple, 
         un journaliste peut vouloir rechercher des informations en langue étrangère pour obtenir différentes 
         perspectives pour son article ; un inventeur peut explorer les brevets d'un autre pays pour comprendre 
-        l'état de l'art.
-        \\(\hyperlink{https://en.wikipedia.org/wiki/Cross-language_information_retrieval}{Wikipedia/Cross-language\_information\_retrieval})
+        l'état de l'art (\hyperlink{https://en.wikipedia.org/wiki/Cross-language_information_retrieval}{Wikipedia/Cross-language\_information\_retrieval})
     }    
 }
 
@@ -54,17 +50,20 @@
         En apprentissage automatique, un réseau de neurones convolutif ou réseau de neurones 
         à convolution (en anglais CNN ou ConvNet pour \textit{convolutional neural network}) est un type de réseau 
         de neurones artificiels acycliques (\textit{feed-forward}) inventé en 1980 par Kunihiko Fukushima, 
-        dans lequel le motif de connexion entre les neurones est inspiré par le cortex visuel des animaux.
-        \\(\hyperlink{https://fr.wikipedia.org/wiki/Réseau_neuronal_convolutif}{Wikipedia/Réseau\_neuronal\_convolutif})
+        dans lequel le motif de connexion entre les neurones est inspiré par le cortex visuel des animaux
+        (\hyperlink{https://fr.wikipedia.org/wiki/Réseau_neuronal_convolutif}{Wikipedia/Réseau\_neuronal\_convolutif})
     }
 }
 
 \newglossaryentry{Fonction softmax}{
     name=Softmax,
     description={
-        La fonction Softmax est une fonction de normalisation de vecteurs.
-        Elle convertit un vecteur de nombres réels en une distribution de probabilités.
-        Dans le cas des réseaux neuronaux, elle sert de méthode de classification multiple.
+        La fonction softmax est une généralisation de la fonction sigmoïde au cas multi-classes. 
+        Elle prend en entrée un vecteur de valeurs réelles et le transforme en une distribution de 
+        probabilités, où chaque valeur de sortie est comprise entre 0 et 1 et où la somme de 
+        l'ensemble des valeurs vaut exactement 1. Dans le cadre des réseaux de neurones, elle est 
+        typiquement utilisée en couche de sortie pour des tâches de classification
+        \citep{soulie_1990}
     }    
 }
 
@@ -73,8 +72,7 @@
     description={
         Il s'agit d'une technique de modélisation qui vise à prédire et expliquer les valeurs 
         d'une variable catégorielle binaire $Y$ à partir d'une collection de variables 
-        $X$ continues ou binaires.\\
-        \citep{rakotomalala_2015}
+        $X$ continues ou binaires \citep{rakotomalala_2015}
     }    
 }
 
@@ -82,8 +80,7 @@
     name=MNR,
     description={
         Le principe MNRL (\textit{Multiple Negative Ranking Loss}) est de rendre claire la distinction entre
-        des données pertinentes (positives) et non pertinentes (négatives).\\
-        \citep{henderson_2017}
+        des données pertinentes (positives) et non pertinentes (négatives) \citep{henderson_2017}
     }
 }
 
@@ -91,7 +88,7 @@
     name=n-gramme,
     description={
         Un n-gramme est une suite de n éléments consécutifs extraite d’un texte ou d’une séquence.
-        Les éléments peuvent être des mots, des caractères, voire des tokens selon l’application.
+        Les éléments peuvent être des mots, des caractères, voire des tokens selon l’application
     }
 }
 
@@ -100,8 +97,8 @@
     description={
         Le plongement lexical ou plongement sémantique ({« \textit{word embedding} »} en anglais) est le résultat
         de l'apprentissage d'une représentation de mots sous forme de vecteurs, utilisée notamment en 
-        traitement automatique des langues.
-        \\(\hyperlink{https://fr.wikipedia.org/wiki/Plongement_lexical}{Wikipedia/Plongement\_lexical})
+        traitement automatique des langues
+        (\hyperlink{https://fr.wikipedia.org/wiki/Plongement_lexical}{Wikipedia/Plongement\_lexical})
     }    
 }
 
@@ -110,7 +107,7 @@
     description={
         En traitement automatique des langues, le plongement de phrases est une représentation
         d'une phrase sous forme de vecteurs de nombres qui code des informations sémantiques significatives
-        \\(\hyperlink{https://en.wikipedia.org/wiki/Sentence_embedding}{Wikipedia/Sentence\_embedding})
+        (\hyperlink{https://en.wikipedia.org/wiki/Sentence_embedding}{Wikipedia/Sentence\_embedding})
     }    
 }
 
@@ -118,8 +115,7 @@
     name=Réseau siamois,
     description={
         Le réseau siamois se compose de deux \gls{CNN} et utilise \allowbreak une perte contrastive. 
-        Le réseau Triplet se compose de trois CNN et utilise une perte triplet.\\
-        \citep{zhang_2017}
+        Le réseau Triplet se compose de trois CNN et utilise une perte triplet \citep{zhang_2020}
     }    
 }
 
@@ -130,8 +126,7 @@
         leur angle.La valeur d'un cosinus, est comprise dans l'intervalle [-1,1]. La valeur de -1 indique 
         des vecteurs opposés, la valeur de 0 des vecteurs indépendants (orthogonaux) et la valeur de 1 des 
         vecteurs colinéaires de coefficient positif. Les valeurs intermédiaires permettent d'évaluer le degré 
-        de similarité. 
-        \\(\hyperlink{https://fr.wikipedia.org/wiki/Similarité_cosinus}{Wikipedia/Similarité\_cosinus})
+        de similarité (\hyperlink{https://fr.wikipedia.org/wiki/Similarité_cosinus}{Wikipedia/Similarité\_cosinus})
     }    
 }
 
@@ -142,8 +137,7 @@
         même hiérarchie conceptuelle, soit - dans le cas d'alignement d'ontologies - entre deux concepts 
         appartenant respectivement à deux hiérarchies conceptuelles distinctes. La similarité sémantique 
         indique que ces deux concepts possèdent un grand nombre d'éléments en commun (propriétés, termes, 
-        instances).
-        \\(\hyperlink{https://fr.wikipedia.org/wiki/Similarité_sémantique}{Wikipedia/Similarité\_sémantique})
+        instances) (\hyperlink{https://fr.wikipedia.org/wiki/Similarité_sémantique}{Wikipedia/Similarité\_sémantique})
     }    
 }
 
@@ -153,8 +147,8 @@
         Un transformer est une architecture d'algorithme neuronal.
         Les transformers sont conçus pour gérer des données séquentielles, notamment du texte, 
         pour des tâches telles que la traduction et la génération de texte.
-        Le terme est aussi utilisé en français : \citep{yvon_2022}
-        \\(\hyperlink{https://fr.wikipedia.org/wiki/Transformeur}{Wikipedia/Transformeur})
+        Le terme est aussi utilisé en français : \citep{yvon_2022} 
+        (\hyperlink{https://fr.wikipedia.org/wiki/Transformeur}{Wikipedia/Transformeur})
     }    
 }
 

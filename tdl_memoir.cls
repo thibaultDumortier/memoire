@@ -73,7 +73,7 @@
     natbib
 ]{biblatex}
 \DefineBibliographyStrings{french}{
-  retrieved = {Récupéré le}
+  retrieved = {Récupéré}
 }
 \addbibresource{pages/bibliography/refs.bib}
 

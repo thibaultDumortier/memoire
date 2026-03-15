@@ -87,6 +87,7 @@
 	date = {2022-08-23},
 	eprinttype = {arxiv},
 	eprint = {2208.11194 [cs]},
+	note = {arXiv:2208.11194 [cs.CL]},
 	keywords = {EN, Bitext, data-mining, Computer Science - Computation and Language, Langues\_peudot},
 }
 
@@ -186,20 +187,21 @@
 	keywords = {Bitext, data-mining, {EN}, machine-translation, natural-language-processing, programme},
 }
 
-@misc{reimers_2019,
-	title = {Sentence-{BERT}: Sentence Embeddings using Siamese {BERT}-Networks},
-	url = {http://arxiv.org/abs/1908.10084},
-	doi = {10.48550/arXiv.1908.10084},
+@inproceedings{reimers_2019,
+	address = {Hong Kong, China},
+	title = {Sentence-{BERT}: {Sentence} {Embeddings} using {Siamese} {BERT}-{Networks}},
 	shorttitle = {Sentence-{BERT}},
-	abstract = {{BERT} (Devlin et al., 2018) and {RoBERTa} (Liu et al., 2019) has set a new state-of-the-art performance on sentence-pair regression tasks like semantic textual similarity ({STS}). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations ({\textasciitilde}65 hours) with {BERT}. The construction of {BERT} makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering. In this publication, we present Sentence-{BERT} ({SBERT}), a modification of the pretrained {BERT} network that use siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with {BERT} / {RoBERTa} to about 5 seconds with {SBERT}, while maintaining the accuracy from {BERT}. We evaluate {SBERT} and {SRoBERTa} on common {STS} tasks and transfer learning tasks, where it outperforms other state-of-the-art sentence embeddings methods.},
-	number = {{arXiv}:1908.10084},
-	publisher = {{arXiv}},
+	url = {https://aclanthology.org/D19-1410/},
+	doi = {10.18653/v1/D19-1410},
+	abstract = {BERT (Devlin et al., 2018) and RoBERTa (Liu et al., 2019) has set a new state-of-the-art performance on sentence-pair regression tasks like semantic textual similarity (STS). However, it requires that both sentences are fed into the network, which causes a massive computational overhead: Finding the most similar pair in a collection of 10,000 sentences requires about 50 million inference computations ({\textbackslash}textasciitilde65 hours) with BERT. The construction of BERT makes it unsuitable for semantic similarity search as well as for unsupervised tasks like clustering. In this publication, we present Sentence-BERT (SBERT), a modification of the pretrained BERT network that use siamese and triplet network structures to derive semantically meaningful sentence embeddings that can be compared using cosine-similarity. This reduces the effort for finding the most similar pair from 65 hours with BERT / RoBERTa to about 5 seconds with SBERT, while maintaining the accuracy from BERT. We evaluate SBERT and SRoBERTa on common STS tasks and transfer learning tasks, where it outperforms other state-of-the-art sentence embeddings methods.},
+	urldate = {2026-03-15},
+	booktitle = {Proceedings of the 2019 {Conference} on {Empirical} {Methods} in {Natural} {Language} {Processing} and the 9th {International} {Joint} {Conference} on {Natural} {Language} {Processing} ({EMNLP}-{IJCNLP})},
+	publisher = {Association for Computational Linguistics},
 	author = {Reimers, Nils and Gurevych, Iryna},
-	urldate = {2024-12-29},
-	date = {2019-08-27},
-	eprinttype = {arxiv},
-	eprint = {1908.10084 [cs]},
-	keywords = {{EN}, Computer Science - Computation and Language, Embedding},
+	editor = {Inui, Kentaro and Jiang, Jing and Ng, Vincent and Wan, Xiaojun},
+	month = nov,
+	year = {2019},
+	pages = {3982--3992},
 }
 
 @article{bernhard_2018,
@@ -315,20 +317,20 @@
 	
 }
 
-@misc{bel_2013,
-	title = {Mining and Exploiting Domain-Specific Corpora in the {PANACEA} Platform},
-	url = {http://arxiv.org/abs/1303.1932},
-	doi = {10.48550/arXiv.1303.1932},
-	abstract = {The objective of the {PANACEA} {ICT}-2007.2.2 {EU} project is to build a platform that automates the stages involved in the acquisition, production, updating and maintenance of the large language resources required by, among others, {MT} systems. The development of a Corpus Acquisition Component ({CAC}) for extracting monolingual and bilingual data from the web is one of the most innovative building blocks of {PANACEA}. The {CAC}, which is the first stage in the {PANACEA} pipeline for building Language Resources, adopts an efficient and distributed methodology to crawl for web documents with rich textual content in specific languages and predefined domains. The {CAC} includes modules that can acquire parallel data from sites with in-domain content available in more than one language. In order to extrinsically evaluate the {CAC} methodology, we have conducted several experiments that used crawled parallel corpora for the identification and extraction of parallel sentences using sentence alignment. The corpora were then successfully used for domain adaptation of Machine Translation Systems.},
-	number = {{arXiv}:1303.1932},
-	publisher = {{arXiv}},
-	author = {Bel, Núria and Papavasiliou, Vassilis and Prokopidis, Prokopis and Toral, Antonio and Arranz, Victoria},
-	urldate = {2025-03-29},
-	date = {2013-03-08},
-	eprinttype = {arxiv},
-	eprint = {1303.1932 [cs]},
-	keywords = {Computer Science - Computation and Language, Corpus, {EN}},
-	
+
+@article{bel_2013,
+	address = {Istanbul, Turkey},
+	title = {Mining and exploiting domain-specific corpora in the {PANACEA} platform},
+	volume = {Proceedings of the 5th Workshop on Building and Using Comparable Corpora at the Eighth International Conference on Language Resources and Evaluation (LREC-2012)},
+	url = {http://hdl.handle.net/10230/20416},
+	abstract = {The objective of the PANACEA ICT-2007.2.2 EU project is to build a platform that automates the stages involved in the acquisition,production, updating and maintenance of the large language resources required by, among others, MT systems. The development of a Corpus Acquisition Component (CAC) for extracting monolingual and bilingual data from the web is one of the most innovative building blocks of PANACEA. The CAC, which is the first stage in the PANACEA pipeline for building Language Resources, adopts an efficient and distributed methodology to crawl for web documents with rich textual content in specific languages and predefined domains. The CAC includes modules that can acquire parallel data from sites with in-domain content available in more than one language. In order to extrinsically evaluate the CAC methodology, we have conducted several experiments that used crawled parallel corpora for the identification and extraction of parallel sentences using sentence alignment. The corpora were then successfully used for domain adaptation of Machine Translation Systems.},
+	language = {eng},
+	urldate = {2026-03-15},
+	journal = {Rapp R, Tadić M, Sharoff S (et al.)},
+	publisher = {ELRA (European Language Resources Association)},
+	author = {Bel Rafecas, Núria and Papavassiliou, Vassilis and Prokopidis, Prokopis and Toral, Antonio and Arranz, Victoria},
+	year = {2012},
+	pages = {24--26}
 }
 
 @thesis{li_2012,
@@ -532,19 +534,17 @@
 }
 
 @misc{henderson_2017,
-	title = {Efficient Natural Language Response Suggestion for Smart Reply},
+	title = {Efficient {Natural} {Language} {Response} {Suggestion} for {Smart} {Reply}},
 	url = {http://arxiv.org/abs/1705.00652},
 	doi = {10.48550/arXiv.1705.00652},
 	abstract = {This paper presents a computationally efficient machine-learned method for natural language response suggestion. Feed-forward neural networks using n-gram embedding features encode messages into vectors which are optimized to give message-response pairs a high dot-product value. An optimized search finds response suggestions. The method is evaluated in a large-scale commercial e-mail application, Inbox by Gmail. Compared to a sequence-to-sequence approach, the new system achieves the same quality at a small fraction of the computational requirements and latency.},
-	number = {{arXiv}:1705.00652},
-	publisher = {{arXiv}},
-	author = {Henderson, Matthew and Al-Rfou, Rami and Strope, Brian and Sung, Yun-hsuan and Lukacs, Laszlo and Guo, Ruiqi and Kumar, Sanjiv and Miklos, Balint and Kurzweil, Ray},
 	urldate = {2025-03-29},
-	date = {2017-05-01},
-	eprinttype = {arxiv},
-	eprint = {1705.00652 [cs]},
-	keywords = {Computer Science - Computation and Language},
-	
+	publisher = {arXiv},
+	author = {Henderson, Matthew and Al-Rfou, Rami and Strope, Brian and Sung, Yun-hsuan and Lukacs, Laszlo and Guo, Ruiqi and Kumar, Sanjiv and Miklos, Balint and Kurzweil, Ray},
+	month = may,
+	year = {2017},
+	note = {arXiv:1705.00652 [cs]},
+	keywords = {Computer Science - Computation and Language}
 }
 
 @inproceedings{devlin_2019,
@@ -566,7 +566,7 @@
 }
 
 @misc{liu_2019,
-	title = {{RoBERTa}: A Robustly Optimized {BERT} Pretraining Approach},
+	title = {{RoBERTa}: A Robustly Optimized {BERT} Pretraining Approach. CoRR, abs/1907.11692.},
 	url = {http://arxiv.org/abs/1907.11692},
 	doi = {10.48550/arXiv.1907.11692},
 	shorttitle = {{RoBERTa}},
@@ -579,37 +579,41 @@
 	eprinttype = {arxiv},
 	eprint = {1907.11692 [cs]},
 	keywords = {Computer Science - Computation and Language},
-	
 }
 
-@misc{le_2020,
-	title = {{FlauBERT}: Unsupervised Language Model Pre-training for French},
-	url = {http://arxiv.org/abs/1912.05372},
-	doi = {10.48550/arXiv.1912.05372},
+@inproceedings{le_2020,
+	address = {Marseille, France},
+	title = {{FlauBERT}: {Unsupervised} {Language} {Model} {Pre}-training for {French}},
+	isbn = {979-10-95546-34-4},
 	shorttitle = {{FlauBERT}},
-	abstract = {Language models have become a key step to achieve state-of-the art results in many different Natural Language Processing ({NLP}) tasks. Leveraging the huge amount of unlabeled texts nowadays available, they provide an efficient way to pre-train continuous word representations that can be fine-tuned for a downstream task, along with their contextualization at the sentence level. This has been widely demonstrated for English using contextualized representations (Dai and Le, 2015; Peters et al., 2018; Howard and Ruder, 2018; Radford et al., 2018; Devlin et al., 2019; Yang et al., 2019b). In this paper, we introduce and share {FlauBERT}, a model learned on a very large and heterogeneous French corpus. Models of different sizes are trained using the new {CNRS} (French National Centre for Scientific Research) Jean Zay supercomputer. We apply our French language models to diverse {NLP} tasks (text classification, paraphrasing, natural language inference, parsing, word sense disambiguation) and show that most of the time they outperform other pre-training approaches. Different versions of {FlauBERT} as well as a unified evaluation protocol for the downstream tasks, called {FLUE} (French Language Understanding Evaluation), are shared to the research community for further reproducible experiments in French {NLP}.},
-	number = {{arXiv}:1912.05372},
-	publisher = {{arXiv}},
-	author = {Le, Hang and Vial, Loïc and Frej, Jibril and Segonne, Vincent and Coavoux, Maximin and Lecouteux, Benjamin and Allauzen, Alexandre and Crabbé, Benoît and Besacier, Laurent and Schwab, Didier},
-	urldate = {2025-03-29},
-	date = {2020-03-12},
-	eprinttype = {arxiv},
-	eprint = {1912.05372 [cs]},
-	keywords = {Computer Science - Computation and Language, Computer Science - Machine Learning},
+	url = {https://aclanthology.org/2020.lrec-1.302/},
+	abstract = {Language models have become a key step to achieve state-of-the art results in many different Natural Language Processing (NLP) tasks. Leveraging the huge amount of unlabeled texts nowadays available, they provide an efficient way to pre-train continuous word representations that can be fine-tuned for a downstream task, along with their contextualization at the sentence level. This has been widely demonstrated for English using contextualized representations (Dai and Le, 2015; Peters et al., 2018; Howard and Ruder, 2018; Radford et al., 2018; Devlin et al., 2019; Yang et al., 2019b). In this paper, we introduce and share FlauBERT, a model learned on a very large and heterogeneous French corpus. Models of different sizes are trained using the new CNRS (French National Centre for Scientific Research) Jean Zay supercomputer. We apply our French language models to diverse NLP tasks (text classification, paraphrasing, natural language inference, parsing, word sense disambiguation) and show that most of the time they outperform other pre-training approaches. Different versions of FlauBERT as well as a unified evaluation protocol for the downstream tasks, called FLUE (French Language Understanding Evaluation), are shared to the research community for further reproducible experiments in French NLP.},
+	language = {eng},
+	urldate = {2026-03-15},
+	booktitle = {Proceedings of the {Twelfth} {Language} {Resources} and {Evaluation} {Conference}},
+	publisher = {European Language Resources Association},
+	author = {Le, Hang and Vial, Loïc and Frej, Jibril and Segonne, Vincent and Coavoux, Maximin and Lecouteux, Benjamin and Allauzen, Alexandre and Crabbé, Benoit and Besacier, Laurent and Schwab, Didier},
+	editor = {Calzolari, Nicoletta and Béchet, Frédéric and Blache, Philippe and Choukri, Khalid and Cieri, Christopher and Declerck, Thierry and Goggi, Sara and Isahara, Hitoshi and Maegaard, Bente and Mariani, Joseph and Mazo, Hélène and Moreno, Asuncion and Odijk, Jan and Piperidis, Stelios},
+	month = may,
+	year = {2020},
+	pages = {2479--2490},
 }
 
 @inproceedings{martin_2020,
-	title = {{CamemBERT}: a Tasty French Language Model},
-	url = {http://arxiv.org/abs/1911.03894},
-	doi = {10.18653/v1/2020.acl-main.645},
+	address = {Online},
+	title = {{CamemBERT}: a {Tasty} {French} {Language} {Model}},
 	shorttitle = {{CamemBERT}},
-	abstract = {Pretrained language models are now ubiquitous in Natural Language Processing. Despite their success, most available models have either been trained on English data or on the concatenation of data in multiple languages. This makes practical use of such models --in all languages except English-- very limited. In this paper, we investigate the feasibility of training monolingual Transformer-based language models for other languages, taking French as an example and evaluating our language models on part-of-speech tagging, dependency parsing, named entity recognition and natural language inference tasks. We show that the use of web crawled data is preferable to the use of Wikipedia data. More surprisingly, we show that a relatively small web crawled dataset (4GB) leads to results that are as good as those obtained using larger datasets (130+{GB}). Our best performing model {CamemBERT} reaches or improves the state of the art in all four downstream tasks.},
-	author = {Martin, Louis and Muller, Benjamin and Suárez, Pedro Javier Ortiz and Dupont, Yoann and Romary, Laurent and Clergerie, Éric Villemonte de la and Seddah, Djamé and Sagot, Benoît},
-	urldate = {2025-03-29},
-	date = {2020},
-	eprinttype = {arxiv},
-	eprint = {1911.03894 [cs]},
-	keywords = {Computer Science - Computation and Language},
+	url = {https://aclanthology.org/2020.acl-main.645/},
+	doi = {10.18653/v1/2020.acl-main.645},
+	abstract = {Pretrained language models are now ubiquitous in Natural Language Processing. Despite their success, most available models have either been trained on English data or on the concatenation of data in multiple languages. This makes practical use of such models –in all languages except English– very limited. In this paper, we investigate the feasibility of training monolingual Transformer-based language models for other languages, taking French as an example and evaluating our language models on part-of-speech tagging, dependency parsing, named entity recognition and natural language inference tasks. We show that the use of web crawled data is preferable to the use of Wikipedia data. More surprisingly, we show that a relatively small web crawled dataset (4GB) leads to results that are as good as those obtained using larger datasets (130+GB). Our best performing model CamemBERT reaches or improves the state of the art in all four downstream tasks.},
+	urldate = {2026-03-15},
+	booktitle = {Proceedings of the 58th {Annual} {Meeting} of the {Association} for {Computational} {Linguistics}},
+	publisher = {Association for Computational Linguistics},
+	author = {Martin, Louis and Muller, Benjamin and Ortiz Suárez, Pedro Javier and Dupont, Yoann and Romary, Laurent and de la Clergerie, Éric and Seddah, Djamé and Sagot, Benoît},
+	editor = {Jurafsky, Dan and Chai, Joyce and Schluter, Natalie and Tetreault, Joel},
+	month = jul,
+	year = {2020},
+	pages = {7203--7219},
 }
 
 @inproceedings{zhao_2002,
@@ -749,34 +753,55 @@
 }
 
 @article{miletic_2018,
-	title = {De la constitution d’un corpus arboré à l’analyse syntaxique du serbe},
-	abstract = {In this paper we describe our work on a treebank for Serbian, which aims to provide this language with tools and resources needed for parsing and, more globally, to encourage research on this language both in {NLP} (natural language processing) and in theoretical linguistics. Beyond the results of this resource-building project, we also provide a description of a treebank-building method that optimizes the limited resources available for an under-resourced language, both from the technical point of view (tools and corpora) and from that of human resources (annotation process). We show how best to take advantage of what is available in order to facilitate the manual work and accelerate the corpus enrichment process, all the while maintaining a high-quality annotation. Being based on language-independent principles, this method should help forward the creation of treebanks for other under-resourced languages.},
+	address = {France},
+	title = {De la constitution d'un corpus arboré à l'analyse syntaxique du serbe [{From} the constitution of a treebank to the syntactic analysis of the {Serbian} language]},
+	volume = {59},
+	url = {https://aclanthology.org/2018.tal-3.2/},
+	language = {fra},
+	number = {3},
+	urldate = {2026-03-15},
+	journal = {Traitement Automatique des Langues},
+	publisher = {ATALA (Association pour le Traitement Automatique des Langues)},
 	author = {Miletic, Aleksandra and Fabre, Cécile and Stosic, Dejan},
-	langid = {french},
-	date = {2018}
+	editor = {Bernhard, Delphine and Soria, Claudia},
+	year = {2018},
+	pages = {15--39},
 }
 
 @article{millour_2018,
-	title = {À l’écoute des locuteurs : production participative de ressources langagières pour des langues non standardisées},
-	abstract = {Citizen science, in particular voluntary crowdsourcing, is still little experimented solution to produce language resources for less-resourced languages with enough connected speakers. We present here experiments we led on part-of-speech annotation for non standardized languages, namely Alsatian and Guadeloupean Creole. We detail the methodology we used and show that it is adaptable to other languages, then we present the results we obtained. An analysis of the limits of this platform led us to develop a new one, that allows the creation of raw corpora and part-of-speech annotations, and the construction of a multivariant lexicon. The created platforms, language resources and tagging models are all freely available.},
+	address = {France},
+	title = {À l'écoute des locuteurs : production participative de ressources langagières pour des langues non standardisées [{Listening} to speakers: crowdsourcing of language resources for non-standardized languages]},
+	volume = {59},
+	shorttitle = {À l'écoute des locuteurs},
+	url = {https://aclanthology.org/2018.tal-3.3/},
+	language = {fra},
+	number = {3},
+	urldate = {2026-03-15},
+	journal = {Traitement Automatique des Langues},
+	publisher = {ATALA (Association pour le Traitement Automatique des Langues)},
 	author = {Millour, Alice and Fort, Karën},
-	langid = {french},
-	date = {2018}
+	editor = {Bernhard, Delphine and Soria, Claudia},
+	year = {2018},
+	pages = {41--65},
 }
 
-@misc{zhang_2017,
-	title = {Tracking Persons-of-Interest via Unsupervised Representation Adaptation},
-	url = {http://arxiv.org/abs/1710.02139},
-	doi = {10.48550/arXiv.1710.02139},
-	abstract = {Multi-face tracking in unconstrained videos is a challenging problem as faces of one person often appear drastically different in multiple shots due to significant variations in scale, pose, expression, illumination, and make-up. Existing multi-target tracking methods often use low-level features which are not sufficiently discriminative for identifying faces with such large appearance variations. In this paper, we tackle this problem by learning discriminative, video-specific face representations using convolutional neural networks ({CNNs}). Unlike existing {CNN}-based approaches which are only trained on large-scale face image datasets offline, we use the contextual constraints to generate a large number of training samples for a given video, and further adapt the pre-trained face {CNN} to specific videos using discovered training samples. Using these training samples, we optimize the embedding space so that the Euclidean distances correspond to a measure of semantic face similarity via minimizing a triplet loss function. With the learned discriminative features, we apply the hierarchical clustering algorithm to link tracklets across multiple shots to generate trajectories. We extensively evaluate the proposed algorithm on two sets of {TV} sitcoms and {YouTube} music videos, analyze the contribution of each component, and demonstrate significant performance improvement over existing techniques.},
-	number = {{arXiv}:1710.02139},
-	publisher = {{arXiv}},
+
+@article{zhang_2020,
+	title = {Tracking {Persons}-of-{Interest} via {Unsupervised} {Representation} {Adaptation}},
+	volume = {128},
+	issn = {1573-1405},
+	url = {https://doi.org/10.1007/s11263-019-01212-1},
+	doi = {10.1007/s11263-019-01212-1},
+	abstract = {Multi-face tracking in unconstrained videos is a challenging problem as faces of one person often can appear drastically different in multiple shots due to significant variations in scale, pose, expression, illumination, and make-up. Existing multi-target tracking methods often use low-level features which are not sufficiently discriminative for identifying faces with such large appearance variations. In this paper, we tackle this problem by learning discriminative, video-specific face representations using convolutional neural networks (CNNs). Unlike existing CNN-based approaches which are only trained on large-scale face image datasets offline, we automatically generate a large number of training samples using the contextual constraints for a given video, and further adapt the pre-trained face CNN to the characters in the specific videos using discovered training samples. The embedding feature space is fine-tuned so that the Euclidean distance in the space corresponds to the semantic face similarity. To this end, we devise a symmetric triplet loss function which optimizes the network more effectively than the conventional triplet loss. With the learned discriminative features, we apply an EM clustering algorithm to link tracklets across multiple shots to generate the final trajectories. We extensively evaluate the proposed algorithm on two sets of TV sitcoms and YouTube music videos, analyze the contribution of each component, and demonstrate significant performance improvement over existing techniques.},
+	language = {en},
+	number = {1},
+	urldate = {2026-03-15},
+	journal = {International Journal of Computer Vision},
 	author = {Zhang, Shun and Huang, Jia-Bin and Lim, Jongwoo and Gong, Yihong and Wang, Jinjun and Ahuja, Narendra and Yang, Ming-Hsuan},
-	urldate = {2025-05-16},
-	date = {2017-10-05},
-	eprinttype = {arxiv},
-	eprint = {1710.02139 [cs]},
-	keywords = {Computer Science - Computer Vision and Pattern Recognition}
+	month = jan,
+	year = {2020},
+	keywords = {Convolutional neural networks, Face tracking, Transfer learning, Triplet loss},
+	pages = {96--120},
 }
 
 @inproceedings{ott_2019,
@@ -796,10 +821,13 @@
 }
 
 @article{rakotomalala_2015,
-	title = {Pratique de la Régression Logistique},
+	address = {Université Lumière Lyon 2},
+	title = {Pratique de la {Régression} {Logistique}},
+	url = {https://eric.univ-lyon2.fr/ricco/cours/cours/pratique_regression_logistique.pdf},
+	language = {fr},
 	author = {Rakotomalala, Ricco},
-	langid = {french},
-	date = {2015-09-20}
+	month = sep,
+	year = {2015},
 }
 
 @article{boulademareuil_2017,
@@ -936,4 +964,45 @@
   publisher = {Nakladatelstv{\'\i} Lidov{\'e} noviny},
   title = {{TCA}2 -- n{\'a}stroj pro zpracov{\'a}v{\'a}n{\'\i} p{\v r}ekladov{\'y}ch korpus{\r u} [{TCA}2 -- a tool for processing translation corpora]},
   year = 2010
+}
+
+@inproceedings{soulie_1990,
+	address = {Berlin, Heidelberg},
+	title = {Probabilistic {Interpretation} of {Feedforward} {Classification} {Network} {Outputs}, with {Relationships} to {Statistical} {Pattern} {Recognition}},
+	isbn = {978-3-642-76155-3 978-3-642-76153-9},
+	url = {http://link.springer.com/10.1007/978-3-642-76153-9_28},
+	doi = {10.1007/978-3-642-76153-9_28},
+	abstract = {We are concerned with feed-forward non-linear networks (multi-layer perceptrons, or MLPs) with multiple outputs. We wish to treat the outputs of the network as probabilities of alternatives (e.g. pattern classes), conditioned on the inputs. We look for appropriate output non-linearities and for appropriate criteria for adaptation of the parameters of the network (e.g. weights). We explain two modifications: probability scoring, which is an alternative to squared error minimisation, and a normalised exponential (softmax) multi-input generalisation of the logistic non-linearity. The two modifications together result in quite simple arithmetic, and hardware implementation is not difficult either. The use of radial units (squared distance instead of dot product) immediately before the softmax output stage produces a network which computes posterior distributions over class labels based on an assumption of Gaussian within-class distributions. However the training, which uses cross-class information, can result in better performance at class discrimination than the usual within-class training method, unless the within-class distribution assumptions are actually correct.},
+	language = {en},
+	urldate = {2026-03-15},
+	publisher = {Springer Berlin Heidelberg},
+	author = {Bridle, John S.},
+	editor = {Soulié, Françoise Fogelman and Hérault, Jeanny},
+	year = {1990},
+	doi = {10.1007/978-3-642-76153-9_28},
+	note = {Book Title: Neurocomputing},
+	pages = {227--236},
+	annote = {[TLDR] Two modifications are explained: probability scoring, which is an alternative to squared error minimisation, and a normalised exponential (softmax) multi-input generalisation of the logistic non- linearity of feed-forward non-linear networks with multiple outputs.},
+}
+
+@misc{turk_2013,
+	title = {jellyfish},
+	copyright = {MIT},
+	url = {https://codeberg.org/jpt/jellyfish},
+	abstract = {🪼 a python library for doing approximate and phonetic matching of strings.},
+	urldate = {2026-03-15},
+	author = {Turk, James},
+	month = jun,
+	year = {2013},
+	note = {original-date: 2010-07-09T20:41:11Z},
+}
+
+
+@inproceedings{philips_1990,
+	title = {Hanging on the metaphone},
+	url = {https://www.semanticscholar.org/paper/Hanging-on-the-metaphone-Philips/c5f9a71fa35feab273e19508f8f9871c73da6990},
+	abstract = {Semantic Scholar extracted view of "Hanging on the metaphone" by L. Philips},
+	urldate = {2026-03-15},
+	author = {Philips, L.},
+	year = {1990},
 }

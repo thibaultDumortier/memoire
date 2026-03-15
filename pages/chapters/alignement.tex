@@ -252,18 +252,18 @@ La pénalité de concision est la première partie. Elle pénalise les traductio
 aux traductions de référence.La correspondance de n-gramme compte le nombre de n-grammes (allant de unigrammes à quadrigrammes)
 correspondant à leur équivalent dans la traduction de référence. C'est une méthode de calcul de précision.
 
-Sous la forme : 
+Sous la forme{ :}
 \[ BLEU=min(1,exp(1-\frac{reference-longueur}{sortie-longueur}))(\prod_{i=1}^{4}precision_{i}^{1/4}) \]
-Où :
+Où{ :}
 \begin{itemize}
     \item $reference$ ésigne la traduction de référence produite par un humain, considérée comme correcte ou acceptable.
     \item $sortie$ correspond au texte généré par le système de traduction automatique.
     \item $longueur$ correspond au nombre total de mots (ou tokens) présents dans un texte.
     \item Dans $precision_{i}^{1/4}$, $1/4$ correspond à la taille des n-grammes allant de 1 à 4
 \end{itemize}
-et $precision_{i}$ correspond à :
+et $precision_{i}$ correspond à{ :}
 \[ precision_{i}=\frac{\sum_{snt \in Cand-Corpus}\sum_{i \in snt}min(m^{i}_{cand},m^{i}_{ref})}{w^{i}_{t}\sum_{snt' \in Cand-Corpus}=\sum_{i' \in snt'}m^{i'}_{cand}} \]
-Où 
+Où{ :}
 \begin{itemize}
     \item $m^{i}_{cand}$ est le nombre d'i-grammes correspondant à la traduction de référence.
     \item $m^{i}_{ref}$ est le nombre d'i-grammes dans la traduction de référence.

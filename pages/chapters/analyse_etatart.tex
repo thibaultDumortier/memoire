@@ -1,87 +1,63 @@
 \chapter{Analyse critique de l'état de l'art}
 
-Les travaux présentés dans les premières sections de l’état de l’art mettent en évidence les difficultés 
-particulières rencontrées par le traitement automatique des langues lorsqu’il s’applique à des langues peu 
-dotées. Ces langues se caractérisent principalement par une disponibilité limitée de ressources numériques, 
-notamment en ce qui concerne les corpus annotés, les lexiques bilingues ou les données parallèles nécessaires 
-à l’entraînement des systèmes de traduction automatique. Cette situation constitue un obstacle majeur pour 
-le développement d’outils de traitement linguistique performants, car les méthodes modernes reposent 
-largement sur de grandes quantités de données d’apprentissage. Les langues régionales ou dialectales 
-présentent en outre des défis supplémentaires liés à leur forte variabilité orthographique, à la coexistence 
-de plusieurs variétés dialectales et à la dispersion des ressources disponibles. Malgré ces contraintes, 
-l’étude de ces langues représente un domaine de recherche particulièrement important, dans la mesure où les 
-méthodes développées pour ces contextes peuvent ensuite être adaptées à d’autres langues disposant de peu de 
-ressources.
+Les travaux présentés dans cet état de l'art témoignent d'une évolution progressive et cohérente de la 
+recherche sur les langues peu dotées et les méthodes d'alignement. Les premières approches, comme l'algorithme 
+de \citet{gale_1991}, reposaient sur des heuristiques simples fondées sur la longueur des segments. Si ces 
+méthodes ont posé des bases solides, elles montrent rapidement leurs limites dès lors que les langues étudiées 
+présentent des variations dialectales importantes, ce qui est précisément le cas des langues régionales de 
+France. La progression vers des méthodes basées sur des représentations vectorielles, puis sur des 
+architectures neuronales profondes, répond directement à ces insuffisances. Ce au prix d'une complexité 
+technique croissante et d'une dépendance accrue aux données d'entraînement.
 
-Dans ce contexte, la littérature distingue plusieurs types de corpus multilingues selon leur niveau 
-d’alignement. Les corpus parallèles correspondent à des textes traduits dans différentes langues et alignés 
-généralement au niveau de la phrase. Ils constituent historiquement la principale ressource utilisée dans 
-les systèmes de traduction automatique statistique puis neuronale. Cependant, leur disponibilité reste 
-limitée à certains domaines spécifiques, comme les textes institutionnels, juridiques ou administratifs. 
-À l’inverse, les corpus comparables regroupent des documents traitant de sujets similaires dans différentes 
-langues sans pour autant être des traductions directes les uns des autres. Ces corpus peuvent par exemple 
-être constitués à partir d’articles encyclopédiques, d’articles de presse ou de contenus issus du web. 
-Leur principal avantage réside dans leur relative facilité de collecte, notamment grâce aux ressources en 
-ligne qui permettent d’obtenir de grandes quantités de textes dans plusieurs langues. L’utilisation de ces 
-corpus repose en grande partie sur l’hypothèse distributionnelle selon laquelle des unités linguistiques 
-apparaissant dans des contextes similaires dans différentes langues ont de fortes chances d’entretenir une 
-relation de traduction ou de correspondance sémantique. Cette propriété permet d’exploiter indirectement des 
-similarités entre langues même lorsque les textes ne sont pas explicitement alignés.
+L'introduction des transformers par \citet{vaswani_2017}, puis de BERT par \citet{devlin_2019}, a représenté 
+une rupture majeure dans le domaine du TAL. Ces modèles ont démontré des performances améliorées sur de 
+nombreuses tâches de traitement du langage, notamment pour la similarité sémantique. Cependant, 
+leur efficacité repose sur la disponibilité de grandes quantités de données d'entraînement de qualité, 
+ce qui constitue précisément le nœud du problème pour les langues peu dotées. SBERT \citep{reimers_2019}
+apporte une réponse partielle à ce défi en optimisant considérablement le temps de calcul, rendant ainsi ces 
+méthodes plus accessibles. Néanmoins, les modèles multilingues présentés ont été 
+majoritairement entraînés sur des langues bien dotées. Cela soulève la question de leur capacité à 
+représenter fidèlement des langues régionales comme l'occitan ou le corse dont les structures, lexicales et 
+morphologiques, sont sous-représentées dans leurs données d'entraînement.
 
-Toutefois, l’utilisation de corpus comparables introduit également plusieurs difficultés méthodologiques. 
-L’absence d’alignement explicite entre les documents implique qu’il est nécessaire de recourir à des 
-méthodes d’alignement automatique afin d’identifier les segments susceptibles d’être parallèles. De plus, 
-ces corpus contiennent généralement un niveau de bruit plus élevé que les corpus parallèles, ce qui rend 
-l’identification des correspondances plus complexe. Ces limitations expliquent l’importance des travaux 
-consacrés à l’alignement de documents et de phrases dans des corpus multilingues.
+\newpage
 
-Plusieurs approches ont été proposées dans la littérature pour répondre à ce problème. Certaines méthodes 
-reposent sur l’extraction automatique de bitextes à partir du web. Des projets tels que ParaCrawl visent 
-par exemple à explorer de grandes quantités de pages web afin d’identifier des documents traduits dans 
-différentes langues. Ce processus implique généralement plusieurs étapes successives, comprenant la 
-collecte de pages web, l’identification de documents potentiellement correspondants, l’alignement des
-phrases et enfin le filtrage des données extraites afin d’éliminer les alignements incorrects. Des outils 
-comme Hunalign utilisent pour cela des heuristiques relativement simples, fondées notamment sur la longueur 
-des phrases ou la fréquence des mots, afin de déterminer la probabilité que deux segments correspondent à 
-une traduction. Ces méthodes ont permis de constituer de grands corpus parallèles utilisés aujourd’hui pour  
-l’entraînement de nombreux systèmes de traduction automatique. Néanmoins, elles supposent généralement 
-l’existence de documents qui sont effectivement des traductions les uns des autres, ce qui limite leur 
-applicabilité dans des contextes où les textes sont seulement comparables et non parallèles.
+Les solutions explorées pour pallier le manque de ressources pour les langues peu dotées restent, à ce stade 
+de la recherche, relativement fragmentées. Les approches collaboratives comme le crowdsourcing proposé par 
+\citet{millour_2018} ou l'utilisation de ressources lexicales issues de Wiktionary comme proposé par
+\citet{miletic_2018} permettent de constituer des ressources à moindre coût, mais peinent à garantir 
+une cohérence et une qualité suffisantes pour l'entraînement de modèles neuronaux modernes. 
+Le projet ParCoLab \citep{stosic_2024} représente une avancée significative en proposant un corpus parallèle 
+directement dédié aux langues régionales de France. Cependant sa couverture reste limitée et ne suffit pas à 
+elle seule à répondre aux besoins de la traduction automatique neuronale, qui exige des volumes de données 
+bien plus importants. Ces différents travaux démontrent la difficulté de constituer des 
+ressources robustes pour des langues dont la normalisation orthographique est parfois incomplète.
 
-Face à ces limites, des approches plus récentes reposent sur l’utilisation de représentations vectorielles 
-multilingues permettant de mesurer la similarité sémantique entre phrases dans différentes langues. Des 
-modèles d’embeddings de phrases, comme ceux issus de travaux basés sur des architectures neuronales, 
-permettent de projeter des segments textuels dans un espace vectoriel partagé où des phrases de sens 
-similaire apparaissent proches les unes des autres, même lorsqu’elles appartiennent à des langues 
-différentes. Ces représentations peuvent ensuite être utilisées pour identifier automatiquement des paires 
-de phrases susceptibles d’être des traductions ou des paraphrases. Dans certains systèmes, ces scores de 
-similarité sont combinés avec des méthodes d’alignement comme Vecalign, qui permettent de déterminer des 
-correspondances entre segments de textes dans deux langues différentes. Les résultats obtenus peuvent 
-ensuite être filtrés ou validés à l’aide de modèles de classification afin de distinguer les alignements 
-corrects des correspondances erronées. Ces approches présentent l’avantage de ne pas dépendre exclusivement 
-de la structure des documents ou de la longueur des phrases, mais de s’appuyer directement sur la 
-proximité sémantique des segments.
+Face à la rareté des corpus parallèles, les corpus comparables, et notamment ceux issus de Wikipédia, sont 
+apparus comme une alternative prometteuse. Les travaux de 
+\citet{sharoff_2013a, sharoff_2016, steingrimsson_2021} ont démontré qu'il était possible d'extraire des fragments 
+parallèles exploitables à partir de corpus non alignés. Pour ce faire il faut combiner des techniques d'alignement 
+documentaire, de plongement lexical et de filtrage statistique. Cependant, ces travaux concernent 
+majoritairement des paires de langues bien dotées, ou au mieux des langues disposant de ressources numériques 
+minimales. Leur transposition directe au cas des langues régionales se heurte à plusieurs obstacles concrets{ :} 
+la taille réduite des corpus disponibles, la présence importante de bruit textuel, et l'absence de 
+dictionnaires bilingues de qualité suffisante pour alimenter des méthodes comme FaDA \citep{lohar_2016}.
 
-Un autre axe de recherche concerne l’alignement documentaire, qui constitue souvent une étape préalable à 
-l’alignement des phrases. Dans ce cadre, les méthodes inspirées du Cross-Lingual Information Retrieval 
-visent à identifier des documents traitant du même sujet dans différentes langues. Le principe consiste 
-à indexer un ensemble de documents dans une langue cible puis à utiliser des requêtes générées à partir 
-de documents dans une autre langue afin de retrouver les textes les plus similaires. Des systèmes tels que 
-Fast Document Aligner reposent sur ce type d’approche et permettent de sélectionner des documents candidats 
-susceptibles de contenir des segments parallèles. Cette étape permet de réduire considérablement l’espace 
-de recherche lors de l’alignement des phrases, en limitant l’analyse aux documents les plus pertinents. 
-Toutefois, l’efficacité de ces méthodes dépend fortement de la qualité des ressources bilingues utilisées 
-pour générer les requêtes ainsi que de la similarité thématique des documents comparés.
+\newpage
 
-Dans l’ensemble, l’état de l’art montre que l’extraction de segments parallèles dans des corpus multilingues 
-repose généralement sur une combinaison de plusieurs techniques complémentaires, incluant la constitution 
-de corpus comparables, l’alignement documentaire et l’utilisation de modèles de similarité sémantique pour 
-comparer les phrases. Ces approches ont principalement été développées pour des langues relativement bien 
-dotées, ce qui signifie que leur application à des langues régionales ou dialectales reste encore 
-relativement peu explorée. Dans ce contexte, le projet présenté dans ce mémoire s’inscrit dans une démarche 
-visant à adapter ces méthodes aux spécificités des langues peu dotées. L’approche adoptée combine ainsi un 
-alignement documentaire permettant d’identifier des textes traitant de sujets similaires avec 
-l’utilisation de représentations vectorielles multilingues et d’un modèle de classification destiné à 
-évaluer le degré de parallélisme entre segments. Cette combinaison de méthodes vise à tirer parti des 
-avancées récentes du traitement automatique des langues tout en tenant compte des contraintes spécifiques 
-liées à la disponibilité limitée des ressources linguistiques.
+L'un des apports les plus originaux recensés dans cet état de l'art est le travail de \citet{steingrimsson_2023} 
+sur la réutilisation de segments parallèles initialement rejetés. Cette approche, qui consiste à segmenter des 
+paires de phrases échouant aux tests d'équivalence sémantique pour en extraire des sous-unités exploitables, 
+est particulièrement pertinente dans le contexte des langues peu dotées. Elle repose sur l'idée que même des 
+données imparfaites contiennent une information valorisable. Toutefois, les résultats obtenus se basent sur des paires 
+de langues comme le bengali et l'anglais, qui disposent de ressources bien plus importantes que 
+l'occitan ou l'alsacien, ce qui invite à la prudence quant à la reproduction de ces performances dans notre cas.
+
+En définitive, les travaux présentés dans cet état de l'art dessinent un paysage méthodologique riche, où les 
+approches statistiques classiques ont progressivement donné place à des méthodes neuronales plus puissantes. 
+Elles-mêmes enrichies par des stratégies d'exploitation intelligente de données imparfaites. 
+Cependant, aucun des travaux recensés ne traite directement et de manière complète le cas des langues 
+régionales de France dans un cadre d'identification de fragments parallèles à partir de corpus comparables. 
+C'est précisément dans cet espace que s'inscrit la contribution de notre travail, en cherchant à combiner et 
+adapter ces différentes approches à un contexte linguistique pour lequel elles n'ont pas été initialement 
+conçues.
