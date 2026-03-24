@@ -1,4 +1,4 @@
-\chapter{Méthodologie}
+\chapter{Méthodologie et résultats}
 
 La méthodologie décrite dans ce chapitre expose l’ensemble des étapes permettant de constituer, d’aligner et
 d’exploiter un corpus contenant des textes en français, alsacien, corse et occitan. Le but est d’entraîner
@@ -87,6 +87,63 @@ Ce phénomène justifie la nécessité d'introduire plus loin une notion de \tex
 Cette notion permettra au modèle de traiter ces cas intermédiaires sans les rejeter systématiquement
 comme des paires non parallèles.
 
+\section{Séparation du corpus}
+
+%CORPUS_DIR = "corpus/"
+Dans un premier temps, le programme procède à la constitution d'un ensemble de paires de fichiers textes, 
+chacune associant un document source en français à son équivalent dans une langue régionale. 
+Cette organisation repose sur une logique propre à chaque corpus. Pour l'Atlas LIMSI, le texte français de 
+référence est systématiquement mis en regard de chacune des versions dialectales disponibles. Pour la parabole 
+du fils prodigue, le même principe est appliqué : le texte pivot en français est apparié avec chaque 
+traduction régionale. Le corpus ParCoLab, quant à lui, requiert un traitement légèrement différent : 
+les fichiers y étant nommés selon une convention incluant l'indication de langue, le programme identifie 
+dynamiquement les fichiers français et leur associe les fichiers de la même collection dans les autres 
+langues.
+
+Chaque paire est ainsi définie par trois éléments : le fichier source en français, le fichier cible en 
+langue régionale, et un identifiant permettant de tracer l'origine de la paire au sein du corpus. Cette 
+identification est importante, car elle permet, lors des analyses ultérieures, de distinguer les paires
+selon leur provenance et donc selon leur profil linguistique et leur niveau de bruit attendu.
+
+Dans un second temps, le programme procède au chargement effectif des fichiers. Chaque fichier est 
+lu ligne par ligne, chaque ligne correspondant à une phrase alignée. Le programme vérifie que les deux 
+fichiers d'une même paire contiennent le même nombre de phrases, condition nécessaire pour que l'alignement 
+soit considéré comme valide. Si cette condition n'est pas remplie, la paire est écartée et un avertissement 
+est émis. Cette vérification garantit la cohérence structurelle des données d'entraînement avant toute 
+opération de calcul de similarité.
+
+\subsection{Création de données semi et non-parallèles}
+
+%def build_parallel_subset(pairs, size=None):
+Une fois les paires parallèles chargées, le programme procède à la constitution de trois sous-ensembles 
+distincts destinés à l'entraînement du modèle de régression logistique : un sous-ensemble de paires 
+parallèles, un sous-ensemble de paires semi-parallèles, et un sous-ensemble de paires non parallèles.
+
+Le sous-ensemble parallèle est constitué directement à partir des paires chargées précédemment. Si une 
+taille maximale a été définie par l'utilisateur, un échantillonnage aléatoire est effectué afin de ne 
+retenir qu'un nombre limité de paires. Dans le cas contraire, l'intégralité des paires disponibles est 
+conservée.
+
+Le sous-ensemble semi-parallèle est généré artificiellement à partir de ces mêmes paires parallèles, en 
+tronquant le segment en langue régionale. Deux stratégies de troncature sont appliquées selon la structure 
+de la phrase. La stratégie privilégiée consiste à identifier la première ponctuation interne de la phrase 
+(virgule, point-virgule ou deux-points) et à ne conserver que la portion qui la précède. Cette approche est 
+motivée par le fait que les transcriptions dialectales de l'Atlas LIMSI présentent fréquemment des omissions 
+ou des condensations en milieu ou en fin de phrase, rendant cette troncature linguistiquement plausible. 
+Lorsqu'aucune ponctuation interne n'est disponible, une stratégie de repli consiste à ne conserver que la 
+première moitié des mots de la phrase. Dans les deux cas, le segment français d'origine est conservé intact, 
+de sorte que la paire résultante présente une correspondance partielle entre les deux langues.
+
+Le sous-ensemble non parallèle est quant à lui construit par appariement aléatoire de phrases françaises et 
+de phrases en langue régionale provenant de positions différentes dans le corpus. Le programme vérifie 
+systématiquement que les paires ainsi générées ne figurent pas déjà parmi les paires parallèles afin d'éviter 
+l'introduction de faux négatifs dans les données d'entraînement. Dans le cas de corpus de petite taille, le 
+nombre de combinaisons distinctes disponibles peut être insuffisant pour atteindre la taille cible, ce qui est 
+signalé à l'utilisateur.
+
+Les trois sous-ensembles sont enfin fusionnés et mélangés aléatoirement afin de constituer le jeu de 
+données complet utilisé pour l'entraînement du classifieur.
+
 \section{Calcul des similarités sémantiques avec SBERT}
 
 Une fois l’alignement réalisé, chaque paire de phrases est comparée au moyen d’un modèle reposant sur
@@ -159,7 +216,7 @@ Pour chacune de ces catégories, un score STS est calculé à partir des
 embeddings SBERT par similarité cosinus. Ces scores, accompagnés des variables complémentaires décrites ci-dessous,
 constituent la base d’apprentissage du modèle de régression logistique.
 
-\section{Entraînement d’un modèle de régression logistique}
+\section{Principe du modèle de régression logistique}
 
 La régression logistique est un modèle statistique utilisé pour prédire une probabilité appartenant à deux
 catégories (Dans notre cas{ :} parallèle / non parallèle). La régression logistique transforme la sortie en une
@@ -215,6 +272,391 @@ typiques des phrases parallèles et à distinguer les paires non parallèles. L'
 semi-parallèles devrait de plus rendre le modèle capable d'identifier ce type de segments, dont la présence
 est particulièrement fréquente dans les corpus dialectaux comme celui de l'Atlas LIMSI.
 
+\subsection{Application programmatique}
+
+%def normalize(text):
+Avant tout calcul, une étape de normalisation est appliquée aux textes. Celle-ci consiste à convertir les 
+caractères en minuscules, à supprimer les accents par décomposition unicode, puis à retirer la ponctuation. 
+Cette normalisation est particulièrement importante dans le contexte des langues régionales que nous étudions.
+Celles-ci possèdent, en effet, des variations orthographiques dépendant du dialecte qui doivent être normalisées
+sous peine de poser problème plus tard.
+
+%def length_score(s1, s2):
+Enfin, une vérification de cohérence est effectuée sur la première paire chargée (voir \ref{sanity_check}), 
+affichant les valeurs de chacun de ces indicateurs afin de s'assurer du bon fonctionnement des fonctions 
+avant le traitement de l'ensemble du corpus.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{sanity_check.png}
+    \caption{Vérification de cohérence sur la première paires de phrases}
+    \label{sanity_check}
+\end{figure}
+
+%print(f"Loading SBERT model: {SBERT_MODEL} ...")
+Une fois les variables de surface calculées, le programme procède au calcul des scores de similarité
+sémantique à l'aide du modèle SBERT. Le modèle est d'abord chargé en mémoire, puis appliqué à l'ensemble
+des paires constituant le jeu de données.
+
+Pour chaque paire de phrases, le modèle génère un plongement vectoriel pour chacun des deux segments,
+c'est-à-dire une représentation numérique de la phrase dans un espace sémantique multilingue partagé.
+La similarité entre les deux phrases est ensuite calculée par similarité cosinus entre leurs plongements
+respectifs, produisant un score compris entre 0 et 1. Afin d'optimiser l'utilisation de la mémoire,
+le calcul est effectué par lots plutôt que phrase par phrase. Les scores légèrement négatifs, qui peuvent
+ponctuellement résulter du calcul de la similarité cosinus, sont ramenés à zéro afin de maintenir une
+échelle de valeurs cohérente.
+
+Ces scores constituent la variable principale du modèle de régression logistique, dans la mesure où ils
+capturent la proximité sémantique globale entre les phrases françaises et leurs équivalents en langue
+régionale dans un espace vectoriel commun, sans nécessiter de traduction intermédiaire entre les deux
+langues.
+
+%Computing complementary features
+L'ensemble des scores calculés précédemment est ensuite rassemblé dans un tableau structuré, où chaque
+ligne correspond à une paire de phrases et chaque colonne à une variable descriptive. Pour chaque paire,
+le tableau enregistre les phrases source et cible, l'identifiant de la paire de langues, la catégorie de
+parallélisme sous forme textuelle, ainsi qu'une étiquette binaire opposant les paires parallèles et
+semi-parallèles d'un côté aux paires non parallèles de l'autre. Cette étiquette binaire constitue la
+variable cible du modèle de régression logistique. À ces informations s'ajoutent l'ensemble des variables
+d'apprentissage calculées précédemment : le score de similarité sémantique SBERT, le score de longueur,
+les indices de Jaccard sur les bigrammes, trigrammes et quadrigrammes de caractères, ainsi que l'indice de
+Jaccard phonétique. Ce tableau constitue la base d'apprentissage complète qui sera transmise au classifieur
+lors de l'étape d'entraînement.
+
+\newpage
+
+\section{Données annotées}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{feature_distributions_kde.png}
+    \caption{feature distributions kde}
+    \label{feature_distributions_kde}
+\end{figure}
+
+Ce graphique présente les distributions de densité des six variables d'apprentissage selon les trois
+catégories de parallélisme, sous forme de courbes KDE. Les tirets verticaux indiquent la médiane de chaque
+classe. Il constitue un complément analytique essentiel à la matrice de corrélation et au graphique des
+coefficients, en montrant non plus des valeurs agrégées mais la forme complète des distributions.
+
+Score SBERT constitue la variable dont le pouvoir discriminant est le plus lisible. Les trois distributions
+présentent des profils clairement distincts. La classe non parallèle est fortement concentrée dans les
+valeurs basses avec un pic prononcé autour de 0,10 à 0,15, et une médiane proche de 0,18. La classe
+semi-parallèle présente une distribution bimodale avec un premier mode autour de 0,15 et un second autour
+de 0,40, reflétant l'hétérogénéité des paires tronquées : certaines troncatures importantes produisent des
+scores faibles proches de ceux des paires non parallèles, tandis que les troncatures légères conservent une
+proximité sémantique élevée. La classe parallèle se distingue par une distribution étalée vers les valeurs
+hautes avec un mode principal autour de 0,60 à 0,90 et une médiane nettement supérieure aux deux autres
+classes, aux alentours de 0,60. La superposition partielle entre les trois distributions, particulièrement
+entre les classes semi-parallèle et non parallèle dans la région 0,10 à 0,30, explique une partie des
+erreurs de classification observées dans les matrices de confusion.
+
+Score de longueur présente un comportement atypique par rapport aux autres variables. Les trois classes
+sont concentrées dans les valeurs basses, autour de 0 à 0,10, ce qui indique que la grande majorité des
+phrases présentent des longueurs similaires quelle que soit leur catégorie. On observe néanmoins un pic
+secondaire pour la classe semi-parallèle autour de 0,50, correspondant aux paires où la troncature à
+mi-phrase a produit une asymétrie de longueur significative. La classe non parallèle présente une
+distribution plus étalée avec une densité résiduelle jusqu'à 1,0, reflétant le fait que les phrases
+appariées aléatoirement peuvent présenter des longueurs très différentes. Les médianes des trois classes
+sont très proches les unes des autres, ce qui confirme le faible coefficient de cette variable dans le
+modèle de régression logistique.
+
+Jaccard Bigrammes montre une meilleure séparation que les variables de trigrammes et quadrigrammes. La
+classe non parallèle est concentrée en 0 à 0,20 avec un pic autour de 0,15, tandis que la classe parallèle
+présente une distribution nettement plus étalée avec un second mode visible autour de 0,40 à 0,50,
+traduisant les chevauchements lexicaux fréquents entre le français et les langues régionales romanes.
+La classe semi-parallèle occupe une position intermédiaire avec une distribution qui suit globalement
+celle de la classe parallèle mais avec une densité plus faible dans les valeurs élevées.
+
+Jaccard Trigrammes, Jaccard Quadrigrammes et Jaccard Phonétique présentent des distributions très
+similaires entre elles, ce qui est cohérent avec la forte corrélation observée entre ces trois variables
+dans la matrice de corrélation. Les trois classes sont massivement concentrées dans les valeurs très
+basses, entre 0 et 0,05 à 0,10, avec des pics de densité extrêmement élevés en 0, ce qui explique les
+valeurs d'axe Y atteignant respectivement 25, 80 et 20 unités de densité. Cette concentration reflète
+le fait que les langues régionales, en particulier l'alsacien, partagent relativement peu de séquences
+de caractères longues avec le français malgré leurs racines communes. La classe parallèle se distingue
+par une queue de distribution légèrement plus étendue vers les valeurs positives et une médiane légèrement
+supérieure, visible sur les tirets verts, mais la séparation entre classes reste faible pour ces trois
+variables prises isolément. C'est leur combinaison avec le score SBERT au sein du modèle de régression
+logistique, et non leur contribution individuelle, qui leur confère leur utilité discriminante, notamment
+pour les paires où la proximité sémantique vectorielle est insuffisante à elle seule pour trancher.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{pie_by_language.png}
+    \caption{Distribution des classes par paires de langues}
+    \label{pie_by_language}
+\end{figure}
+
+Ces trois diagrammes circulaires présentent la distribution des classes au sein du jeu de données
+d'entraînement, agrégée par paire de langues. Les effectifs indiqués entre parenthèses (fr-co : n=1186,
+fr-gsw : n=834, fr-oc : n=1415) confirment le déséquilibre déjà observé dans l'analyse quantitative du
+corpus : l'occitan est la langue la mieux représentée, suivi du corse puis de l'alsacien. Ce déséquilibre
+est directement imputable à la surreprésentation des variétés occitanes dans l'Atlas LIMSI, dont les 47
+textes dialectaux constituent la majorité des paires chargées.
+
+Pour les trois paires de langues, la
+distribution entre les trois classes est proche de l'équilibre tiers-tiers-tiers, ce qui est cohérent
+avec la stratégie de construction du jeu de données décrite dans la méthodologie, où les sous-ensembles
+parallèle, semi-parallèle et non parallèle sont construits à partir du même ensemble de paires parallèles
+de base. On observe néanmoins de légères variations. Pour la paire fr-gsw, la classe non parallèle est
+légèrement surreprésentée à 35,5\% au détriment de la classe parallèle à 32,3\%, ce qui peut s'expliquer
+par les contraintes de génération des paires non parallèles dans de petits corpus : avec un nombre limité
+de phrases disponibles, le programme génère plus facilement des paires négatives distinctes que dans
+des corpus plus volumineux. Pour la paire fr-oc, la distribution est quasi parfaitement équilibrée à
+34,3\% pour les classes parallèle et semi-parallèle, et 31,4\% pour la classe non parallèle, ce qui
+s'explique par la taille plus importante de ce corpus permettant un échantillonnage plus équilibré.
+Ces distributions globalement équilibrées constituent une condition favorable à l'entraînement du
+classifieur, évitant les biais induits par des déséquilibres importants entre classes.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\textwidth]{sbert_by_language_pair.png}
+    \caption{Score SBERT moyen par paires de langues}
+    \label{sbert_by_language_pair}
+\end{figure}
+
+Ce graphique en barres horizontales présente les scores SBERT moyens par paire de langues et par catégorie
+de parallélisme, permettant une comparaison directe du pouvoir discriminant du modèle selon la langue
+régionale considérée.
+
+La hiérarchie attendue entre les trois classes est respectée pour l'ensemble des paires de langues : les
+paires parallèles obtiennent systématiquement les scores les plus élevés, suivies des paires semi-parallèles,
+puis des paires non parallèles. Ce résultat valide le fait que le modèle SBERT capture efficacement les
+différences de parallélisme entre catégories indépendamment de la langue régionale cible.
+
+La paire fr-co présente les scores les plus élevés pour les classes parallèle et semi-parallèle, atteignant
+respectivement environ 0,69 et 0,49. Cela confirme ce qui avait déjà été observé dans l'analyse par variété :
+le corse, de par sa proximité étymologique avec le français et sa structure romane, génère des paires
+parallèles dont la similarité sémantique vectorielle est plus élevée que pour les autres langues. La paire
+fr-oc arrive en deuxième position avec un score parallèle d'environ 0,63 et un score semi-parallèle
+d'environ 0,45, ce qui est cohérent avec la nature romane de l'occitan et sa parenté avec le français.
+La paire fr-gsw présente les scores les plus bas pour la classe parallèle, aux alentours de 0,49, ce qui
+reflète la distance structurelle plus importante entre le français et l'alsacien, cette dernière étant une
+langue germanique dont les représentations vectorielles dans l'espace sémantique multilingue de SBERT
+sont naturellement moins proches de celles du français que ne le sont les langues romanes.
+
+Les scores non parallèles sont en revanche remarquablement stables entre les trois paires de langues,
+oscillant autour de 0,18 à 0,19. Cette stabilité est attendue : les paires non parallèles, construites
+par appariement aléatoire de phrases, ne présentent aucun lien sémantique systématique quelle que soit
+la langue régionale impliquée. L'écart entre le score parallèle et le score non parallèle, qui constitue
+la marge de discrimination effective du modèle, est donc plus favorable pour le corse (0,51) que pour
+l'occitan (0,45) ou l'alsacien (0,30), ce dernier présentant la marge la plus réduite et donc la
+classification la plus difficile.
+
+\section{Entraînement du modèle de régression logistique}
+
+Une fois le jeu de données constitué et les variables d'apprentissage calculées, il devient possible
+d'entraîner un modèle supervisé capable d'identifier automatiquement les paires de phrases parallèles ou
+semi-parallèles au sein d'un corpus comparable non aligné. Cette étape repose sur un modèle de régression
+logistique entraîné à partir du fichier produit par le notebook précédent, qui associe à chaque paire de
+phrases l'ensemble des scores calculés : similarité sémantique SBERT, score de longueur, indices de Jaccard
+sur les n-grammes de caractères et indice de Jaccard phonétique.
+
+Avant l'entraînement proprement dit, une phase exploratoire permet de vérifier la cohérence du jeu de données.
+Les statistiques descriptives calculées par classe confirment que les variables discriminent bien les trois
+catégories : les paires parallèles obtiennent systématiquement les scores SBERT les plus élevés, suivies
+des paires semi-parallèles, puis des paires non parallèles. Cette hiérarchie, observable également dans
+les graphiques produits lors de la constitution du corpus, valide le bien-fondé des variables retenues pour
+l'apprentissage. La matrice de corrélation entre variables permet quant à elle de détecter d'éventuelles
+redondances entre les indices de Jaccard, qui mesurent des chevauchements à des granularités différentes
+et peuvent donc présenter une corrélation non négligeable entre eux.
+
+Les données sont ensuite divisées en un ensemble d'entraînement et un ensemble de test selon un découpage
+stratifié de 80/20, garantissant que les trois classes sont représentées de manière proportionnelle dans
+chacun des deux ensembles. Les variables sont normalisées par standardisation, une étape indispensable pour
+la régression logistique dont les coefficients sont sensibles à l'échelle des variables d'entrée. Le scaler
+ajusté sur les données d'entraînement est sauvegardé afin de pouvoir être appliqué de manière cohérente lors
+de l'inférence sur de nouvelles données.
+
+Deux modèles distincts sont entraînés. Le premier est un modèle binaire qui oppose les paires parallèles
+et semi-parallèles aux paires non parallèles. Ce modèle constitue le cœur opérationnel du système : appliqué
+à un corpus comparable, il permet de filtrer les paires présentant un degré suffisant de parallélisme pour
+être exploitables. Le second est un modèle multiclasse à trois étiquettes, qui distingue les paires
+parallèles, semi-parallèles et non parallèles. Ce modèle plus fin permet, pour les paires retenues par
+le modèle binaire, de distinguer les correspondances exactes des correspondances partielles, une information
+utile pour orienter leur usage ultérieur dans l'entraînement de systèmes de traduction automatique. Les
+deux modèles utilisent une pondération équilibrée des classes afin de pallier d'éventuels déséquilibres
+résiduels dans le jeu de données, et sont évalués par validation croisée à cinq plis sur les données
+d'entraînement avant leur application sur le jeu de test.
+
+L'évaluation du modèle binaire repose sur un rapport de classification complet, incluant précision, rappel
+et score F1 pour chaque classe, ainsi que sur une matrice de confusion permettant d'identifier les types
+d'erreurs les plus fréquents. La courbe ROC et la courbe précision-rappel complètent cette évaluation en
+quantifiant la capacité du modèle à séparer les deux classes à différents seuils de décision. Ces deux
+courbes sont particulièrement pertinentes dans notre contexte, où le coût d'un faux positif (une paire
+non parallèle incorrectement retenue) et celui d'un faux négatif (une paire parallèle incorrectement
+rejetée) ne sont pas nécessairement symétriques selon l'usage visé. L'analyse des coefficients du modèle
+permet enfin d'identifier quelles variables contribuent le plus à la décision de classification. On
+s'attend à ce que le score SBERT soit le contributeur principal, les variables de surface venant en
+complément pour les cas où la similarité sémantique seule ne suffit pas à trancher.
+
+Une analyse complémentaire ventile les performances du modèle binaire par langue régionale, en distinguant
+le corse, l'alsacien et l'occitan. Cette désagrégation est importante dans notre contexte, car les trois
+langues présentent des profils très différents en termes de volume de données d'entraînement et de proximité
+avec le français. On s'attend notamment à ce que les performances sur le corse soient plus fragiles, cette
+langue étant sous-représentée dans le corpus d'entraînement parallèle comme l'a montré l'analyse quantitative
+des données.
+
+Enfin, le notebook propose une fonction d'inférence réutilisable permettant d'appliquer le modèle entraîné
+à de nouvelles paires de phrases sans nécessiter de rechargement du code de calcul des variables. Cette
+fonction calcule l'ensemble des variables pour une paire donnée, les normalise à l'aide du scaler
+sauvegardé, puis retourne la prédiction du modèle accompagnée d'un score de confiance. Elle peut être
+appliquée à l'ensemble des combinaisons de phrases d'un corpus comparable non aligné, produisant une
+liste de paires candidates classées par degré de parallélisme. Cette étape constitue le point
+d'articulation entre le travail de classification supervisée réalisé sur les données d'entraînement
+et l'application opérationnelle du modèle sur le corpus Wikimédia utilisé pour la validation externe.
+
+\newpage
+
+\section{Résultats de l'entraînement}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{sbert_distribution.png}
+    \caption{Distribution des scores SBERT par classe (parallèles, semi et non parallèles)}
+    \label{sbert_distribution}
+\end{figure}
+
+/! pour le boxplot ajouté le nombre de paires verifiées
+
+Ce double graphique présente la distribution des scores SBERT selon les trois catégories de parallélisme.
+L'histogramme de gauche révèle une structure trimodale cohérente avec les attentes théoriques. Les paires
+non parallèles se concentrent massivement dans les valeurs basses, entre 0 et 0,3, avec un pic prononcé
+autour de 0,05 à 0,10, reflétant l'absence de lien sémantique entre des phrases appariées aléatoirement.
+Les paires semi-parallèles présentent une distribution plus étalée, centrée autour de 0,3 à 0,5,
+correspondant à la troncature partielle des phrases régionales qui conserve une proximité sémantique avec
+le segment français mais réduit le contenu informationnel. Les paires parallèles se distinguent nettement
+avec une concentration très marquée dans les valeurs hautes, proche de 1,0, confirmant que le modèle SBERT
+capture efficacement la correspondance sémantique entre traductions exactes même en contexte multilingue
+régional. Le graphe de boîtes à moustaches représente les données pour 3435 paires de phrases
+(soit 1145 par classe). Le boxplot de droite synthétise ces observations : la médiane des paires
+non parallèles se situe autour de 0,17, celle des paires semi-parallèles autour de 0,40, et celle des
+paires parallèles autour de 0,60. On notera la présence de nombreux points aberrants au-dessus de 0,55 pour
+la classe non parallèle, correspondant vraisemblablement à des phrases thématiquement proches appariées
+par hasard lors de la construction du sous-ensemble négatif, notamment au sein d'un même texte narratif
+comme la fable d'Ésope. La variance importante de la classe parallèle, visible dans l'amplitude du boxplot,
+reflète quant à elle l'hétérogénéité dialectale du corpus, les variétés LIMSI présentant des scores nettement
+inférieurs aux textes ParCoLab.
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{feature_correlation.png}
+    \caption{feature correlation}
+    \label{feature_correlation}
+\end{figure}
+
+La matrice de corrélation entre variables d'apprentissage révèle plusieurs relations structurelles
+importantes. La corrélation négative entre le score SBERT et le score de longueur (-0,58) est attendue et
+cohérente : une asymétrie de longueur importante entre les deux phrases tend à signaler une correspondance
+imparfaite, ce qui se traduit simultanément par un score sémantique plus faible. Entre les indices de Jaccard,
+on observe une corrélation très élevée entre les trigrammes et les quadrigrammes (0,97), ce qui indique une
+forte redondance entre ces deux variables. Ces deux mesures capturent des chevauchements de surface à des
+granularités très proches et apportent donc une information quasi identique au modèle. La corrélation entre
+l'indice de Jaccard phonétique et les trigrammes (0,76) et quadrigrammes (0,71) est également notable,
+suggérant que les similarités phonétiques et les similarités de surface en caractères covarient fortement
+dans notre corpus, probablement parce que les langues régionales romanes partagent avec le français des
+séquences de caractères proches de leur représentation phonétique. Le score SBERT présente des corrélations
+modérées et positives avec les indices de Jaccard (entre 0,35 et 0,47), indiquant que les deux familles de
+variables mesurent des aspects complémentaires mais partiellement liés de la similarité entre phrases. Cette
+structure de corrélation justifie a posteriori le choix de conserver l'ensemble des variables malgré les
+redondances partielles, la régression logistique étant capable de pondérer leur contribution respective.
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{feature_importance.png}
+    \caption{feature importance}
+    \label{feature_importance}
+\end{figure}
+
+Le graphique des coefficients du modèle binaire apporte un résultat particulièrement intéressant et en partie
+contre-intuitif. L'indice de Jaccard sur les quadrigrammes de caractères présente de loin le coefficient le
+plus élevé (environ 3,0), dépassant significativement le score SBERT (environ 1,4) et l'indice phonétique
+(environ 1,0). Ce résultat suggère que le chevauchement de séquences de quatre caractères consécutifs
+constitue le signal le plus discriminant pour identifier les paires parallèles dans notre corpus, davantage
+encore que la similarité sémantique vectorielle. Cela s'explique par la nature des langues étudiées{ :}
+l'occitan, le corse et l'alsacien partagent avec le français de nombreuses racines lexicales dont la graphie
+est suffisamment proche pour que les quadrigrammes de caractères constituent un indicateur robuste de
+correspondance. Le score SBERT arrive en deuxième position, confirmant son rôle central mais montrant qu'il
+n'est pas le seul déterminant fiable dans ce contexte. L'indice phonétique contribue positivement mais dans
+une moindre mesure, tandis que les bigrammes de caractères ont un effet positif faible. Le coefficient négatif
+des trigrammes (environ -0,4) est en apparence paradoxal mais s'explique par la forte colinéarité avec les
+quadrigrammes observée dans la matrice de corrélation : le modèle compense partiellement la redondance entre
+ces deux variables en attribuant un poids négatif à l'une d'elles. Enfin, le score de longueur présente un
+coefficient très proche de zéro, indiquant qu'une fois les autres variables contrôlées, l'asymétrie de
+longueur n'apporte qu'une contribution marginale à la classification.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{confusion_binary.png}
+    \caption{confusion binary}
+    \label{confusion_binary}
+\end{figure}
+
+La matrice de confusion du modèle binaire montre des résultats globalement satisfaisants. Sur les 229 paires
+réellement non parallèles du jeu de test, 205 sont correctement classées, soit un taux de vrais négatifs de
+89,5\%. Les 24 faux positifs restants correspondent à des paires non parallèles incorrectement identifiées
+comme parallèles, probablement des phrases thématiquement proches dont les variables de surface ou sémantiques
+dépassent le seuil de décision. Sur les 458 paires réellement parallèles ou semi-parallèles, 334 sont
+correctement identifiées, soit un taux de vrais positifs de 73,0\%, tandis que 124 sont incorrectement
+rejetées comme non parallèles. Ce taux de faux négatifs plus élevé s'explique en partie par la présence de
+paires semi-parallèles dans la classe positive : leurs scores sémantiques et de surface étant intermédiaires
+par construction, elles sont naturellement plus difficiles à distinguer des paires non parallèles. Ce
+déséquilibre entre le taux de vrais négatifs et le taux de vrais positifs indique que le modèle est légèrement
+conservateur, préférant rejeter des paires douteuses plutôt que d'introduire du bruit dans les données
+extraites. Ce comportement est acceptable dans notre contexte, où la qualité des paires retenues prime sur
+leur exhaustivité.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{confusion_multiclass.png}
+    \caption{confusion multiclass}
+    \label{confusion_multiclass}
+\end{figure}
+
+La matrice de confusion du modèle multiclasse révèle une asymétrie prononcée dans les performances selon les
+classes. Les paires parallèles sont correctement classées dans 208 cas sur 229, soit un taux de 90,8\%,
+ce qui confirme que le modèle identifie bien les correspondances exactes. Les paires non parallèles
+obtiennent un taux de classification correcte de 78,2\% (179 sur 229), les erreurs se répartissant de
+manière quasi égale entre des confusions avec la classe parallèle (24 cas) et la classe semi-parallèle
+(26 cas). Les paires semi-parallèles constituent sans surprise la classe la plus difficile à identifier
+correctement : seulement 114 sur 229 sont bien classées, soit 49,8\%. Les erreurs se concentrent massivement
+vers la classe non parallèle (77 cas), ce qui s'explique par le fait que les phrases tronquées
+artificiellement présentent des scores de surface et sémantiques qui peuvent se rapprocher de ceux des
+paires non parallèles, en particulier lorsque la troncature est importante. Les 38 confusions entre
+semi-parallèle et parallèle correspondent probablement à des cas où la troncature était mineure et n'a
+pas suffisamment dégradé les variables pour distinguer les deux catégories. Ces résultats montrent que la
+frontière entre paires semi-parallèles et non parallèles est la plus difficile à établir, ce qui est cohérent
+avec la nature artificielle des semi-parallèles construites par troncature.
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{roc_pr_binary.png}
+    \caption{roc pr binary}
+    \label{roc_pr_binary}
+\end{figure}
+
+Les courbes ROC et précision-rappel du modèle binaire confirment de bonnes performances globales.
+L'AUC-ROC de 0,867 indique que le modèle est capable de séparer correctement les paires parallèles des
+paires non parallèles dans 86,7\% des cas, quelle que soit la valeur du seuil de décision. La courbe ROC
+présente une montée initiale rapide, signifiant que le modèle atteint un taux de vrais positifs élevé à
+faible coût en faux positifs, ce qui est particulièrement souhaitable dans notre contexte où l'on cherche
+à maximiser la précision des paires extraites. La courbe précision-rappel, avec un score de précision
+moyenne de 0,934, est encore plus favorable. Elle montre que pour des valeurs de rappel allant jusqu'à
+environ 0,5, la précision se maintient proche de 1,0, indiquant que le modèle peut être utilisé en mode
+conservateur pour extraire un sous-ensemble de paires de très haute qualité avec très peu de bruit.
+La dégradation de la précision n'intervient qu'au-delà d'un rappel d'environ 0,5, lorsque le modèle
+commence à récupérer les paires les plus ambiguës. Ces résultats suggèrent que l'ajustement du seuil de
+décision constitue un levier important pour adapter le comportement du classifieur selon que l'on privilégie
+la précision ou le rappel dans l'application finale.
+
 \section{Validation du modèle}
 
 Afin d’évaluer la qualité du modèle obtenu, nous procédons à une validation externe en utilisant le corpus
@@ -231,3 +673,182 @@ L’application du modèle sur ce corpus permet de vérifier{ :}
     \item l’absence de surapprentissage spécifique au corpus LIMSI et à ses textes majoritairement occitan
     \item la robustesse du modèle face au différence structurelle et thématique.
 \end{itemize}
+
+La phase de validation constitue l'étape finale du pipeline, permettant d'évaluer la capacité du modèle
+à identifier des fragments parallèles dans un corpus comparable réel, structurellement et thématiquement
+distinct du corpus d'entraînement. Elle repose sur deux programmes distincts dont la séparation est
+intentionnelle : un script de préparation des données d'une part, et un notebook d'inférence et d'analyse
+d'autre part.
+
+\subsection{Préparation du corpus de validation}
+
+Le script de préparation transforme les fichiers textes bruts issus des dossiers de validation en tableaux
+structurés de paires de phrases exploitables par le classifieur. Ce découpage en deux étapes présente un
+avantage pratique important : le nettoyage et la segmentation, potentiellement coûteux en temps de calcul
+sur de grands corpus, ne sont effectués qu'une seule fois. Les relances ultérieures du notebook de validation
+repartent directement des fichiers CSV ainsi produits, sans nécessiter de retraitement des textes sources.
+
+Le script parcourt cinq dossiers distincts correspondant aux variétés linguistiques étudiées, à savoir
+l'alsacien standard, le mulhousien et le strasbourgeois pour les variétés alsaciennes, ainsi que le corse
+et l'occitan. Pour chaque dossier, les fichiers français et régionaux sont appariés par préfixe de nom
+de fichier commun, garantissant que les combinaisons générées restent intra-documentaires, c'est-à-dire
+que seules des phrases issues d'articles traitant du même sujet sont mises en regard. Cette contrainte
+est essentielle dans le cadre d'un corpus comparable : comparer des phrases issues de documents sans
+lien thématique produirait une proportion écrasante de paires non parallèles et rendrait l'extraction de
+fragments pertinents impossible.
+
+Les textes bruts présentent une structure hétérogène caractéristique des extraits encyclopédiques :
+paragraphes narratifs, titres de sections, listes d'éléments, noms propres isolés et données tabulaires.
+Un pipeline de nettoyage en deux étapes est donc appliqué avant toute segmentation. La première étape
+supprime les lignes non informatives : les titres courts de quatre mots ou moins sans ponctuation finale,
+les éléments de liste réduits à un nom propre isolé, et les lignes constituées d'une simple puce ou d'un
+tiret sans contenu réel. Ces éléments, s'ils étaient conservés, produiraient des segments trop courts ou
+trop peu informatifs pour être comparés de manière fiable. La seconde étape normalise les espaces multiples
+et les tirets longs afin d'homogénéiser la ponctuation avant la segmentation.
+
+La segmentation en phrases repose sur un découpage aux ponctuations fortes, c'est-à-dire le point, le
+point d'exclamation et le point d'interrogation, suivies d'une majuscule. Afin d'éviter les coupures
+erronées sur des abréviations courantes ou des nombres décimaux, un mécanisme de protection par
+substitution temporaire est appliqué avant le découpage : les abréviations identifiées sont remplacées
+par des marqueurs neutres, les nombres décimaux sont protégés de la même manière, puis ces substitutions
+sont annulées après la segmentation. Les phrases de moins de cinq tokens sont ensuite écartées, car elles
+ne portent pas suffisamment d'information sémantique ou lexicale pour alimenter les variables d'apprentissage
+de manière fiable.
+
+Une fois les phrases extraites, le script génère l'ensemble des combinaisons cartésiennes entre phrases
+françaises et phrases régionales au sein de chaque paire de documents. Le produit cartésien, bien que
+potentiellement volumineux pour des documents longs, est la stratégie naturelle pour un corpus comparable
+non aligné : en l'absence d'alignement préalable, toutes les combinaisons doivent être évaluées par le
+classifieur afin d'identifier celles qui présentent un degré suffisant de parallélisme. Le résultat est
+exporté sous forme de CSV structuré, avec une ligne par paire de phrases et des colonnes indiquant la
+variété linguistique, le code langue, la paire de documents d'origine, la phrase française et la phrase
+régionale.
+
+\subsection{Inférence et analyse}
+
+Le notebook de validation charge les CSV produits par le script de préparation, calcule les variables
+d'apprentissage sur l'ensemble des paires, puis applique les deux modèles entraînés. Le calcul des variables
+suit exactement le même pipeline que celui utilisé lors de la constitution du jeu de données d'entraînement :
+score de similarité sémantique SBERT, score de longueur, indices de Jaccard sur les bigrammes, trigrammes et
+quadrigrammes de caractères, et indice de Jaccard phonétique. Cette cohérence est indispensable pour garantir
+que les données présentées au classifieur lors de la validation sont comparables à celles sur lesquelles il
+a été entraîné. Les variables sont ensuite normalisées à l'aide du scaler ajusté lors de l'entraînement, qui
+est rechargé depuis le fichier sauvegardé.
+
+L'inférence produit pour chaque paire une prédiction binaire opposant les paires parallèles ou semi-parallèles
+aux paires non parallèles, accompagnée d'un score de confiance, ainsi qu'une prédiction multiclasse
+distinguant les trois catégories. Le score de confiance du modèle binaire est utilisé comme critère de
+filtrage : seules les paires dont la confiance dépasse un seuil paramétrable, fixé par défaut à 0,65, sont
+retenues comme candidates. Ce seuil constitue le principal levier d'ajustement du comportement du système,
+permettant de faire varier le compromis entre précision et rappel selon les besoins de l'application.
+
+L'analyse des résultats est conduite à deux niveaux de granularité. Au niveau des variétés, les statistiques
+permettent de comparer les performances du modèle entre les trois variétés alsaciennes d'une part, et entre
+l'alsacien, le corse et l'occitan d'autre part. Cette désagrégation est particulièrement pertinente dans
+notre contexte, car les variétés mulhousienne et strasbourgeoise de l'alsacien peuvent présenter des graphies
+sensiblement différentes de la variété standard, ce qui est susceptible d'affecter les variables de surface
+telles que les indices de Jaccard. Au niveau des langues, la comparaison permet d'évaluer dans quelle
+mesure le modèle, entraîné principalement sur des données occitanes, généralise correctement à des langues
+structurellement différentes comme le corse ou l'alsacien.
+
+Les visualisations produites complètent cette analyse quantitative. La distribution des scores SBERT par
+variété permet d'observer si les paires candidates présentent des scores significativement supérieurs à
+l'ensemble des comparaisons effectuées, ce qui constituerait une validation indirecte de la pertinence du
+filtrage. La courbe d'effet du seuil de confiance permet quant à elle d'identifier le point d'inflexion à
+partir duquel une élévation du seuil entraîne une réduction rapide du nombre de candidates sans gain
+substantiel en qualité moyenne, informant ainsi le choix du seuil opérationnel.
+
+Enfin, les paires candidates retenues sont exportées sous forme de CSV, à la fois dans un fichier global
+et dans des fichiers individuels par variété. Ces fichiers constituent la sortie opérationnelle du système :
+ils contiennent les fragments parallèles et semi-parallèles identifiés automatiquement dans le corpus
+comparable, accompagnés de l'ensemble des scores calculés, et peuvent être utilisés directement pour enrichir
+les ressources parallèles disponibles pour les langues régionales étudiées ou pour alimenter l'entraînement
+de systèmes de traduction automatique neuronale.
+
+\section{Résultats de la validation}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{heatmap_sbert_validation.png}
+    \caption{heatmap sbert validation}
+    \label{heatmap_sbert_validation}
+\end{figure}
+
+Cette heatmap présente les scores SBERT moyens des paires candidates retenues, ventilés par variété
+linguistique et par classe prédite par le modèle multiclasse. Les classes sont encodées numériquement :
+0 correspond aux paires non parallèles, 1 aux paires parallèles et 2 aux paires semi-parallèles. Plusieurs
+observations méritent attention.
+
+Pour le corse et le strasbourgeois, la classe 0 affiche un score de 0,00, ce qui signifie qu'aucune paire
+non parallèle n'a été retenue parmi les candidates pour ces deux variétés au seuil de confiance appliqué.
+Ce résultat est cohérent avec le comportement attendu du filtre : le modèle a correctement écarté les paires
+sans lien sémantique pour ces langues. Pour l'alsacien standard, le mulhousien et l'occitan en revanche, un
+score non nul pour la classe 0 indique qu'un certain nombre de paires non parallèles ont tout de même
+franchi le seuil de confiance, ce qui constitue des faux positifs résiduels. Ces erreurs sont
+particulièrement attendues pour l'alsacien dont les trois variétés partagent avec le français des structures
+lexicales de surface suffisamment proches pour induire le modèle en erreur sur des variables comme les
+indices de Jaccard.
+
+Les scores des classes parallèle et semi-parallèle sont remarquablement stables entre variétés, oscillant
+entre 0,41 et 0,54. Le corse présente les scores les plus élevés pour ces deux classes (0,54), ce qui
+suggère que les paires candidates retenues pour cette langue présentent une proximité sémantique plus
+marquée que pour les autres variétés, probablement en raison de la plus grande proximité structurelle du
+corse avec le français comparativement à l'alsacien. L'absence de différence notable entre les scores des
+classes parallèle et semi-parallèle pour la plupart des variétés confirme la difficulté, déjà observée
+lors de l'évaluation sur le jeu de test, à séparer ces deux catégories par le seul score sémantique.
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Sbert_distribution_by_lp.png}
+    \caption{Sbert distribution by lp}
+    \label{Sbert_distribution_by_lp}
+\end{figure}
+
+Ce graphique présente en cinq histogrammes la distribution des scores SBERT pour chaque variété,
+superposant en bleu l'ensemble des comparaisons effectuées et en vert les seules paires candidates retenues.
+La ligne pointillée verticale indique le score SBERT moyen des candidates.
+
+La première observation transversale à toutes les variétés est la concentration massive des comparaisons
+totales dans les valeurs très basses, entre 0 et 0,2. Ce phénomène est inhérent à la stratégie de produit
+cartésien : la très grande majorité des combinaisons de phrases générées au sein d'un même document
+comparable sont sémantiquement éloignées, ce qui confirme que le corpus utilisé est bien un corpus
+comparable et non un corpus parallèle. Le volume de comparaisons varie considérablement selon les variétés,
+les histogrammes de l'alsacien standard et de l'occitan atteignant respectivement environ 140 000 et
+260 000 comparaisons, reflétant la plus grande taille des corpus disponibles pour ces variétés.
+
+Les paires candidates, représentées en vert, apparaissent systématiquement dans les valeurs intermédiaires
+à hautes du score SBERT, avec des moyennes comprises entre 0,42 et 0,54 selon les variétés. Pour le corse
+et le strasbourgeois, dont les corpus sont plus petits, les candidates sont peu nombreuses mais bien
+concentrées au-delà de 0,4, indiquant que le filtre a correctement ciblé les paires les plus sémantiquement
+proches. Pour l'occitan et les variétés alsaciennes, la distribution des candidates est plus étalée, ce qui
+s'explique par le volume plus important de comparaisons disponibles et donc une plus grande diversité de
+paires potentiellement ambiguës atteignant le seuil de confiance.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{trust_threshold.png}
+    \caption{Seuil de confiance par sbert moyen et nombre de candidats}
+    \label{trust_threshold}
+\end{figure}
+
+Ce graphique à double axe permet d'observer simultanément l'évolution du nombre de paires candidates et
+du score SBERT moyen de ces candidates en fonction du seuil de confiance appliqué, le seuil actuel de 0,65
+étant matérialisé par la ligne pointillée rouge.
+
+Le nombre de paires candidates décroît de manière monotone et régulière à mesure que le seuil augmente,
+passant d'environ 280 000 paires à un seuil de 0,50 à environ 25 000 paires à un seuil de 0,95. La
+décroissance est approximativement linéaire entre 0,50 et 0,75, puis ralentit légèrement au-delà,
+indiquant qu'un noyau de paires bénéficie d'une confiance très élevée du modèle. Au seuil actuel de 0,65,
+environ 160 000 paires sont retenues, ce qui représente un volume conséquent mais cohérent avec la taille
+totale du corpus comparable traité.
+
+Le score SBERT moyen des candidates évolue en sens inverse, progressant de 0,38 à un seuil de 0,50 jusqu'à
+environ 0,63 à un seuil de 0,95. Cette progression confirme que l'élévation du seuil de confiance permet
+effectivement de sélectionner des paires présentant une proximité sémantique plus élevée. On observe
+cependant que la progression du score SBERT moyen s'accélère nettement au-delà de 0,75, passant de 0,49
+à 0,63 entre 0,75 et 0,95, alors que le gain entre 0,50 et 0,75 est plus modeste (de 0,38 à 0,49). Ce point
+d'inflexion autour de 0,75 constitue une information utile pour le réglage du seuil : un seuil dans cette
+zone permettrait de réduire significativement le volume de candidates tout en garantissant une qualité
+sémantique nettement supérieure à celle obtenue avec le seuil actuel de 0,65.
