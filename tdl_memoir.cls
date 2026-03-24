@@ -14,7 +14,7 @@
 %%%%%%% IMPORTANT %%%%%%%
 \usepackage[french]{babel} % Package for french language
 \renewcommand\frenchtablename{Tableau}
-\renewcommand\frenchfigurename{Illustration}
+\renewcommand\frenchfigurename{Figure}
 \usepackage[utf8]{inputenc} % Encoding package
 \usepackage{parskip} % Package for paragraph skip size
 \usepackage{hyperref} % PDF information
@@ -31,7 +31,7 @@
 \usepackage{helvet} % Helvetica
 \renewcommand{\familydefault}{\sfdefault} % Arial look-alike
 \usepackage[explicit,compact]{titlesec} % Title modifications
-\usepackage{fancyhdr} % Page 
+\usepackage{fancyhdr} % Page
 \usepackage{etoolbox} % For footnotes and quotes
 \usepackage[
     font=small,

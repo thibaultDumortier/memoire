@@ -152,4 +152,19 @@
     }
 }
 
+\newglossaryentry{Courbe AUC ROC}{
+    name=Courbe AUC ROC,
+    description={
+        La courbe ROC (Receiver Operating Characteristic) est tracée en calculant le taux de vrais positifs (TVP)
+        et le taux de faux positifs (TFP) à chaque seuil possible (en pratique,
+        à des intervalles sélectionnés), puis en représentant le TVP par rapport
+        au TFP. Un modèle parfait, qui, à un certain seuil, présente un TPR de
+        1,0 et un FPR de 0,0, peut être représenté par un point en (0, 1) si
+        tous les autres seuils sont ignorés.\\
+        L'aire sous la courbe ROC (AUC ou \textit{area under curve}) représente la probabilité que le modèle, s'il reçoit un exemple positif
+        et un exemple négatif choisis aléatoirement, classe l'exemple positif plus haut que l'exemple négatif.
+        (\hyperlink{https://developers.google.com/machine-learning/crash-course/classification/roc-and-auc?hl=fr}{Google for developers})
+    }
+}
+
 \makenoidxglossaries
