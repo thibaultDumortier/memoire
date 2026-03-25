@@ -36,7 +36,7 @@ telles que Hunalign \citep{nicolov_2007}, qui exploite des heuristiques basées 
 fréquence des mots et TCA2 \citep{hofland_1996, hofland_1998, Vondricka_2010}, un aligneur développé
 initialement pour des corpus de langues scandinaves.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{ui_intertext.png}
     \caption{L'interface utilisateur d'InterText.}
@@ -86,6 +86,27 @@ segments fusionnés ou fragmentés, etc.
 Ce phénomène justifie la nécessité d'introduire une notion de \textit{semi-parallélisme}.
 Cette notion permettra au modèle de traiter ces cas intermédiaires sans les rejeter systématiquement
 comme des paires non parallèles.
+
+\subsection{Problèmes d'alignement rencontrés}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{ui_intertext_errsnttlong.png}
+    \caption{L'interface utilisateur d'InterText lors d'une erreur d'alignement.}
+\label{ui_intertext_errsnttlong}
+\end{figure}
+
+Durant l'alignement du corpus de l'atlas LIMSI avec InterText le problème principal rencontré
+était dû à des fins de phrases prématurées en langue régionale comparé à la langue française.
+Ces erreurs était relativement simple à régler étant donner que la phrase pouvait simplement
+être rallongée à l'aide d'une virgule, ces erreurs ne se présentant que dans des cas où le point
+pouvait être retiré et remplacé par une virgule.
+
+Une autre erreur, bien moins grave dans notre cas, était la duplication de texte. L'atlas LIMSI
+présente parfois lors de son téléchargement des textes qui sont dupliqués dans leur fichier respectif. Ces
+erreurs sont très simple à repérer lors de l'alignement et à réparer. En effet, la simple présence
+du texte en double est très visible, surtout lorsque celui-ci se duplique du début à la fin après sa
+première apparition.
 
 \section{Séparation du corpus}
 
@@ -291,7 +312,7 @@ Enfin, une vérification de cohérence est effectuée sur la première paire cha
 affichant les valeurs de chacun de ces indicateurs afin de s'assurer du bon fonctionnement des fonctions 
 avant le traitement de l'ensemble du corpus.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{sanity_check.png}
     \caption{Vérification de cohérence sur la première paires de phrases}
@@ -349,18 +370,18 @@ lors de l'étape d'entraînement.
 
 \section{Données annotées}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_distributions_kde.png}
-    \caption{feature distributions kde}
+    \caption{Graphe KDE de distribution des caractéristiques par classe}
     \label{feature_distributions_kde}
 \end{figure}
 
-Ce graphique (figure \ref{feature_distributions_kde}) présente les distributions de densité des six variables d'apprentissage selon les trois
-catégories de parallélisme, sous forme de courbes KDE. Les tirets verticaux indiquent la médiane de chaque
-classe.
+Ce graphique (figure \ref{feature_distributions_kde}) présente les distributions de densité des six variables
+d'apprentissage selon les trois catégories de parallélisme, sous forme de courbes KDE. Les tirets verticaux
+indiquent la médiane de chaque classe.
 
-Le score SBERT constitue la variable dont le pouvoir discriminant est le plus lisible. Les trois distributions
+Le score SBERT constitue la variable dont le pouvoir discriminant est le plus visible. Les trois distributions
 présentent des profils clairement distincts. La classe non parallèle est fortement concentrée dans les
 valeurs basses avec un pic prononcé autour de 0,10 à 0,15, et une médiane proche de 0,18. La classe
 semi-parallèle présente une distribution bimodale avec un premier mode autour de 0,15 et un second autour
@@ -401,7 +422,7 @@ variables prises isolément. C'est leur combinaison avec le score SBERT au sein 
 logistique, et non leur contribution individuelle, qui leur confère leur utilité discriminante, notamment
 pour les paires où le score SBERT n'est pas suffisant pour trancher.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{pie_by_language.png}
     \caption{Distribution des classes par paires de langues}
@@ -496,17 +517,6 @@ deux modèles utilisent une pondération équilibrée des classes afin de pallie
 dans le jeu de données, et sont évalués par validation croisée à cinq plis sur les données
 d'entraînement avant leur application sur le jeu de test.
 
-% L'évaluation du modèle binaire repose sur un rapport de classification incluant précision, rappel
-% et score F1 pour chaque classe, ainsi que sur une matrice de confusion permettant d'identifier les types
-% d'erreurs les plus fréquents. La courbe ROC et la courbe précision-rappel complètent cette évaluation en
-% quantifiant la capacité du modèle à séparer les deux classes à différents seuils de décision. Ces deux
-% courbes sont particulièrement pertinentes dans notre contexte, où le coût d'un faux positif (une paire
-% non parallèle incorrectement retenue) et celui d'un faux négatif (une paire parallèle incorrectement
-% rejetée) ne sont pas nécessairement symétriques selon l'usage visé. L'analyse des coefficients du modèle
-% permet enfin d'identifier quelles variables contribuent le plus à la décision de classification. On
-% s'attend à ce que le score SBERT soit le contributeur principal, les variables de surface venant en
-% complément pour les cas où la similarité sémantique seule ne suffit pas à trancher.
-
 Une analyse complémentaire ventile les performances du modèle binaire par langue régionale, en distinguant
 le corse, l'alsacien et l'occitan. Cette séparation est importante dans notre contexte, car les trois
 langues présentent des profils très différents en termes de volume de données d'entraînement et de proximité
@@ -525,7 +535,7 @@ et l'application opérationnelle du modèle sur le corpus Wikipédia utilisé po
 \section{Résultats de l'entraînement}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{sbert_distribution.png}
     \caption{Distribution des scores SBERT par classe (parallèles, semi et non parallèles)}
@@ -553,10 +563,10 @@ inférieurs aux textes ParCoLab.
 
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_correlation.png}
-    \caption{feature correlation}
+    \caption{Corrélation des variables utilisé par le modèle}
     \label{feature_correlation}
 \end{figure}
 
@@ -578,10 +588,10 @@ redondances partielles, la régression logistique étant capable de pondérer le
 
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_importance.png}
-    \caption{feature importance}
+    \caption{Importance des variables utilisé par le modèle}
     \label{feature_importance}
 \end{figure}
 
@@ -602,10 +612,12 @@ ces deux variables en attribuant un poids négatif à l'une d'elles. Enfin, le s
 coefficient très proche de zéro, indiquant qu'une fois les autres variables contrôlées, l'asymétrie de
 longueur n'apporte que peu à la classification.
 
-\begin{figure}[h]
+\subsection{Évaluation du modèle binaire}
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{confusion_binary.png}
-    \caption{confusion binary}
+    \caption{Matrice de confusion du modèle binaire}
     \label{confusion_binary}
 \end{figure}
 
@@ -621,10 +633,43 @@ déséquilibre entre le taux de vrais négatifs et le taux de vrais positifs ind
 conservateur, préférant rejeter des paires douteuses plutôt que d'introduire du bruit dans les données
 extraites. Ce comportement est acceptable dans notre contexte, où nous préférons la qualité à la quantité.
 
-\begin{figure}[h]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{roc_pr_binary.png}
+    \caption{Courbes AUR ROC et précision rappel du modèle binaire}
+    \label{roc_pr_binary}
+\end{figure}
+
+Les courbes ROC\footnote{\gls{Courbe AUC ROC}} et précision-rappel du modèle binaire confirment de bonnes performances globales.
+L'AUC-ROC de 0,867 indique que le modèle est capable de séparer correctement les paires parallèles des
+paires non parallèles dans 86,7\% des cas, quelle que soit la valeur du seuil de décision. La courbe ROC
+présente une montée initiale rapide, signifiant que le modèle atteint un taux de vrais positifs élevé à
+faible coût en faux positifs, ce qui est particulièrement souhaitable. La courbe précision-rappel, avec un score de précision
+moyenne de 0,934, est encore plus favorable. Elle montre que pour des valeurs de rappel allant jusqu'à
+environ 0,5, la précision se maintient proche de 1,0, prouvant que le modèle peut être utilisé en mode
+conservateur pour extraire un sous-ensemble de paires de très haute qualité avec très peu de bruit.
+La dégradation de la précision n'intervient qu'au-delà d'un rappel d'environ 0,5, lorsque le modèle
+commence à récupérer les paires les plus ambiguës. Ces résultats suggèrent que l'ajustement du seuil de
+décision constitue un levier important pour adapter le comportement du classifieur selon que l'on privilégie
+la précision ou le rappel.
+
+L'évaluation du modèle binaire repose sur un rapport de classification incluant précision, rappel
+et score F1 pour chaque classe, ainsi que sur une matrice de confusion permettant d'identifier les types
+d'erreurs les plus fréquents. La courbe ROC et la courbe précision-rappel complètent cette évaluation en
+quantifiant la capacité du modèle à séparer les deux classes à différents seuils de décision. Ces deux
+courbes sont particulièrement pertinentes dans notre contexte, où le coût d'un faux positif (une paire
+non parallèle incorrectement retenue) et celui d'un faux négatif (une paire parallèle incorrectement
+rejetée) ne sont pas nécessairement symétriques selon l'usage visé. L'analyse des coefficients du modèle
+permet enfin d'identifier quelles variables contribuent le plus à la décision de classification. On
+s'attend à ce que le score SBERT soit le contributeur principal, les variables de surface venant en
+complément pour les cas où la similarité sémantique seule ne suffit pas à trancher.
+
+\subsection{Évaluation du modèle multiclasse}
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{confusion_multiclass.png}
-    \caption{confusion multiclass}
+    \caption{Matrice de confusion du modèle multiclasse}
     \label{confusion_multiclass}
 \end{figure}
 
@@ -641,28 +686,6 @@ semi-parallèle et parallèle correspondent probablement à des cas où la tronc
 pas suffisamment dégradé les variables pour distinguer les deux catégories. Ces résultats montrent que la
 frontière entre paires semi-parallèles et non parallèles est la plus difficile à établir, ce qui est cohérent
 avec la nature artificielle des semi-parallèles présentent dans nos sous-ensemble.
-
-\newpage
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{roc_pr_binary.png}
-    \caption{roc pr binary}
-    \label{roc_pr_binary}
-\end{figure}
-
-Les courbes ROC\footnote{\gls{Courbe AUC ROC}} et précision-rappel du modèle binaire confirment de bonnes performances globales.
-L'AUC-ROC de 0,867 indique que le modèle est capable de séparer correctement les paires parallèles des
-paires non parallèles dans 86,7\% des cas, quelle que soit la valeur du seuil de décision. La courbe ROC
-présente une montée initiale rapide, signifiant que le modèle atteint un taux de vrais positifs élevé à
-faible coût en faux positifs, ce qui est particulièrement souhaitable. La courbe précision-rappel, avec un score de précision
-moyenne de 0,934, est encore plus favorable. Elle montre que pour des valeurs de rappel allant jusqu'à
-environ 0,5, la précision se maintient proche de 1,0, prouvant que le modèle peut être utilisé en mode
-conservateur pour extraire un sous-ensemble de paires de très haute qualité avec très peu de bruit.
-La dégradation de la précision n'intervient qu'au-delà d'un rappel d'environ 0,5, lorsque le modèle
-commence à récupérer les paires les plus ambiguës. Ces résultats suggèrent que l'ajustement du seuil de
-décision constitue un levier important pour adapter le comportement du classifieur selon que l'on privilégie
-la précision ou le rappel.
 
 \section{Validation du modèle}
 
@@ -687,7 +710,7 @@ distinct du corpus d'entraînement. Elle repose sur deux programmes distincts do
 intentionnelle : un script de préparation des données d'une part, et un notebook d'inférence et d'analyse
 d'autre part.
 
-\subsection{Préparation du corpus de validation}
+\subsection{Préparation du corpus de validation} \label{prepa_corpus_v}
 
 Les fichiers textes bruts issus des dossiers de validation sous d'abord transformés en tableaux
 structurés de paires de phrases exploitables par le classifieur. Ce découpage en deux étapes présente un
@@ -731,7 +754,17 @@ exporté sous forme de CSV structuré, avec une ligne par paire de phrases et de
 variété linguistique, le code langue, la paire de documents d'origine, la phrase française et la phrase
 régionale.
 
-%extrait du tableau CSV de phrases
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{extract_sentence_pairs_comparable.png}
+    \caption{Extrait du CSV des paires de phrases}
+    \label{extract_sentence_pairs_comparable}
+\end{figure}
+
+Voici ce que donne l'apairage des phrases comparables sous forme de CSV (voir figure \ref{extract_sentence_pairs_comparable}).
+Chaque phrase en français est appariée, dans cet exemple, à une phrase en alsacien pour que le programme de validation
+infére ensuite si une phrase est parallèle, semi-parallèle ou non parallèle et la classer en fonction.
+Ces données sont triées pour chaque paire de document fr-lr (lr pour langue régionale) et réalisé pour chaque paire langagière.
 
 \subsection{Inférence et analyse}
 
@@ -759,13 +792,6 @@ telles que les indices de Jaccard. Au niveau des langues, la comparaison permet 
 mesure le modèle, entraîné généralise correctement à des langues
 structurellement différentes les unes des autres.
 
-% Les visualisations produites complètent cette analyse quantitative. La distribution des scores SBERT par
-% variété permet d'observer si les paires candidates présentent des scores significativement supérieurs à
-% l'ensemble des comparaisons effectuées, ce qui constituerait une validation indirecte de la pertinence du
-% filtrage. La courbe d'effet du seuil de confiance permet quant à elle d'identifier le point d'inflexion à
-% partir duquel une élévation du seuil entraîne une réduction rapide du nombre de candidates sans gain
-% substantiel en qualité moyenne, informant ainsi le choix du seuil opérationnel.
-
 Enfin, les paires candidates retenues sont exportées sous forme de CSV, à la fois dans un fichier global
 et dans des fichiers individuels par variété. Ces fichiers constituent la sortie opérationnelle du système :
 ils contiennent les fragments parallèles et semi-parallèles identifiés automatiquement dans le corpus
@@ -773,23 +799,25 @@ comparable, accompagnés de l'ensemble des scores calculés, et peuvent être ut
 les ressources parallèles disponibles pour les langues régionales étudiées.
 
 %extrait du tableau CSV de phrases candidates
-% \begin{figure}[h]
+% \begin{figure}[H]
 %     \centering
 %     \includegraphics[width=\textwidth]{extrait_phrases_candidates.png}
 %     \caption{Extrait du CSV de phrases candidates}
 %     \label{extrait_phrases_candidates}
 % \end{figure}
 
-\section{Résultats de la validation}
+\section{Résultats de la validation} \label{results_validation}
 
-/! REFAIRE CES DONNEES CAR ELLES NE SONT PAS PARFAITEMENT JUSTES
-
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{heatmap_sbert_validation.png}
     \caption{heatmap sbert validation}
     \label{heatmap_sbert_validation}
 \end{figure}
+
+%TODO
+/! MODIFIER CE TEXTE
+%TODO
 
 Cette heatmap présente les scores SBERT moyens des paires candidates retenues par variété
 linguistique et par classe prédite par le modèle multiclasse. Les classes sont encodées numériquement :
@@ -811,7 +839,7 @@ lors de l'évaluation sur le jeu de test, à séparer ces deux catégories par l
 
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Sbert_distribution_by_lp.png}
     \caption{Distribution des scores SBERT moyen par langues}
@@ -839,7 +867,11 @@ proches. Pour l'occitan et les variétés alsaciennes, la distribution des candi
 s'explique par le volume plus important de comparaisons disponibles et donc une diversité plus importante de
 paires potentiellement ambiguës atteignant le seuil de confiance.
 
-\begin{figure}[h]
+%TODO
+/! MODIFIER CE GRAPHIQUE POUR QUE CE SOIT UN KDE
+%TODO
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{trust_threshold.png}
     \caption{Seuil de confiance par sbert moyen et nombre de candidats}
@@ -847,20 +879,54 @@ paires potentiellement ambiguës atteignant le seuil de confiance.
 \end{figure}
 
 Ce graphique à double axe permet d'observer simultanément l'évolution du nombre de paires candidates et
-du score SBERT moyen de ces candidates en fonction du seuil de confiance appliqué, le seuil actuel de 0,65
+du score SBERT moyen de ces candidates en fonction du seuil de confiance appliqué, le seuil actuel de 0,75
 étant matérialisé par la ligne pointillée rouge. Le nombre de paires candidates décroît de manière monotone et
 régulière à mesure que le seuil augmente,
-passant d'environ 280 000 paires à un seuil de 0,50 à environ 25 000 paires à un seuil de 0,95. La
+passant d'environ {275 000} paires à un seuil de 0,50 à environ {25 000} paires à un seuil de 0,95. La
 décroissance est approximativement linéaire entre 0,50 et 0,75, puis ralentit légèrement au-delà,
-indiquant qu'un noyau de paires bénéficie d'une confiance très élevée du modèle. Au seuil actuel de 0,65,
-environ 160 000 paires sont retenues, ce qui représente un volume conséquent mais cohérent avec la taille
+indiquant qu'un noyau de paires bénéficie d'une confiance très élevée du modèle. Au seuil actuel de 0,75,
+environ {100 000} paires sont retenues, ce qui représente un volume cohérent avec la taille
 totale du corpus traité.
 
-Le score SBERT moyen des candidates évolue en sens inverse, progressant de 0,38 à un seuil de 0,50 jusqu'à
-environ 0,63 à un seuil de 0,95. Cette progression confirme que l'élévation du seuil de confiance permet
+Le score SBERT moyen des candidates évolue en sens inverse, progressant d'environ 0,35 à un seuil de 0,50 jusqu'à
+environ 0,70 à un seuil de 0,95. Cette progression confirme que l'élévation du seuil de confiance permet
 effectivement de sélectionner des paires présentant une proximité sémantique plus élevée. On observe
 cependant que la progression du score SBERT moyen s'accélère au-delà de 0,75, passant de ~0,5
 à ~0,7 entre 0,75 et 0,95 de seuil de confiance, alors que le gain entre 0,50 et 0,75 est plus modeste (de ~0,4 à ~0,5).
 Ce point autour de 0,75 constitue une information utile pour le réglage du seuil. Un seuil dans cette
-zone permettrait de réduire significativement le volume de candidates tout en garantissant une qualité
-sémantique supérieure à celle obtenue avec le seuil actuel de 0,65.
+zone permet de réduire le volume de paires candidates tout en garantissant une bonne qualité
+sémantique.
+
+\section{Analyse globale des résultats}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{top_candidates.png}
+    \caption{Top 5 des paires candidates}
+    \label{top_candidates}
+\end{figure}
+
+On remarque que les candidates avec le plus haut score de confiance proviennent
+toutes de l'occitan. Cette langue étant la plus proche phonétiquement et sémantiquement
+du français cette observation est parfaitement cohérente. 
+
+Cependant pour parvenir à ces paires nous avons dû limiter légèrement quelles paires
+deviendrait des candidates. En effet, on remarque que certaines
+des phrases provenant du wikipédia en occitan ne sont en faites pas traduite mais simplement des phrases en français.
+ainsi nous avons empêcher les paires présentant un score SBERT parfait et les phrases équivalentes
+de devenir des paires candidates (cf \ref{code_candidates_limitation}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{code_candidates_limitation.png}
+    \caption{Code de limitation des candidates}
+    \label{code_candidates_limitation}
+\end{figure}
+
+Les visualisations produites dans \ref{results_validation} présente une analyse quantitative de l'inférence
+du modèle (voir \ref{prepa_corpus_v}).La distribution des scores SBERT par
+dialecte permet d'observer si les paires candidates présentent des scores significativement supérieurs à
+l'ensemble des comparaisons effectuées, ce qui constituerait une validation indirecte de la pertinence du
+filtrage. La courbe d'effet du seuil de confiance permet quant à elle d'identifier le point à
+partir duquel une élévation du seuil entraîne une réduction rapide du nombre de candidates sans gain
+substantiel en qualité moyenne, informant ainsi le choix du seuil opérationnel.
