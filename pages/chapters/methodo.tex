@@ -110,7 +110,6 @@ première apparition.
 
 \section{Séparation du corpus}
 
-%CORPUS_DIR = "corpus/"
 Nous commencons par constituer un ensemble de paires de fichiers textes, 
 chacune associant un document source en français à son équivalent dans une langue régionale. 
 Pour l'Atlas LIMSI, le texte français de référence est systématiquement mis en regard de chacune des versions
@@ -137,7 +136,6 @@ la cohérence structurelle des données d'entraînement avant toute opération d
 
 \subsection{Création de données semi et non-parallèles}
 
-%def build_parallel_subset(pairs, size=None):
 Une fois les paires parallèles chargées, nous créons trois sous-ensembles 
 distincts destinés à l'entraînement du modèle de régression logistique un sous-ensemble de paires 
 parallèles, un autre de paires semi-parallèles, et un dernier composé de paires non parallèles.
@@ -757,7 +755,7 @@ régionale.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{extract_sentence_pairs_comparable.png}
-    \caption{Extrait du CSV des paires de phrases}
+    \caption{Extrait du CSV des paires de phrases.}
     \label{extract_sentence_pairs_comparable}
 \end{figure}
 
@@ -773,7 +771,7 @@ Ces données sont triées pour chaque paire de document fr-lr (lr pour langue r�
 Pour la validation nous chargeons les CSV produits par le script de préparation. Nous calculons ensuite les variables
 d'apprentissage sur l'ensemble des paires, puis appliquons les deux modèles entraînés (binaire et multiclasse). 
 Nous calculons pour chaque paires les mêmes variables que celles que nous avons calculé pour le corpus d'entraînement.
-Cette cohérence est indispensable pour garantir
+Cette étape est indispensable pour garantir
 que les données présentées au classifieur soit comparables à celles sur lesquelles il
 a été entraîné. Les variables sont ensuite normalisées à l'aide du scaler ajusté lors de l'entraînement.
 
@@ -811,38 +809,42 @@ les ressources parallèles disponibles pour les langues régionales étudiées.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{heatmap_sbert_validation.png}
-    \caption{heatmap sbert validation}
+    \caption{Score SBERT moyen par classe et dialecte.}
     \label{heatmap_sbert_validation}
 \end{figure}
 
-%TODO
-/! MODIFIER CE TEXTE
-%TODO
+Cette heatmap présente les scores SBERT moyens des paires candidates retenues lors de la validation,
+ventilés par dialecte et par classe prédite par le modèle multiclasse. Les classes sont encodées
+numériquement : 1 correspond aux paires parallèles et 2 aux paires semi-parallèles. Contrairement à
+la heatmap produite lors de l'évaluation sur le jeu de test, la classe 0 (non parallèle) est absente
+de cette figure, ce qui signifie qu'aucune paire non parallèle n'a franchi le seuil de confiance pour
+aucune des variétés. Ce résultat constitue une amélioration notable par rapport à la heatmap précédente,
+où fr\_gsw\_alsacien, fr\_gsw\_mulhousien et fr\_oc présentaient des scores non nuls pour la classe 0,
+indiquant la présence de faux positifs résiduels. L'absence totale de la classe 0 ici suggère que le
+modèle, appliqué au corpus Wikipédia, filtre efficacement les paires sans lien sémantique.
 
-Cette heatmap présente les scores SBERT moyens des paires candidates retenues par variété
-linguistique et par classe prédite par le modèle multiclasse. Les classes sont encodées numériquement :
-0 correspond aux paires non parallèles, 1 aux paires parallèles et 2 aux paires semi-parallèles. Plusieurs
-observations méritent attention. Pour commencer, le corse et le strasbourgeois, la classe 0 affiche un score de 0,00, ce qui signifie qu'aucune paire
-non parallèle n'a été retenue parmi les candidates pour ces deux variétés au seuil de confiance appliqué.
-Ce résultat est cohérent avec le comportement attendu du filtre. Le modèle a correctement écarté les paires
-sans lien sémantique pour ces langues. Pour l'alsacien standard, le mulhousien et l'occitan en revanche, un
-score non nul pour la classe 0 indique qu'un certain nombre de paires non parallèles ont tout de même
-franchi le seuil de confiance, ce qui constitue des faux positifs résiduels.
+Les scores des classes parallèle et semi-parallèle sont globalement cohérents avec ceux observés lors de
+l'évaluation sur le jeu de test, avec quelques différences notables. Le corse conserve les scores les plus
+élevés pour les deux classes, à 0,57 et 0,58 respectivement, confirmant la tendance observée précédemment
+et la meilleure captation de la proximité sémantique entre le français et cette langue romane par le modèle
+SBERT. Le strasbourgeois présente des scores intermédiaires à 0,52 et 0,53, nettement supérieurs à ceux de
+l'alsacien standard et du mulhousien qui se situent entre 0,44 et 0,47. Cette hiérarchie au sein des variétés
+alsaciennes est intéressante : elle suggère que le strasbourgeois, dont la graphie est peut-être plus
+influencée par le français que les deux autres variétés, produit des paires candidates sémantiquement
+plus proches du français. L'occitan affiche un score parallèle de 0,50, légèrement supérieur à celui de
+l'alsacien standard, mais un score semi-parallèle de seulement 0,45, inférieur à celui du strasbourgeois.
 
-Les scores des classes parallèle et semi-parallèle sont remarquablement stables entre variétés, oscillant
-entre 0,41 et 0,54. Le corse présente les scores les plus élevés pour ces deux classes (0,54). Cela
-suggère que les paires candidates retenues pour cette langue présentent une proximité sémantique plus
-marquée que pour les autres variétés, probablement en raison de la plus grande proximité structurelle du
-corse avec le français comparativement à l'alsacien. L'absence de différence notable entre les scores des
-classes parallèle et semi-parallèle pour la plupart des variétés confirme la difficulté, déjà observée
-lors de l'évaluation sur le jeu de test, à séparer ces deux catégories par le seul score sémantique.
+On notera également que les scores des classes parallèle et semi-parallèle sont très proches pour
+chaque dialecte, l'écart maximal observé étant de 0,05 pour le mulhousien. Cette proximité confirme
+la difficulté structurelle à distinguer ces deux catégories par le seul score sémantique, déjà identifiée
+lors de l'analyse des matrices de confusion et des distributions KDE.
 
 \newpage
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Sbert_distribution_by_lp.png}
-    \caption{Distribution des scores SBERT moyen par langues}
+    \caption{Distribution des scores SBERT moyen par langues.}
     \label{Sbert_distribution_by_lp}
 \end{figure}
 
@@ -874,7 +876,7 @@ paires potentiellement ambiguës atteignant le seuil de confiance.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{trust_threshold.png}
-    \caption{Seuil de confiance par sbert moyen et nombre de candidats}
+    \caption{Seuil de confiance par sbert moyen et nombre de candidats.}
     \label{trust_threshold}
 \end{figure}
 
@@ -902,7 +904,7 @@ sémantique.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{top_candidates.png}
-    \caption{Top 5 des paires candidates}
+    \caption{Top 5 des paires candidates.}
     \label{top_candidates}
 \end{figure}
 
@@ -919,7 +921,7 @@ de devenir des paires candidates (cf \ref{code_candidates_limitation}).
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{code_candidates_limitation.png}
-    \caption{Code de limitation des candidates}
+    \caption{Code de limitation des candidates.}
     \label{code_candidates_limitation}
 \end{figure}
 
