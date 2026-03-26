@@ -1,15 +1,33 @@
 \unnumberedchap{Conclusion}
 \noindent\rule{\textwidth}{0.4pt}
 
-Pour conclure, nous avons pu voir dans l'état de l'art plusieurs des méthodes utilisées par le passé.
-À partir d'archives et de recueil de textes, nous pouvons composer un corpus comparable
-dans les langues que nous étudions. Pour ce faire nous utiliserons des données provenant du projet
-PARCOLAB \citep{stosic_2024},
-de l'atlas LIMSI, du corpus de la parabole de l'enfant prodigue et du corpus de \citet{tsolakis_2024}.
-Une fois notre corpus composé, nous pouvons utiliser des méthodes
-établies dans l'état de l'art afin d'aligner les corpus et d'identifier des fragments parallèles.
-Pour ce faire, nous pouvons utiliser des outils d'alignement basé sur le CLIR, ainsi que des méthodes
-basées sur le plongement lexical. Comme, par exemple, celles établies par des projets tels que FaDA
-\citep{lohar_2016}. Ce projet se basant sur le minage de site web. Ces outils peuvent être combinés
-à la réutilisation de segments parallèles présentée par \citet{steingrimsson_2023}, afin d'extraire des
-segments intéressants, utiles, qui auraient d'abord été rejetés.
+Pour conclure nous avons pu, a partir d'un état de l'art couvrant plusieurs méthodes d'alignement statistique,
+ainsi que des architectures de réseaux neuronaux et des approches de réutilisation de données imparfaites, élaboré une chaîne de 
+traitement adaptée aux contraintes des langues régionales de France. Pour ce faire il a tout d'abord fallu composer un corpus d'entraînement.
+Pour ce faire nous avons utiliser 3 sources principales{ :} ParCoLab \citep{stosic_2024}, 
+l'Atlas LIMSI et la parabole de l'enfant prodigue. À partir de ce corpus nous avons pu constituer des sous-ensembles semi-parallèles et
+non parallèles artificielles. Ces sous-ensemble, associé à l'ensemble des paires parallèles ont pu être notées selon les méthodes suivantes{ :}
+\begin{itemize}
+    \item Score sémantique SBERT
+    \item Indice de Jaccard sur les bi, tri et quadrigrammes de caractères
+    \item Jaccard phonétique
+    \item Score de longueur.
+\end{itemize}
+
+Les résultats de l'entraînement d'un modèle de régression logistique sur ces données montrent des performances globalement satisfaisantes,
+avec un AUC-ROC de 0,867 pour le modèle binaire et une
+précision moyenne de 0,934 sur la courbe précision-rappel. Le modèle se révèle particulièrement conservateur, ce qui est souhaitable dans notre
+contexte où la qualité des paires prime sur leur quantité. La validation sur le corpus Wikipédia basé sur le travail de \citet{tsolakis_2024}
+confirme que le pipeline généralise
+correctement à des textes différent thématiquement et stylistiquement du corpus d'entraînement. Les paires retenues
+présentent des scores SBERT systématiquement supérieurs à la moyenne des comparaisons totales, validant l'efficacité du filtrage.
+Plusieurs limites ont néanmoins été identifiées. La sous-représentation du corse dans le corpus d'entraînement fragilise les performances sur
+cette langue. La classe semi-parallèle reste difficile à séparer des paires non parallèles dans le modèle
+multiclasse, avec un taux de classification correcte de seulement 49,8\%.
+Ces résultats ouvrent plusieurs pistes de continuation. L'enrichissement du corpus d'entraînement, notamment pour le corse, permettrait de
+renforcer la robustesse du modèle. L'intégration de méthodes d'alignement documentaire préalable telles que FaDA \citet{tsolakis_2024},
+réduirait l'espace de recherche
+et améliorerait la précision de l'extraction. Enfin, le remplacement de la régression logistique par un classifieur neuronal entraîné sur des
+représentations SBERT affinées constituerait une évolution naturelle, dans la continuité des travaux de \citet{tan_2022} sur les
+langues peu dotées. Une autre évolution serait de segmenter les phrases et de vérifier directement dans les segments créés lesquelles serait
+parallèles ou semi-parallèles pour chaque segment dans la phrase entre le français et les langues régionales.

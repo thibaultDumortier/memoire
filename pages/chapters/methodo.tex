@@ -145,7 +145,9 @@ parallèles, un autre de paires semi-parallèles, et un dernier composé de pair
 Le sous-ensemble parallèle est constitué directement à partir des paires chargées précédemment. Si une 
 taille maximale a été définie par l'utilisateur, un échantillonnage aléatoire est effectué afin de ne 
 retenir qu'un nombre limité de paires. Dans le cas contraire, l'intégralité des paires disponibles est 
-conservée.
+conservée. On peux cependant remarquer qu'à l'intérieur du corpus ParCoLab certains fichiers ne sont pas alignés.
+En effet, il y manque des phrases ou des phrases supplémentaires sont présente. Nous avons donc opté de ne pas
+utiliser ces fichiers lors de l'apprentissage subséquent du modèle de régression logistique.
 
 Le sous-ensemble semi-parallèle, répondant à la notion vu dans \ref{limsi_intertext}, est généré artificiellement
 à partir de ces mêmes paires parallèles, en 
@@ -281,7 +283,7 @@ Avant ce calcul, les phrases sont normalisées par suppression de la casse, de l
 afin de réduire le bruit lié aux variations orthographiques, très fréquentes dans les langues
 régionales dont la normalisation est parfois incomplète.
 
-\subsection{Représentations pseudo-phonétiques}
+\subsection{Représentations phonétiques}
 
 Une dernière variable exploite les similarités phonétiques entre les phrases via la bibliothèque Python
 jellyfish \citep{turk_2013}. Les phrases sont d'abord encodées selon l'algorithme Metaphone \citep{philips_1990},
@@ -297,6 +299,21 @@ Le modèle apprend ainsi à combiner ces différentes variables pour reconnaîtr
 typiques des phrases parallèles et à distinguer les paires non parallèles. L'entraînement sur des données
 semi-parallèles devrait de plus rendre le modèle capable d'identifier ce type de segments, dont la présence
 est particulièrement fréquente dans les corpus dialectaux comme celui de l'Atlas LIMSI.
+
+\subsubsection{Difficultés rencontrées - phonétique}
+
+L'utilisation de la bibliothèque jellyfish pour le calcul des représentations phonétiques a soulevé plusieurs difficultés pratiques.
+L'algorithme Metaphone sur lequel elle s'appuie a été conçu pour l'anglais et encode les mots selon des règles phonétiques propres à cette langue.
+Son application directe à des textes en français et en langues régionales produit donc des représentations approximatives, parfois
+erronées. Par exemple,
+le digramme {« }ch{ »} en français ne correspond pas phonétiquement aux conventions Metaphone qui lui attribue /K/ phonétiquement.
+De même, les caractères accentués fréquents dans les langues romanes — tels que « è », « à » ou « ï » — ne sont pas gérés nativement par
+l'algorithme. L'étape de normalisation unicode préalable, qui supprime les diacritiques par décomposition, atténue partiellement ce problème mais
+introduit en contrepartie une perte d'information phonétique. Une alternative plus rigoureuse aurait consisté à utiliser des transcriptions
+phonétiques basées sur l'API (Alphabet Phonétique International), mais aucun outil libre permettant de l'utiliser n'existe à notre connaissance.
+Malgré ces limites, l'indice de Jaccard phonétique apporte une contribution
+positive au modèle, ce qui suggère que même une représentation phonétique approximative capture un signal utile pour les langues partageant des
+racines étymologiques communes avec le français.
 
 \subsection{Application programmatique}
 
@@ -529,6 +546,44 @@ appliquée à l'ensemble des combinaisons de phrases d'un corpus comparable non 
 liste de paires candidates classées selon leur parallèlisme. Cette étape constitue le point
 d'articulation entre le travail de classification réalisé sur les données d'entraînement
 et l'application opérationnelle du modèle sur le corpus Wikipédia utilisé pour la validation.
+
+\subsection{Difficultés futures - entraînement}
+
+La sauvegarde des modèles entraînés et du scaler de normalisation a été réalisée
+à l'aide de la bibliothèque joblib. Cette approche, bien que courante et documentée dans
+l'écosystème scikit-learn, soulève plusieurs difficultés. La première difficulté est liée à la
+dépendance stricte aux versions des bibliothèques utilisées lors de
+l'entraînement. Un fichier .joblib produit avec une version donnée de
+scikit-learn n'est pas garanti d'être désérialisable avec une autre version de la librairie.
+Cela tient au fait que joblib sérialise non seulement les
+paramètres appris du modèle mais également la structure interne des objets
+Python tels qu'ils existent dans la version de la bibliothèque au moment de la
+sauvegarde. Si cette structure change entre deux versions, la désérialisation
+échoue ou produit un objet incohérent. Dans le cadre de ce mémoire,
+cette contrainte implique que le déploiement du modèle sur une autre machine
+nécessite de reproduire exactement l'environnement logiciel utilisé lors de
+l'entraînement, ce qui peut s'avérer complexe sans gestion explicite des
+dépendances ou un environnement figé. La
+deuxième difficulté est d'ordre sécuritaire. La désérialisation d'un fichier .
+joblib repose le module pickle de Python, qui est notoirement
+vulnérable à l'exécution de code arbitraire. Le processus de désérialisation
+reconstruit des objets en exécutant du code embarqué dans le fichier
+binaire, sans contrôle préalable sur la nature de ce code. Bien que cette
+vulnérabilité soit sans conséquence dans un contexte de recherche où les
+fichiers sont produits et consommés par le même environnement, elle constitue
+une limite importante si le modèle venait à être distribué ou intégré dans une
+chaîne de traitement partagée. La troisième difficulté concerne le couplage entre le modèle et le scaler.
+Dans notre pipeline, le
+modèle de régression logistique et le scaler de standardisation sont sauvegardés
+séparément dans deux fichiers .joblib distincts. Cette séparation impose que les
+deux fichiers soient toujours chargés conjointement et dans le bon ordre lors de
+l'inférence. Le scaler doit être appliqué en premier sur les variables brutes avant que
+celles-ci ne soient transmises au classifieur. Si l'un des deux fichiers est
+absent, corrompu ou remplacé par une version incompatible(dans le cas ou le scaler se base sur un jeu de données différentes par exemple)
+les prédictions produites deviennent erronées, sans qu'aucune erreur ne soit relevée. Ce type de défaillance
+silencieuse est particulièrement difficile à détecter en production. Une approche plus robuste consisterait à encapsuler le scaler et le modèle
+dans un pipeline scikit-learn unique via sklearn.pipeline.Pipeline, qui garantit que la normalisation est toujours appliquée
+avant la classification et permet de sauvegarder l'ensemble de manière plus stable.
 
 \newpage
 
@@ -930,3 +985,25 @@ l'ensemble des comparaisons effectuées, ce qui constituerait une validation ind
 filtrage. La courbe d'effet du seuil de confiance permet quant à elle d'identifier le point à
 partir duquel une élévation du seuil entraîne une réduction rapide du nombre de candidates sans gain
 substantiel en qualité moyenne, informant ainsi le choix du seuil opérationnel.
+
+L'analyse croisée des résultats quantitatifs produits permet de présenter plusieurs observations.
+Premièrement, la distribution des scores SBERT confirme de manière cohérente la hiérarchie attendue entre les trois classes à chaque étapes{ :}
+entraînement, évaluation sur le jeu de test et validation sur Wikipédia. Les médianes de 0,17, 0,40 et 0,60 observées pour les
+paires non parallèles, semi-parallèles et parallèles sur le corpus d'entraînement se retrouvent approximativement dans les résultats de
+validation, avec des scores moyens de paires candidates compris entre 0,42 et 0,54 selon les variétés. Cette stabilité suggère que le modèle SBERT,
+bien qu'entraîné majoritairement sur des langues bien dotées, capte une partie du signal sémantique pertinent pour les langues
+régionales étudiées. Deuxièmement, la variable
+la plus discriminante s'avère être l'indice de Jaccard sur les quadrigrammes de caractères, avec un coefficient normalisé d'environ 3,0 dans
+le modèle binaire, devançant le score SBERT (1,4) et l'indice phonétique (1,0). Ce résultat est contre-intuitif au regard de la littérature,
+qui tend à présenter les méthodes sémantiques comme centrales. Il s'explique cependant par la nature des langues étudiées. En effet, l'occitan et le
+corse partagent avec le français une graphie suffisamment proche pour que les chevauchements de
+séquences de quatre caractères constituent un signal fiable. Ce phénomène est moins marqué pour l'alsacien, langue germanique, ce qui
+explique en partie les scores de discrimination plus faibles observés pour la paire fr-gsw, avec une marge entre paires parallèles et
+non parallèles de seulement 0,30 contre 0,51 pour le corse. Troisièmement, le déséquilibre en volume entre les langues a des conséquences
+mesurables sur les résultats. La distribution quasi-parfaite des classes pour la paire
+fr-oc (34,3\% chacune) contraste avec le déséquilibre observé pour la paire fr-gsw (35,5\% de non parallèles), et les performances du
+classifieur sur le corse dans la phase de validation restent fragiles en raison du très faible volume de ce corpus (22 fichiers, 9 004 tokens).
+Ces observations plaident pour un effort d'acquisition ciblé sur le corse et l'alsacien avant toute extension du système. Enfin, la courbe d'effet
+du seuil de confiance révèle qu'un seuil de 0,75 constitue un point d'équilibre raisonnable entre volume et qualité des candidates. En dessous de
+ce seuil, la quantité augmente rapidement mais la qualité sémantique moyenne stagne autour de 0,40 à 0,50. Au-delà, la progression en qualité
+s'accélère mais le volume chute fortement, réduisant l'utilité pratique du systèmes.
