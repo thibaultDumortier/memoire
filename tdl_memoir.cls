@@ -17,7 +17,15 @@
 \renewcommand\frenchfigurename{Figure}
 \usepackage[utf8]{inputenc} % Encoding package
 \usepackage{parskip} % Package for paragraph skip size
-\usepackage{hyperref} % PDF information
+\usepackage{xcolor}
+\usepackage{xcolor-solarized}
+\usepackage[
+    colorlinks=true,
+    hyperfootnotes=false,
+    linkcolor=solarized-base03,
+    citecolor=solarized-red,
+    urlcolor=solarized-blue
+]{hyperref} % PDF information
 
 %%%%%%% LOOKS %%%%%%%
 \usepackage[T1]{fontenc} % Font
@@ -177,5 +185,10 @@
 \renewcommand{\glsnamefont}[1]{\textbf{\textup{#1}}\thispagestyle{empty}}
 
 % Footnote
+\usepackage{remreset}
+\makeatletter
+\@removefromreset{footnote}{chapter}
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
 \interfootnotelinepenalty=10000
 \raggedbottom

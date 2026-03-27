@@ -27,7 +27,7 @@ parallèles, mais également des fragments semi-parallèles.
 
 \section{InterText}
 
-\textit{InterText}\footnote{\hyperlink{https://wanthalf.saga.cz/intertext}{InterText}} \citep{vondricka_2014} est un environnement conçu pour faciliter
+\textit{InterText}\footnote{\href{https://wanthalf.saga.cz/intertext}{InterText}} \citep{vondricka_2014} est un environnement conçu pour faciliter
 l’annotation et l’alignement de textes multilingues. Développé à l’origine pour les études contrastives et les
 sciences du texte, \textit{InterText} permet de comparer des documents appartenant à des langues différentes
 et de produire des alignements fiables au niveau phrase ou paragraphe. Pour réaliser ces alignements \textit{InterText}
@@ -177,11 +177,11 @@ deux phrases est ensuite calculée par similarité cosinus entre leurs embedding
 produisant un score compris entre 0 et 1.
 
 Comme modèle SBERT nous décidons d'utiliser le modèle 
-\textit{paraphrase-multilingual-MiniLM-L12-v2}\footnote{\hyperlink{https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}{paraphrase-multilingual-MiniLM-L12-v2}} \citep{reimers_2019}.
+\textit{paraphrase-multilingual-MiniLM-L12-v2}\footnote{\href{https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2}{paraphrase-multilingual-MiniLM-L12-v2}} \citep{reimers_2019}.
 MiniLM est un modèle distillé, il a été entraîné à imiter le comportement d'un modèle plus grand en 
 reproduisant ses relations d'attention. Le suffixe L12 indique qu'il possède 12 couches de
 transformer, et la dimension de ses embeddings est de 384 dimensions. Un autre modèle nommé 
-\textit{paraphrase-multilingual-mpnet-base-v2}\footnote{\hyperlink{https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2}{paraphrase-multilingual-mpnet-base-v2}} \citep{reimers_2019}
+\textit{paraphrase-multilingual-mpnet-base-v2}\footnote{\href{https://huggingface.co/sentence-transformers/paraphrase-multilingual-mpnet-base-v2}{paraphrase-multilingual-mpnet-base-v2}} \citep{reimers_2019}
 pourrait aussi être intéressant. Le tableau ci-dessous présente les caractéristiques comparatives des deux modèles{ :}
 
 \begin{table}[h!]
@@ -925,7 +925,7 @@ s'explique par le volume plus important de comparaisons disponibles et donc une 
 paires potentiellement ambiguës atteignant le seuil de confiance.
 
 %TODO
-/! MODIFIER CE GRAPHIQUE POUR QUE CE SOIT UN KDE
+/! MODIFIER CE GRAPHIQUE POUR QUE CE SOIT UN KDE (sera fait)
 %TODO
 
 \begin{figure}[H]
