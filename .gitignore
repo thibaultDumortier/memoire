@@ -17,4 +17,5 @@
 *.ist
 .venv/
 data/
+csv/
 resultats_corpus.*
