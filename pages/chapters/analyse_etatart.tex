@@ -6,7 +6,7 @@ de \citet{gale_1991}, reposaient sur des heuristiques simples fondées sur la lo
 méthodes ont posé des bases solides, elles montrent rapidement leurs limites dès lors que les langues étudiées
 présentent des variations dialectales importantes, ce qui est précisément le cas des langues régionales de
 France. La progression vers des méthodes basées sur des représentations vectorielles, puis sur des
-architectures neuronales profondes, répond directement à ces insuffisances. Ce au prix d'une complexité
+architectures neuronales profondes, répond directement à ces insuffisances. Cependant, cela vient au prix d'une complexité
 technique croissante et d'une dépendance accrue aux données d'entraînement.
 
 L'introduction des transformers par \citet{vaswani_2017}, puis de BERT par \citet{devlin_2019}, a représenté
@@ -36,10 +36,10 @@ ressources robustes pour des langues dont la normalisation orthographique est pa
 Face à la rareté des corpus parallèles, les corpus comparables, et notamment ceux issus de Wikipédia, sont
 apparus comme une alternative prometteuse. Les travaux de 
 \citet{sharoff_2013a, sharoff_2016, steingrimsson_2021} ont démontré qu'il était possible d'extraire des fragments
-parallèles exploitables à partir de corpus non alignés. Pour ce faire il faut combiner des techniques d'alignement
+parallèles exploitables à partir de corpus non alignés. Pour ce faire, il faut combiner des techniques d'alignement
 documentaire, de plongement lexical et de filtrage statistique. Cependant, ces travaux concernent
 majoritairement des paires de langues bien dotées, ou au mieux des langues disposant de ressources numériques
-minimales. Leur transposition directe au cas des langues régionales se heurte à plusieurs obstacles concrets{ :}
+minimales. Leurs transpositions directes au cas des langues régionales se heurte à plusieurs obstacles concrets{ :}
 la taille réduite des corpus disponibles, la présence importante de bruit textuel, et l'absence de
 dictionnaires bilingues de qualité suffisante pour alimenter des méthodes comme FaDA \citep{lohar_2016}.
 
@@ -54,8 +54,8 @@ de langues comme le bengali et l'anglais, qui disposent de ressources bien plus 
 l'occitan ou l'alsacien, ce qui invite à la prudence quant à la reproduction de ces performances dans notre cas.
 
 En définitive, les travaux présentés dans cet état de l'art dessinent un paysage méthodologique riche, où les
-approches statistiques classiques ont progressivement donné place à des méthodes neuronales plus puissantes.
-Elles-mêmes enrichies par des stratégies d'exploitation intelligente de données imparfaites.
+approches statistiques classiques ont progressivement donné place à des méthodes neuronales plus puissantes,
+enrichies par des stratégies d'exploitation intelligente de données imparfaites.
 Cependant, aucun des travaux recensés ne traite directement et de manière complète le cas des langues
 régionales de France dans un cadre d'identification de fragments parallèles à partir de corpus comparables.
 C'est précisément dans cet espace que s'inscrit la contribution de notre travail, en cherchant à combiner et

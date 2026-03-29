@@ -1,0 +1,72 @@
+\documentclass[a4paper, 11pt]{tdl_memoir}
+
+%%%%%%%%%%%%%%%%%%%
+%%% Information %%%
+%%%%%%%%%%%%%%%%%%%
+
+\title{
+    Identification de fragments parallèles dans des corpus 
+    comparables pour les langues régionales de France
+}
+\author{DUMORTIER Thibault}
+
+%title and author insertion
+\makeatletter
+\let\inserttitle\@title
+\let\insertauthor\@author
+\makeatother
+
+% PDF info set up
+\hypersetup{
+    pdfauthor = { \insertauthor },
+    pdftitle = { \inserttitle },
+    pdfsubject = { Mémoire de recherche },
+    pdfkeywords = { NLP, TAL, thesis },
+    pdfstartview = { FitH }
+}
+
+\input{pages/glossary.tex}
+
+% ======= Document start =======
+
+\begin{document}
+
+\input{pages/firstpages.tex}
+
+%todo Introduction
+\input{pages/introduction.tex}
+\newpage
+
+% Chapters
+\input{pages/chapters/langues_peu_dotees.tex}
+\newpage
+\input{pages/chapters/corpus_comp.tex}
+\newpage
+\input{pages/chapters/alignement.tex}
+\newpage
+\input{pages/chapters/analyse_etatart.tex}
+\newpage
+\input{pages/chapters/donnees.tex}
+\newpage
+\input{pages/chapters/methodo.tex}
+\newpage
+
+\input{pages/conclusion.tex}
+\newpage
+
+\setcounter{page}{0}
+\printnoidxglossaries
+
+\newpage
+
+\pagestyle{empty}
+\printbibliography
+
+\newpage
+
+\setcounter{page}{90}
+\input{pages/annex.tex}
+
+\newpage
+
+\end{document}

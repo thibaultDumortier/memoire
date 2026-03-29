@@ -1,9 +1,9 @@
 \unnumberedchap{Conclusion}
 \noindent\rule{\textwidth}{0.4pt}
 
-Pour conclure nous avons pu, a partir d'un état de l'art couvrant plusieurs méthodes d'alignement statistique,
+Pour conclure, nous avons pu, a partir d'un état de l'art couvrant plusieurs méthodes d'alignement statistique,
 ainsi que des architectures de réseaux neuronaux et des approches de réutilisation de données imparfaites, élaboré une chaîne de 
-traitement adaptée aux contraintes des langues régionales de France. Pour ce faire il a tout d'abord fallu composer un corpus d'entraînement.
+traitement adaptée aux contraintes des langues régionales de France. Pour ce faire, il a tout d'abord fallu composer un corpus d'entraînement.
 Pour ce faire nous avons utiliser 3 sources principales{ :} ParCoLab \citep{stosic_2024}, 
 l'Atlas LIMSI et la parabole de l'enfant prodigue. À partir de ce corpus nous avons pu constituer des sous-ensembles semi-parallèles et
 non parallèles artificielles. Ces sous-ensemble, associé à l'ensemble des paires parallèles ont pu être notées selon les méthodes suivantes{ :}
@@ -14,9 +14,8 @@ non parallèles artificielles. Ces sous-ensemble, associé à l'ensemble des pai
     \item Score de longueur.
 \end{itemize}
 
-Les résultats de l'entraînement d'un modèle de régression logistique sur ces données montrent des performances globalement satisfaisantes,
-avec un AUC-ROC de 0,867 pour le modèle binaire et une
-précision moyenne de 0,934 sur la courbe précision-rappel. Le modèle se révèle particulièrement conservateur, ce qui est souhaitable dans notre
+Les résultats de l'entraînement d'un modèle de régression logistique sur ces données montrent des performances globalement satisfaisantes.
+Le modèle se révèle particulièrement conservateur, ce qui est souhaitable dans notre
 contexte où la qualité des paires prime sur leur quantité. La validation sur le corpus Wikipédia basé sur le travail de \citet{tsolakis_2024}
 confirme que le pipeline généralise
 correctement à des textes différent thématiquement et stylistiquement du corpus d'entraînement. Les paires retenues
@@ -29,5 +28,5 @@ renforcer la robustesse du modèle. L'intégration de méthodes d'alignement doc
 réduirait l'espace de recherche
 et améliorerait la précision de l'extraction. Enfin, le remplacement de la régression logistique par un classifieur neuronal entraîné sur des
 représentations SBERT affinées constituerait une évolution naturelle, dans la continuité des travaux de \citet{tan_2022} sur les
-langues peu dotées. Une autre évolution serait de segmenter les phrases et de vérifier directement dans les segments créés lesquelles serait
+langues peu dotées. Une autre évolution serait de segmenter les phrases et de vérifier directement dans les segments créés lesquelles seraient
 parallèles ou semi-parallèles pour chaque segment dans la phrase entre le français et les langues régionales.

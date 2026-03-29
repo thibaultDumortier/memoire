@@ -105,11 +105,11 @@ important de noter qu'il est complexe de trouver des corpus parallèles les impl
 \citet{sharoff_2016} donnent plusieurs raisons pour lesquelles la rareté de corpus parallèles est un
 problème important{ :}
 \begin{enumerate}
-\item En utilisant un corpus parallèle, un bitexte est nécessaire par paire langagière. En utilisant un
+\item En utilisant un corpus parallèle, un bitexte\footnote{\gls{Bitexte}} est nécessaire par paire langagière. En utilisant un
 corpus comparable, un corpus monolingue par langue suffit.
 \item Il est bien plus difficile de trouver un corpus d'entraînement parallèle approprié qu'un corpus
 d'entraînement comparable pour des systèmes de traductions spécialisés.
-\item Une langue évoluant dans le temps, il est plus compliqué de mettre à jour un corpus parallèle.
+\item Il est plus complexe de mettre à jour un corpus parallèle dû au fait que les langues évoluent dans le temps.
 \end{enumerate}
 Ces raisons nous montrent que les corpus parallèles ont plusieurs problèmes importants. Ces problèmes
 sont plus importants pour des langues vivantes peu dotées, comme les langues régionales de France étudiées
@@ -118,7 +118,7 @@ mais plutôt au côté technique de ce genre de recherche.
 
 \section{Avantages des corpus comparables}
 
-Les corpus comparables ont plusieurs avantages comparés aux corpus parallèles{ :}
+Les corpus comparables ont plusieurs avantages comparés aux corpus parallèles \citep{sharoff_2013a} { :}
 \begin{itemize}
 \item Facilité d'acquisition (Comme précisé précédemment dans \ref{désavantage})
 \item Moins de corpus nécessaires. Par exemple, dans le cas d'extraction de dictionnaires couvrant toutes paires
@@ -127,14 +127,13 @@ bidirectionnels). Pour s'occuper des 45 paires, on aurait besoin de 10 corpus da
 comparable, contre 45 corpus potentiels dans le cas des corpus parallèles. Bien que le nombre de corpus
 parallèles puisse être réduit dépendant des traductions présentes entre les documents.
 \end{itemize}
-\citep{sharoff_2013a}
 
 Il est intéressant de remarquer une augmentation dans le nombre de projets sur les corpus
 comparables qui ont vu le jour (par exemple, ACCURAT\footnote{\href{http://www.accurat-project.eu/}{ACCURAT}} ou
 TTC\footnote{\href{https://www.ttc-project.eu/concept-and-objectives/}{TTC}}). Ces projets s'intéressent à
 l'utilisation de corpus pour la traduction automatique \citep{sharoff_2016}.
 
-Il est aussi important de noter qu'il y a une corrélation entre les cooccurrences de certains mots.
+Il est aussi important de noter qu'il y a une corrélation entre les co-occurrences de certains mots.
 Dans le cas des corpus comparables, l’hypothèse distributionnelle joue un rôle central.
 Des mots apparaissant fréquemment dans des contextes similaires au sein de documents traitant
 d’un même sujet ont de fortes chances d’être des équivalents en termes de traduction.

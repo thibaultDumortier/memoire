@@ -14,6 +14,15 @@ constituer et diffuser un corpus de textes alignés dans différentes
 langues, dont des langues régionales de France centrales du projet.
 Ces textes sont alignés au niveau des phrases, ce qui permet d’effectuer des analyses comparatives fines.
 
+L’Atlas sonore des langues régionales du LIMSI (Laboratoire LIMSI, CNRS) \citep{boulademareuil_2017} est
+une ressource patrimoniale remarquable. Ce projet consiste en une
+carte interactive de France (voir figure \ref{atlas_limsi_fig}) sur laquelle sont disséminés plus de 200 commune où
+des locuteurs ont enregistré des versions d’un même texte{ :} la fable d’Ésope \textit{La bise et le soleil}.
+Ces enregistrements, souvent retranscrits dans des graphies adaptées, permettent d’étudier des dialectes
+des diverses langues régionales françaises, et d’analyser la variation phonétique, lexicale ou morphologique
+dans un contexte de terrain. Grâce à cette ressource, nous avons pu intégrer des textes en occitan très variés
+phonétiquement, enrichissant le corpus avec des variations dialectiques.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{atlas_limsi.png}
@@ -21,16 +30,7 @@ Ces textes sont alignés au niveau des phrases, ce qui permet d’effectuer des 
     \label{atlas_limsi_fig}
 \end{figure}
 
-L’Atlas sonore des langues régionales du LIMSI (Laboratoire LIMSI, CNRS) \citep{boulademareuil_2017} est
-une ressource patrimoniale remarquable. Ce projet, consiste en une
-carte interactive de France sur laquelle sont disséminés plus de 200 commune où
-des locuteurs ont enregistré des versions d’un même texte{ :} la fable d’Ésope \textit{La bise et le soleil}.
-Ces enregistrements, souvent retranscrits dans des graphies adaptées, permettent d’étudier des dialectes
-des diverses langues régionales françaises, et d’analyser la variation phonétique, lexicale ou morphologique
-dans un contexte de terrain. Grâce à cette ressource, nous avons pu intégrer des textes en occitan très variés
-phonétiquement, enrichissant le corpus avec des variations dialectiques.
-
-Enfin, j’utilise une traduction de la parabole du fils prodigue, traduites dans divers dialectes régionaux. 
+Enfin, nous utilisons une traduction de la parabole du fils prodigue, traduites dans divers dialectes régionaux. 
 Cette parabole est un classique des enquêtes dialectologiques{ :} elle a été traduite dans de nombreuses 
 langues régionales, notamment via les enquêtes menées par les Coquebert de Montbret au XIX siècle. 
 Sur le plan linguistique, la version occitane de cette parabole (ainsi que des variantes en corse ou d’autres langues) 
@@ -101,7 +101,7 @@ Lemmes & 3039 & -- & -- & -- \\
 
 Le tableau \ref{table_donnees_par_langues} permet d'affiner cette analyse en comparant la répartition des
 données par langue. On constate que l'occitan domine très largement avec {25 674} tokens répartis sur 77 fichiers,
-contre respectivement {9 677} et {9 601} tokens pour l'alsacien et le corse. Cette une surreprésentation de
+contre respectivement {9 677} et {9 601} tokens pour l'alsacien et le corse. Cette surreprésentation de
 l'occitan peut nous poser problème. Celle-ci pourrait conduire à un classifieur moins performant sur les
 paires alsaciennes ou corses, qui disposent de moins d'exemples d'entraînement.
 Le corse et l'alsacien sont très similaires statistiquement. Cette similarité nous indique que les deux
@@ -125,14 +125,14 @@ Phrases & 16\,940 & 19 & 278\,025 & 14\,198 \\
 Lemmes & -- & -- & 1\,868\,027 & -- \\
 \hline
 \end{tabular}
-\caption{Données statistiques du corpus comparable Wikimédia}
+\caption{Données statistiques du corpus comparable Wikipédia}
 \label{table_donnees_comp}
 \end{table}
 
 Le tableau \ref{table_donnees_comp} représente les données de validation de notre modèle.
-Celles-ci ont été obtenues via Wikimédia et les liens interlangues.
-Pour ce faire nous avons utilisé le programme de \citet{tsolakis_2024} que nous avons modifié afin d'avoir
-les pages Wikimédia en français, alsacien, occitan et corse.
+Celles-ci ont été obtenues via Wikipédia et les liens interlangues.
+Pour ce faire, nous avons utilisé le programme de \citet{tsolakis_2024} que nous avons modifié afin d'avoir
+les pages Wikipédia en français, alsacien, occitan et corse.
 
 Le français domine massivement avec plus de 5 millions de tokens répartis sur {3 487} fichiers, reflétant la
 richesse et la maturité de la communauté Wikipédia francophone. L'alsacien, avec {528 337} tokens sur {2 399}
@@ -149,7 +149,7 @@ soit un volume environ 60 fois inférieur à celui de l'alsacien. Cette dispropo
 la phase de validation{ :} le modèle disposera de très peu d'exemples pour être évalué, ce qui limitera la
 portée des conclusions tirées sur les performances du classifieur pour cette langue.
 
-D'un point de vue qualitatif, les textes Wikimédia présentent une hétérogénéité thématique et stylistique
+D'un point de vue qualitatif, les textes Wikipédia présentent une hétérogénéité thématique et stylistique
 bien plus grande que les corpus parallèles. Cette diversité est à la fois un avantage et une difficulté.
 Elle permet de tester la généralisation du modèle au-delà des genres textuels vus à l'entraînement, mais
 elle expose aussi le classifieur à des registres, des vocabulaires spécialisés et des structures discursives
